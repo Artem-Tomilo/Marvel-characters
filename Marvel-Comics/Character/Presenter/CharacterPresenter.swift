@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class CharacterPresenter: NSObject, UICollectionViewDelegate {
     
@@ -25,8 +26,7 @@ class CharacterPresenter: NSObject, UICollectionViewDelegate {
         
         let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collection.backgroundColor = .clear
-        collection.translatesAutoresizingMaskIntoConstraints = false
-         return collection
+        return collection
     }()
     
     static let cellIdentifier = "character"
@@ -34,7 +34,6 @@ class CharacterPresenter: NSObject, UICollectionViewDelegate {
     func configureNavigationBar(){
         controller?.navigationController?.navigationBar.barStyle = .black
         let navBar = controller?.navigationController?.navigationBar
-        navBar?.shadowImage = UIImage()
         navBar?.isTranslucent = false
         navBar?.barTintColor = .red
         
@@ -46,17 +45,14 @@ class CharacterPresenter: NSObject, UICollectionViewDelegate {
     
     func configureCollectionView() {
         guard let controller else { return }
-        
         controller.view.addSubview(collectionView)
         collectionView.dataSource = dataSource
         collectionView.delegate = self
         
-        NSLayoutConstraint.activate([
-            collectionView.topAnchor.constraint(equalTo: controller.view.safeAreaLayoutGuide.topAnchor),
-            collectionView.leadingAnchor.constraint(equalTo: controller.view.leadingAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: controller.view.bottomAnchor),
-            collectionView.trailingAnchor.constraint(equalTo: controller.view.trailingAnchor),
-        ])
+        collectionView.snp.makeConstraints { make in
+            make.top.equalTo(controller.view.safeAreaLayoutGuide)
+            make.leading.trailing.bottom.equalToSuperview()
+        }
         collectionView.register(CharacterCell.self, forCellWithReuseIdentifier: CharacterPresenter.cellIdentifier)
     }
 }

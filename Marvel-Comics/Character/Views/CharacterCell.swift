@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class CharacterCell: UICollectionViewCell {
     
@@ -25,31 +26,25 @@ class CharacterCell: UICollectionViewCell {
     }
     
     private func setup() {
-        [background, characterImage, nameView, nameLabel].forEach { view in
-            view.translatesAutoresizingMaskIntoConstraints = false
-        }
-        
         contentView.addSubview(background)
         background.addSubview(characterImage)
         characterImage.addSubview(nameView)
         nameView.addSubview(nameLabel)
         
-        NSLayoutConstraint.activate([
-            background.heightAnchor.constraint(equalTo: contentView.heightAnchor),
-            background.widthAnchor.constraint(equalTo: contentView.widthAnchor),
-            
-            characterImage.heightAnchor.constraint(equalTo: background.heightAnchor),
-            characterImage.widthAnchor.constraint(equalTo: background.widthAnchor),
-            
-            nameView.leadingAnchor.constraint(equalTo: characterImage.leadingAnchor),
-            nameView.trailingAnchor.constraint(equalTo: characterImage.trailingAnchor),
-            nameView.bottomAnchor.constraint(equalTo: characterImage.bottomAnchor),
-            nameView.heightAnchor.constraint(equalToConstant: 50),
-            
-            nameLabel.leadingAnchor.constraint(equalTo: nameView.leadingAnchor, constant: 20),
-            nameLabel.trailingAnchor.constraint(equalTo: nameView.trailingAnchor, constant: -20),
-            nameLabel.centerYAnchor.constraint(equalTo: nameView.centerYAnchor)
-        ])
+        background.snp.makeConstraints { make in
+            make.height.width.equalToSuperview()
+        }
+        characterImage.snp.makeConstraints { make in
+            make.height.width.equalToSuperview()
+        }
+        nameView.snp.makeConstraints { make in
+            make.leading.trailing.bottom.equalToSuperview()
+            make.height.equalTo(50)
+        }
+        nameLabel.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview().inset(20)
+            make.centerY.equalToSuperview()
+        }
         
         characterImage.backgroundColor = .systemGray5
         background.backgroundColor = .clear
@@ -59,19 +54,11 @@ class CharacterCell: UICollectionViewCell {
         nameView.backgroundColor = UIColor(white: 0, alpha: 0.7)
         nameLabel.textColor = .white
         nameLabel.textAlignment = .center
-//        addBlurEffect()
     }
     
     func addBlurEffect() {
         let blurEffect = UIBlurEffect(style: .regular)
         blurEffectView = UIVisualEffectView(effect: blurEffect)
-//        blurEffectView.frame = characterImage.bounds
-        NSLayoutConstraint.activate([
-            blurEffectView.topAnchor.constraint(equalTo: characterImage.topAnchor),
-            blurEffectView.leadingAnchor.constraint(equalTo: characterImage.leadingAnchor),
-            blurEffectView.trailingAnchor.constraint(equalTo: characterImage.trailingAnchor),
-            blurEffectView.bottomAnchor.constraint(equalTo: nameView.topAnchor)
-        ])
         blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         characterImage.addSubview(blurEffectView)
     }

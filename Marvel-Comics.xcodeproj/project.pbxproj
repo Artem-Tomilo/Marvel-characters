@@ -15,6 +15,7 @@
 		38EF1CE42977FB1500EB5F8E /* CharacterPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EF1CE32977FB1400EB5F8E /* CharacterPresenter.swift */; };
 		38EF1CE72977FCEA00EB5F8E /* CharacterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EF1CE62977FCEA00EB5F8E /* CharacterCell.swift */; };
 		38EF1CE9297802A900EB5F8E /* CollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EF1CE8297802A900EB5F8E /* CollectionViewDataSource.swift */; };
+		D4CAF870102BCE318700763F /* Pods_Marvel_Comics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB75884E3A7BF632F7CAE9DC /* Pods_Marvel_Comics.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,9 @@
 		38EF1CE32977FB1400EB5F8E /* CharacterPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterPresenter.swift; sourceTree = "<group>"; };
 		38EF1CE62977FCEA00EB5F8E /* CharacterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterCell.swift; sourceTree = "<group>"; };
 		38EF1CE8297802A900EB5F8E /* CollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewDataSource.swift; sourceTree = "<group>"; };
+		463B3DF5F97986CFA9659A9C /* Pods-Marvel-Comics.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Marvel-Comics.release.xcconfig"; path = "Target Support Files/Pods-Marvel-Comics/Pods-Marvel-Comics.release.xcconfig"; sourceTree = "<group>"; };
+		B9AFCC47C7E4D994191BD7F3 /* Pods-Marvel-Comics.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Marvel-Comics.debug.xcconfig"; path = "Target Support Files/Pods-Marvel-Comics/Pods-Marvel-Comics.debug.xcconfig"; sourceTree = "<group>"; };
+		DB75884E3A7BF632F7CAE9DC /* Pods_Marvel_Comics.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Marvel_Comics.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,6 +39,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4CAF870102BCE318700763F /* Pods_Marvel_Comics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -46,6 +51,8 @@
 			children = (
 				38EF1CCB2977F82500EB5F8E /* Marvel-Comics */,
 				38EF1CCA2977F82500EB5F8E /* Products */,
+				729914580F8DBD3EB044A31E /* Pods */,
+				8B54040385BE95442575229B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -60,12 +67,8 @@
 		38EF1CCB2977F82500EB5F8E /* Marvel-Comics */ = {
 			isa = PBXGroup;
 			children = (
-				38EF1CCC2977F82500EB5F8E /* AppDelegate.swift */,
-				38EF1CCE2977F82500EB5F8E /* SceneDelegate.swift */,
 				38EF1CE02977FADE00EB5F8E /* Character */,
-				38EF1CD52977F82800EB5F8E /* Assets.xcassets */,
-				38EF1CD72977F82800EB5F8E /* LaunchScreen.storyboard */,
-				38EF1CDA2977F82800EB5F8E /* Info.plist */,
+				38EF1CEA2978270300EB5F8E /* res */,
 			);
 			path = "Marvel-Comics";
 			sourceTree = "<group>";
@@ -105,6 +108,35 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		38EF1CEA2978270300EB5F8E /* res */ = {
+			isa = PBXGroup;
+			children = (
+				38EF1CCC2977F82500EB5F8E /* AppDelegate.swift */,
+				38EF1CCE2977F82500EB5F8E /* SceneDelegate.swift */,
+				38EF1CD72977F82800EB5F8E /* LaunchScreen.storyboard */,
+				38EF1CD52977F82800EB5F8E /* Assets.xcassets */,
+				38EF1CDA2977F82800EB5F8E /* Info.plist */,
+			);
+			path = res;
+			sourceTree = "<group>";
+		};
+		729914580F8DBD3EB044A31E /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B9AFCC47C7E4D994191BD7F3 /* Pods-Marvel-Comics.debug.xcconfig */,
+				463B3DF5F97986CFA9659A9C /* Pods-Marvel-Comics.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		8B54040385BE95442575229B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DB75884E3A7BF632F7CAE9DC /* Pods_Marvel_Comics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -112,9 +144,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 38EF1CDD2977F82800EB5F8E /* Build configuration list for PBXNativeTarget "Marvel-Comics" */;
 			buildPhases = (
+				CC6B12DF77A884C50FA2D14E /* [CP] Check Pods Manifest.lock */,
 				38EF1CC52977F82500EB5F8E /* Sources */,
 				38EF1CC62977F82500EB5F8E /* Frameworks */,
 				38EF1CC72977F82500EB5F8E /* Resources */,
+				AC78F07ABF3F13C36A4CA9DC /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -169,6 +203,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		AC78F07ABF3F13C36A4CA9DC /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Marvel-Comics/Pods-Marvel-Comics-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Marvel-Comics/Pods-Marvel-Comics-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Marvel-Comics/Pods-Marvel-Comics-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CC6B12DF77A884C50FA2D14E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Marvel-Comics-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		38EF1CC52977F82500EB5F8E /* Sources */ = {
@@ -314,6 +390,7 @@
 		};
 		38EF1CDE2977F82800EB5F8E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B9AFCC47C7E4D994191BD7F3 /* Pods-Marvel-Comics.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -321,7 +398,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = JPN4ML425P;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "Marvel-Comics/Info.plist";
+				INFOPLIST_FILE = "Marvel-Comics/res/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -341,6 +418,7 @@
 		};
 		38EF1CDF2977F82800EB5F8E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 463B3DF5F97986CFA9659A9C /* Pods-Marvel-Comics.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -348,7 +426,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = JPN4ML425P;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "Marvel-Comics/Info.plist";
+				INFOPLIST_FILE = "Marvel-Comics/res/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
