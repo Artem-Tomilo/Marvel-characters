@@ -7,4 +7,5 @@ target 'Marvel-Comics' do
 
   # Pods for Marvel-Comics
 pod "SnapKit"
+pod 'Alamofire'
 end

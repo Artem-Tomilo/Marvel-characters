@@ -12,13 +12,12 @@ class RequestHandler {
     private let limit = 10
     private let baseURL = "https://gateway.marvel.com"
     private let publicKey = "8bd050fc93e12270fe8f7e86de47238a"
-    private let privateKey = ""
+    private let privateKey = "87ac8756494f4167c6a4a623bf7de9c70f50bcc2"
     
-    func getCharacters(pageNumber: Int) -> URLRequest {
+    func getCharacters(pageNumber: Int) -> String {
         let endpoint = "/v1/public/characters"
-        let url = baseURL + endpoint + buildQueryString(pageNumber: pageNumber, isCharacterList: true)
-        let request = URLRequest(url: URL(string: url)!)
-        return request
+        let stringUrl = baseURL + endpoint + buildQueryString(pageNumber: pageNumber, isCharacterList: true)
+        return stringUrl
     }
     
     private func buildQueryString(pageNumber: Int, isCharacterList: Bool = false) -> String {

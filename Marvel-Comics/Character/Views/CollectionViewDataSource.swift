@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class CollectionViewDataSource: NSObject, UICollectionViewDataSource {
     
@@ -25,27 +26,17 @@ class CollectionViewDataSource: NSObject, UICollectionViewDataSource {
     }
     
     func fetchData(pageNumber: Int) {
-        let request = RequestHandler().getCharacters(pageNumber: pageNumber)
-        
-        let task = URLSession.shared.dataTask(with: request) { [weak self] data, response, error in
+        let url = RequestHandler().getCharacters(pageNumber: pageNumber)
+        AF.request(url).responseDecodable(of: CharacterDataBase.self) { [weak self] response in
             guard let self else { return }
-            guard error == nil,
-                  let response = response as? HTTPURLResponse,
-                  let data else {
-                print(error?.localizedDescription as Any)
-                return
-            }
-            print(response.statusCode)
-            
-            let decoder = JSONDecoder()
-            let result = try? decoder.decode(CharacterDataBase.self, from: data)
-            
-            guard let result else { return }
+            guard response.error == nil,
+                let urlResponse = response.response else { return }
+            print(urlResponse.statusCode)
+            guard let result = try? response.result.get() else { return }
             let characters = result.charactersData.characters
             self.characters.append(contentsOf: characters)
-            self.updateUIWithData?(error)
+            self.updateUIWithData?(response.error)
         }
-        task.resume()
     }
 }
 

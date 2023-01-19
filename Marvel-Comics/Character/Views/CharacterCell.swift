@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import Alamofire
 
 class CharacterCell: UICollectionViewCell {
     
@@ -80,16 +81,14 @@ class CharacterCell: UICollectionViewCell {
         let path = character.image.path
         let ext = character.image.fileExtension
         let stringUrl = path + "." + ext
-        let url = URL(string: stringUrl)
         
-        guard let url else { return }
-        let task = URLSession.shared.dataTask(with: url) { data, response, error in
-            guard let data, error == nil else { return }
+        AF.request(stringUrl).response { [weak self] response in
+            guard let self else { return }
+            guard let data = response.data else { return }
             DispatchQueue.main.async {
                 self.characterImage.image = UIImage(data: data)
                 self.activityIndicator.stopAnimating()
             }
         }
-        task.resume()
     }
 }
