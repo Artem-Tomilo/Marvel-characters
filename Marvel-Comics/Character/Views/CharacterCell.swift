@@ -53,7 +53,8 @@ class CharacterCell: UICollectionViewCell {
         
         nameView.backgroundColor = UIColor(white: 0, alpha: 0.7)
         nameLabel.textColor = .white
-        nameLabel.textAlignment = .center
+        nameLabel.textAlignment = .left
+        nameLabel.font = UIFont.systemFont(ofSize: 20)
     }
     
     func addBlurEffect() {
@@ -65,10 +66,6 @@ class CharacterCell: UICollectionViewCell {
     
     func showImage() {
         blurEffectView.effect = .none
-    }
-    
-    func bind(data: Data) {
-        characterImage.image = UIImage(data: data)
     }
     
     func bindText(_ text: String) {

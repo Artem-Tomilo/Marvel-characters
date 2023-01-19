@@ -12,23 +12,7 @@ class CharacterPresenter: NSObject, UICollectionViewDelegate {
     
     weak var controller: CharacterListViewController?
     private let dataSource = CollectionViewDataSource()
-    
-    private var collectionView: UICollectionView = {
-        let itemsPerRow: CGFloat = 2
-        let paddingWidth = 10 * (itemsPerRow + 1)
-        let availableWidth = UIScreen.main.bounds.width - paddingWidth
-        let widthPerItem = availableWidth / itemsPerRow
-        
-        let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: widthPerItem, height: widthPerItem * 1.5)
-        layout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
-        layout.minimumLineSpacing = 10
-        
-        let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collection.backgroundColor = .clear
-        return collection
-    }()
-    
+    private var collectionView: UICollectionView?
     static let cellIdentifier = "character"
     
     func configureNavigationBar(){
@@ -44,10 +28,22 @@ class CharacterPresenter: NSObject, UICollectionViewDelegate {
     }
     
     func configureCollectionView() {
-        guard let controller else { return }
+        let itemsPerRow: CGFloat = 2
+        let paddingWidth = 10 * (itemsPerRow + 1)
+        let availableWidth = UIScreen.main.bounds.width - paddingWidth
+        let widthPerItem = availableWidth / itemsPerRow
+        
+        let layout = UICollectionViewFlowLayout()
+        layout.itemSize = CGSize(width: widthPerItem, height: widthPerItem * 1.5)
+        layout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        layout.minimumLineSpacing = 10
+        collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        
+        guard let collectionView, let controller else { return }
         controller.view.addSubview(collectionView)
         collectionView.dataSource = dataSource
         collectionView.delegate = self
+        collectionView.backgroundColor = .clear
         
         collectionView.snp.makeConstraints { make in
             make.top.equalTo(controller.view.safeAreaLayoutGuide)
