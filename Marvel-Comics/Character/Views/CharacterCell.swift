@@ -72,7 +72,24 @@ class CharacterCell: UICollectionViewCell {
         blurEffectView.effect = .none
     }
     
-    func bindText(_ text: String) {
-        nameLabel.text = text
+    func setData(character: Character) {
+        activityIndicator.displayIndicator(view: contentView)
+        activityIndicator.startAnimating()
+        nameLabel.text = character.name
+        
+        let path = character.image.path
+        let ext = character.image.fileExtension
+        let stringUrl = path + "." + ext
+        let url = URL(string: stringUrl)
+        
+        guard let url else { return }
+        let task = URLSession.shared.dataTask(with: url) { data, response, error in
+            guard let data, error == nil else { return }
+            DispatchQueue.main.async {
+                self.characterImage.image = UIImage(data: data)
+                self.activityIndicator.stopAnimating()
+            }
+        }
+        task.resume()
     }
 }

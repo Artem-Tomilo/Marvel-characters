@@ -8,11 +8,11 @@
 import Foundation
 
 struct CharacterDataBase: Codable {
-    let responseCode: Int?
-    let characterArray: Characters?
+    let responseCode: Int
+    let charactersData: Characters
     
-    enum CodingKeys: String, CodingKey{
+    enum CodingKeys: String, CodingKey {
         case responseCode = "code"
-        case characterArray = "data"
+        case charactersData = "data"
     }
 }

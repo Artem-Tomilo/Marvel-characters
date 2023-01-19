@@ -14,6 +14,7 @@ class CharacterPresenter: NSObject, UICollectionViewDelegate {
     private let dataSource = CollectionViewDataSource()
     private var collectionView: UICollectionView?
     private let activityIndicator = ActivityIndicator()
+    private var pageCounter = 1
     static let cellIdentifier = "character"
     
     func configureNavigationBar(){
@@ -53,5 +54,19 @@ class CharacterPresenter: NSObject, UICollectionViewDelegate {
         collectionView.register(CharacterCell.self, forCellWithReuseIdentifier: CharacterPresenter.cellIdentifier)
         activityIndicator.displayIndicator(view: collectionView)
         activityIndicator.startAnimating()
+        fetchData()
+    }
+    
+    private func fetchData(){
+        dataSource.fetchData(pageNumber: 0)
+        dataSource.updateUIWithData = { [weak self] (error) in
+            if let self, error == nil{
+                DispatchQueue.main.async {
+                    self.activityIndicator.stopAnimating()
+                    self.collectionView?.reloadData()
+                    self.pageCounter += 1
+                }
+            }
+        }
     }
 }

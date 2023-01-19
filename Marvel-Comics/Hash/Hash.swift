@@ -22,9 +22,7 @@ class Hash {
             for byte in digest {
                 md5String += String(format:"%02x", UInt8(byte))
             }
-            
             return md5String
-            
         }
         return ""
     }
