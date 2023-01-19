@@ -7,7 +7,7 @@
 
 import UIKit
 import SnapKit
-import Alamofire
+import SDWebImage
 
 class CharacterCell: UICollectionViewCell {
     
@@ -82,13 +82,8 @@ class CharacterCell: UICollectionViewCell {
         let ext = character.image.fileExtension
         let stringUrl = path + "." + ext
         
-        AF.request(stringUrl).response { [weak self] response in
-            guard let self else { return }
-            guard let data = response.data else { return }
-            DispatchQueue.main.async {
-                self.characterImage.image = UIImage(data: data)
-                self.activityIndicator.stopAnimating()
-            }
+        characterImage.sd_setImage(with: URL(string: stringUrl), placeholderImage: nil, options: .continueInBackground) { (image, error, cache, url) in
+            self.activityIndicator.stopAnimating()
         }
     }
 }

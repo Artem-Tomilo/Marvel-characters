@@ -8,4 +8,5 @@ target 'Marvel-Comics' do
   # Pods for Marvel-Comics
 pod "SnapKit"
 pod 'Alamofire'
+pod 'SDWebImage', '~> 5.0'
 end

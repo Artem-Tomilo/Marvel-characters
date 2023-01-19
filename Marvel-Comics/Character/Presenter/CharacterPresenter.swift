@@ -57,7 +57,7 @@ class CharacterPresenter: NSObject, UICollectionViewDelegate {
         fetchData()
     }
     
-    private func fetchData(){
+    private func fetchData() {
         dataSource.fetchData(pageNumber: 0)
         dataSource.updateUIWithData = { [weak self] (error) in
             if let self, error == nil{
@@ -67,6 +67,15 @@ class CharacterPresenter: NSObject, UICollectionViewDelegate {
                     self.pageCounter += 1
                 }
             }
+        }
+    }
+    
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        let offsetY = scrollView.contentOffset.y
+        let contentHeight = scrollView.contentSize.height
+        
+        if offsetY > contentHeight - scrollView.frame.size.height - 160 {
+            dataSource.fetchData(pageNumber: pageCounter)
         }
     }
 }

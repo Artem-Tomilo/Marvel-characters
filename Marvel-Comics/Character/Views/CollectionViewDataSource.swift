@@ -27,11 +27,13 @@ class CollectionViewDataSource: NSObject, UICollectionViewDataSource {
     
     func fetchData(pageNumber: Int) {
         let url = RequestHandler().getCharacters(pageNumber: pageNumber)
+        
         AF.request(url).responseDecodable(of: CharacterDataBase.self) { [weak self] response in
             guard let self else { return }
             guard response.error == nil,
-                let urlResponse = response.response else { return }
+                  let urlResponse = response.response else { return }
             print(urlResponse.statusCode)
+            
             guard let result = try? response.result.get() else { return }
             let characters = result.charactersData.characters
             self.characters.append(contentsOf: characters)
