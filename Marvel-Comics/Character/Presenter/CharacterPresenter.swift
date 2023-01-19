@@ -13,6 +13,7 @@ class CharacterPresenter: NSObject, UICollectionViewDelegate {
     weak var controller: CharacterListViewController?
     private let dataSource = CollectionViewDataSource()
     private var collectionView: UICollectionView?
+    private let activityIndicator = ActivityIndicator()
     static let cellIdentifier = "character"
     
     func configureNavigationBar(){
@@ -50,5 +51,7 @@ class CharacterPresenter: NSObject, UICollectionViewDelegate {
             make.leading.trailing.bottom.equalToSuperview()
         }
         collectionView.register(CharacterCell.self, forCellWithReuseIdentifier: CharacterPresenter.cellIdentifier)
+        activityIndicator.displayIndicator(view: collectionView)
+        activityIndicator.startAnimating()
     }
 }

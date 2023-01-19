@@ -15,6 +15,7 @@ class CharacterCell: UICollectionViewCell {
     private let nameView = UIView()
     private let nameLabel = UILabel()
     private var blurEffectView = UIVisualEffectView()
+    private let activityIndicator = ActivityIndicator()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -55,6 +56,9 @@ class CharacterCell: UICollectionViewCell {
         nameLabel.textColor = .white
         nameLabel.textAlignment = .left
         nameLabel.font = UIFont.systemFont(ofSize: 20)
+        
+        activityIndicator.displayIndicator(view: contentView)
+        activityIndicator.startAnimating()
     }
     
     func addBlurEffect() {
