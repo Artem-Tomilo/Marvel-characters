@@ -39,7 +39,6 @@ class CharacterListPresenter: CharacterPresenterProtocol {
             DispatchQueue.main.async {
                 switch result {
                 case .success(let characters):
-                    guard let characters else { return }
                     self.characters.append(contentsOf: characters)
                     self.view?.success()
                     self.isLoading = false

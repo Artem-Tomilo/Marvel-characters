@@ -15,7 +15,7 @@ class NetworkService: NetworkServiceProtocol {
     private let publicKey = "8bd050fc93e12270fe8f7e86de47238a"
     private let privateKey = ""
     
-    func getCharacters(pageNumber: Int, completion: @escaping (Result<[Character]?, BaseError>) -> Void) {
+    func getCharacters(pageNumber: Int, completion: @escaping (Result<[Character], BaseError>) -> Void) {
         let endpoint = "/v1/public/characters"
         let stringUrl = baseURL + endpoint + buildQueryString(pageNumber: pageNumber, isCharacterList: true)
         
@@ -31,7 +31,24 @@ class NetworkService: NetworkServiceProtocol {
         }
     }
     
-    private func buildQueryString(pageNumber: Int, isCharacterList: Bool = false) -> String {
+    func getComics(id: Int, completion: @escaping (Result<[Comic], BaseError>) -> Void) {
+        let endpoint = "/v1/public/characters/\(id)/comics"
+        let stringUrl  = baseURL + endpoint + buildQueryString()
+        
+        AF.request(stringUrl).responseDecodable(of: ComicDataBase.self) { response in
+            do {
+                let dataBase = try response.result.get()
+                print(dataBase.responseCode)
+                let comics = dataBase.comicsData.comics
+                guard let comics else { return }
+                completion(.success(comics))
+            } catch {
+                completion(.failure(BaseError(message: "An unexpected error occurred. Try again")))
+            }
+        }
+    }
+    
+    private func buildQueryString(pageNumber: Int = 0, isCharacterList: Bool = false) -> String {
         let timeStamp = Date().timeIntervalSince1970
         var queryString = "?ts=\(timeStamp)&apikey=\(publicKey)&hash=\(buildHashToken(timestamp: timeStamp))"
         if isCharacterList {

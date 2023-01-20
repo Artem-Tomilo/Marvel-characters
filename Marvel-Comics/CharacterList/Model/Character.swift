@@ -11,7 +11,7 @@ struct Character: Codable {
     let id : Int
     let name : String
     let description : String
-    let image : CharacterImage
+    let image : Image
 //    let modified : String
 //    let resourceURI : String
 //    let comics : CharacterComics?

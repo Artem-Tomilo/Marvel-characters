@@ -16,4 +16,12 @@ class ModuleBuilder: ModuleBuilderProtocol {
         view.presenter = presenter
         return view
     }
+    
+    static func createCharacterDetailsViewController(character: Character) -> UIViewController {
+        let view = CharacterDetailsViewController()
+        let networkService = NetworkService()
+        let presenter = CharacterDetailsPresenter(view: view, networkService: networkService, character: character)
+        view.presenter = presenter
+        return view
+    }
 }

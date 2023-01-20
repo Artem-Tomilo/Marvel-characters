@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct CharacterImage : Codable {
+struct Image : Codable {
     let path : String
     let fileExtension : String
     

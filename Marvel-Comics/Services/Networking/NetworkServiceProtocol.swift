@@ -8,5 +8,6 @@
 import Foundation
 
 protocol NetworkServiceProtocol: AnyObject {
-    func getCharacters(pageNumber: Int, completion: @escaping (Result<[Character]?, BaseError>) -> Void)
+    func getCharacters(pageNumber: Int, completion: @escaping (Result<[Character], BaseError>) -> Void)
+    func getComics(id: Int, completion: @escaping (Result<[Comic], BaseError>) -> Void)
 }

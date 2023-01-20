@@ -9,4 +9,5 @@ import UIKit
 
 protocol ModuleBuilderProtocol {
     static func createCharacterViewController() -> UIViewController
+    static func createCharacterDetailsViewController(character: Character) -> UIViewController
 }

@@ -85,7 +85,7 @@ class CharacterListViewController: UIViewController {
     }
     
     //MARK: - Targets
-
+    
     @objc func refresh(_ sender: UIRefreshControl) {
         presenter?.getCharacters()
         sender.endRefreshing()
@@ -95,6 +95,13 @@ class CharacterListViewController: UIViewController {
 //MARK: - extension UICollectionView
 
 extension CharacterListViewController: UICollectionViewDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let character = presenter?.characters[indexPath.row]
+        guard let character else { return }
+        let vc = ModuleBuilder.createCharacterDetailsViewController(character: character)
+        navigationController?.pushViewController(vc, animated: true)
+    }
     
     func collectionView(_ collectionView: UICollectionView, willDisplaySupplementaryView view: UICollectionReusableView,
                         forElementKind elementKind: String, at indexPath: IndexPath) {
