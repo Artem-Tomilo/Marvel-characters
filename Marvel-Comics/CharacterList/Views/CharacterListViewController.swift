@@ -17,6 +17,7 @@ class CharacterListViewController: UIViewController {
     private var collectionView: UICollectionView?
     private var loadingView: LoadingReusableView?
     private let activityIndicator = ActivityIndicator()
+    private let refreshControl = UIRefreshControl()
     static let cellIdentifier = "character"
     static let cellLoadingId = "cellLoadingId"
     
@@ -70,6 +71,9 @@ class CharacterListViewController: UIViewController {
         collectionView.register(LoadingReusableView.self,
                                 forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter,
                                 withReuseIdentifier: CharacterListViewController.cellLoadingId)
+        collectionView.refreshControl = refreshControl
+        refreshControl.addTarget(self, action: #selector(refresh(_:)), for: .primaryActionTriggered)
+        
         activityIndicator.displayIndicator(view: collectionView)
         activityIndicator.startAnimating()
         presenter?.getCharacters()
@@ -79,17 +83,39 @@ class CharacterListViewController: UIViewController {
         let baseError = error as! BaseError
         ErrorAlert.showAlertController(message: baseError.message, viewController: self)
     }
+    
+    //MARK: - Targets
+
+    @objc func refresh(_ sender: UIRefreshControl) {
+        presenter?.getCharacters()
+        sender.endRefreshing()
+    }
 }
 
 //MARK: - extension UICollectionView
 
 extension CharacterListViewController: UICollectionViewDelegate {
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplaySupplementaryView view: UICollectionReusableView,
+                        forElementKind elementKind: String, at indexPath: IndexPath) {
+        if elementKind == UICollectionView.elementKindSectionFooter {
+            self.loadingView?.activityIndicator.startAnimating()
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didEndDisplayingSupplementaryView view: UICollectionReusableView,
+                        forElementOfKind elementKind: String, at indexPath: IndexPath) {
+        if elementKind == UICollectionView.elementKindSectionFooter {
+            self.loadingView?.activityIndicator.stopAnimating()
+        }
     }
 }
 
 extension CharacterListViewController: UICollectionViewDataSource {
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return presenter?.characters.count ?? 0
@@ -106,17 +132,6 @@ extension CharacterListViewController: UICollectionViewDataSource {
         return cell
     }
     
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let offsetY = scrollView.contentOffset.y
-        let contentHeight = scrollView.contentSize.height
-
-        if offsetY > contentHeight - scrollView.frame.size.height - 160 {
-            if !presenter!.isLoading {
-                presenter?.getCharacters()
-            }
-        }
-    }
-    
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String,
                         at indexPath: IndexPath) -> UICollectionReusableView {
         if kind == UICollectionView.elementKindSectionFooter {
@@ -129,23 +144,21 @@ extension CharacterListViewController: UICollectionViewDataSource {
         }
         return UICollectionReusableView()
     }
-
-    func collectionView(_ collectionView: UICollectionView, willDisplaySupplementaryView view: UICollectionReusableView,
-                        forElementKind elementKind: String, at indexPath: IndexPath) {
-        if elementKind == UICollectionView.elementKindSectionFooter {
-            self.loadingView?.activityIndicator.startAnimating()
-        }
-    }
-
-    func collectionView(_ collectionView: UICollectionView, didEndDisplayingSupplementaryView view: UICollectionReusableView,
-                        forElementOfKind elementKind: String, at indexPath: IndexPath) {
-        if elementKind == UICollectionView.elementKindSectionFooter {
-            self.loadingView?.activityIndicator.stopAnimating()
-        }
-    }
 }
 
 extension CharacterListViewController: UICollectionViewDelegateFlowLayout {
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let offsetY = scrollView.contentOffset.y
+        let contentHeight = scrollView.contentSize.height
+        
+        if offsetY > contentHeight - scrollView.frame.size.height - 160 {
+            if !presenter!.isLoading {
+                presenter?.getCharacters()
+            }
+        }
+    }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
                         referenceSizeForFooterInSection section: Int) -> CGSize {
         let size = CGSize(width: collectionView.bounds.size.width, height: 55)
