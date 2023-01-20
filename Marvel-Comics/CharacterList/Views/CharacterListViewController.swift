@@ -13,7 +13,7 @@ class CharacterListViewController: UIViewController {
     
     //MARK: - Properties
     
-    var presenter: CharacterPresenter?
+    var presenter: CharacterListPresenter?
     private var collectionView: UICollectionView?
     private var loadingView: LoadingReusableView?
     private let activityIndicator = ActivityIndicator()
@@ -155,7 +155,7 @@ extension CharacterListViewController: UICollectionViewDelegateFlowLayout {
 
 //MARK: - extension CharacterViewProtocol
 
-extension CharacterListViewController: CharacterViewProtocol {
+extension CharacterListViewController: CharacterListViewProtocol {
     func success() {
         collectionView?.reloadData()
     }

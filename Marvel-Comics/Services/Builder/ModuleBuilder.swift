@@ -12,7 +12,7 @@ class ModuleBuilder: ModuleBuilderProtocol {
     static func createCharacterViewController() -> UIViewController {
         let view = CharacterListViewController()
         let networkService = NetworkService()
-        let presenter = CharacterPresenter(view: view, networkService: networkService)
+        let presenter = CharacterListPresenter(view: view, networkService: networkService)
         view.presenter = presenter
         return view
     }

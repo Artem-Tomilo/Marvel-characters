@@ -7,27 +7,27 @@
 
 import Foundation
 
-protocol CharacterViewProtocol: AnyObject {
+protocol CharacterListViewProtocol: AnyObject {
     func success()
     func failure(error: Error)
 }
 
 protocol CharacterPresenterProtocol: AnyObject {
-    init(view: CharacterViewProtocol, networkService: NetworkServiceProtocol)
+    init(view: CharacterListViewProtocol, networkService: NetworkServiceProtocol)
     func getCharacters()
     var characters: [Character] { get set }
 }
 
-class CharacterPresenter: CharacterPresenterProtocol {
+class CharacterListPresenter: CharacterPresenterProtocol {
     
     var characters: [Character] = []
     private var pageCounter = 0
     var isLoading = false
     
-    weak var view: CharacterViewProtocol?
+    weak var view: CharacterListViewProtocol?
     let networkService: NetworkServiceProtocol
     
-    required init(view: CharacterViewProtocol, networkService: NetworkServiceProtocol) {
+    required init(view: CharacterListViewProtocol, networkService: NetworkServiceProtocol) {
         self.view = view
         self.networkService = networkService
     }

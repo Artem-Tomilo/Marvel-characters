@@ -19,24 +19,20 @@ class NetworkService: NetworkServiceProtocol {
         let endpoint = "/v1/public/characters"
         let stringUrl = baseURL + endpoint + buildQueryString(pageNumber: pageNumber, isCharacterList: true)
         
-        guard let url = URL(string: stringUrl) else { return }
-        URLSession.shared.dataTask(with: url) { data, response, error in
-            if let error {
+        AF.request(stringUrl).responseDecodable(of: CharacterDataBase.self) { response in
+            if let error = response.error {
                 completion(.failure(error))
             }
-            guard let response = response as? HTTPURLResponse else { return }
-            print(response.statusCode)
-            
-            guard let data else { return }
             
             do {
-                let result = try JSONDecoder().decode(CharacterDataBase.self, from: data)
-                let characters = result.charactersData.characters
+                let dataBase = try response.result.get()
+                print(dataBase.responseCode)
+                let characters = dataBase.charactersData.characters
                 completion(.success(characters))
             } catch {
                 completion(.failure(error))
             }
-        }.resume()
+        }
     }
     
     private func buildQueryString(pageNumber: Int, isCharacterList: Bool = false) -> String {

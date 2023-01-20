@@ -9,7 +9,7 @@ import UIKit
 
 class ActivityIndicator {
     
-    private let indicator = UIActivityIndicatorView(style: .medium)
+    private let indicator = UIActivityIndicatorView(style: .large)
     
     func displayIndicator(view: UIView) {
         indicator.color = .black
