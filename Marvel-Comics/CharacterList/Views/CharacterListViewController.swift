@@ -74,6 +74,11 @@ class CharacterListViewController: UIViewController {
         activityIndicator.startAnimating()
         presenter?.getCharacters()
     }
+    
+    private func handleError(error: Error) {
+        let baseError = error as! BaseError
+        ErrorAlert.showAlertController(message: baseError.message, viewController: self)
+    }
 }
 
 //MARK: - extension UICollectionView
@@ -161,6 +166,7 @@ extension CharacterListViewController: CharacterListViewProtocol {
     }
     
     func failure(error: Error) {
-        print(error.localizedDescription)
+        handleError(error: error)
+        activityIndicator.stopAnimating()
     }
 }

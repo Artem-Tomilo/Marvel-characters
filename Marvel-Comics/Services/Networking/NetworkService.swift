@@ -15,22 +15,18 @@ class NetworkService: NetworkServiceProtocol {
     private let publicKey = "8bd050fc93e12270fe8f7e86de47238a"
     private let privateKey = ""
     
-    func getCharacters(pageNumber: Int, completion: @escaping (Result<[Character]?, Error>) -> Void) {
+    func getCharacters(pageNumber: Int, completion: @escaping (Result<[Character]?, BaseError>) -> Void) {
         let endpoint = "/v1/public/characters"
         let stringUrl = baseURL + endpoint + buildQueryString(pageNumber: pageNumber, isCharacterList: true)
         
         AF.request(stringUrl).responseDecodable(of: CharacterDataBase.self) { response in
-            if let error = response.error {
-                completion(.failure(error))
-            }
-            
             do {
                 let dataBase = try response.result.get()
                 print(dataBase.responseCode)
                 let characters = dataBase.charactersData.characters
                 completion(.success(characters))
             } catch {
-                completion(.failure(error))
+                completion(.failure(BaseError(message: "An unexpected error occurred. Try again")))
             }
         }
     }
