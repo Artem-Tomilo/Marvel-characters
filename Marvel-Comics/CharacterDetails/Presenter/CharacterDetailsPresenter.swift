@@ -15,15 +15,15 @@ protocol CharacterDetailsViewProtocol: AnyObject {
 protocol CharacterDetailsPresenterProtocol: AnyObject {
     init(view: CharacterDetailsViewProtocol, networkService: NetworkServiceProtocol, character: Character?)
     func getComics()
-    var comics: [Comic] { get set }
+    var comics: [Comic]? { get set }
 }
 
 class CharacterDetailsPresenter: CharacterDetailsPresenterProtocol {
     
-    var comics: [Comic] = []
+    var comics: [Comic]?
+    var character: Character?
     weak var view: CharacterDetailsViewProtocol?
     let networkService: NetworkServiceProtocol
-    var character: Character?
     
     required init(view: CharacterDetailsViewProtocol, networkService: NetworkServiceProtocol, character: Character?) {
         self.view = view

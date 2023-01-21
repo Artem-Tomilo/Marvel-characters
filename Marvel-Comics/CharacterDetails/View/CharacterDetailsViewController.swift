@@ -9,16 +9,25 @@ import UIKit
 
 class CharacterDetailsViewController: UIViewController {
     
+    //MARK: - Properties
+    
     var presenter: CharacterDetailsPresenter?
     private let tableView = UITableView()
     private let activityIndicator = ActivityIndicator()
-    static let detailCellIdentifier = "detailCell"
+    static let headerCellIdentifier = "headerCell"
+    static let descriptionCellIdentifier = "descriptionCell"
+    static let characterComicsCellIdentifier = "chatacterComicsCell"
+    static let comicCellIdentifier = "comicCell"
+    
+    //MARK: - VC Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureNavigationBar()
         configureTableView()
     }
+    
+    //MARK: - View settings
     
     private func configureNavigationBar(){
         let leftTitle = UILabel()
@@ -45,54 +54,47 @@ class CharacterDetailsViewController: UIViewController {
     private func configureTableView() {
         view.backgroundColor = .white
         view.addSubview(tableView)
+        
         tableView.snp.makeConstraints { make in
-            make.leading.trailing.bottom.equalToSuperview()
-            make.top.equalTo(view.safeAreaLayoutGuide)
+            make.edges.equalToSuperview()
         }
+        
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.register(UITableViewCell.self,
-                           forCellReuseIdentifier: CharacterDetailsViewController.detailCellIdentifier)
+        tableView.register(CharacterDetailsHeaderTableViewCell.self,
+                           forCellReuseIdentifier: CharacterDetailsViewController.headerCellIdentifier)
+        tableView.register(CharacterDescriptionTableViewCell.self,
+                           forCellReuseIdentifier: CharacterDetailsViewController.descriptionCellIdentifier)
+        tableView.register(CharacterComicsTableViewCell.self,
+                           forCellReuseIdentifier: CharacterDetailsViewController.characterComicsCellIdentifier)
         
         activityIndicator.displayIndicator(view: tableView)
         activityIndicator.startAnimating()
         presenter?.getComics()
     }
     
+    private func handleError(error: Error) {
+        let baseError = error as! BaseError
+        ErrorAlert.showAlertController(message: baseError.message, viewController: self)
+    }
+    
+    //MARK: - Targets
+    
     @objc func backButtonTapped(_ sender: UIButton) {
         navigationController?.popViewController(animated: true)
     }
 }
 
-extension CharacterDetailsViewController: UITableViewDelegate {
-    
-}
-
-extension CharacterDetailsViewController: UITableViewDataSource {
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return presenter?.comics.count ?? 0
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: CharacterDetailsViewController.detailCellIdentifier,
-                                                 for: indexPath)
-        cell.backgroundColor = .blue
-        self.activityIndicator.stopAnimating()
-        return cell
-    }
-}
+//MARK: - extension CharacterDetailsViewProtocol
 
 extension CharacterDetailsViewController: CharacterDetailsViewProtocol {
     func success() {
+        self.activityIndicator.stopAnimating()
         tableView.reloadData()
     }
     
     func failure(error: Error) {
-        print(error.localizedDescription)
+        handleError(error: error)
+        activityIndicator.stopAnimating()
     }
 }
