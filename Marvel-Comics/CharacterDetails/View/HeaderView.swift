@@ -35,7 +35,7 @@ class HeaderView: UIView {
         }
         
         background.backgroundColor = .red
-        title.font = UIFont.boldSystemFont(ofSize: 30)
+        title.font = UIFont(name: "BadaBoomBB", size: 30)
         title.textColor = .white
     }
     

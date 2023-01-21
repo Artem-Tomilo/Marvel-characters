@@ -41,7 +41,7 @@ class ComicCollectionViewCell: UICollectionViewCell {
             make.bottom.equalToSuperview()
         }
         
-        name.font = UIFont.boldSystemFont(ofSize: 17)
+        name.font = UIFont(name: "BadaBoomBB", size: 17)
         name.textColor = .black
         name.numberOfLines = 0
         name.textAlignment = .center

@@ -55,7 +55,7 @@ class CharacterCell: UICollectionViewCell {
         nameView.backgroundColor = UIColor(white: 0, alpha: 0.7)
         nameLabel.textColor = .white
         nameLabel.textAlignment = .left
-        nameLabel.font = UIFont.systemFont(ofSize: 20)
+        nameLabel.font = UIFont(name: "BadaBoomBB", size: 25)
         
         activityIndicator.displayIndicator(view: contentView)
         activityIndicator.startAnimating()

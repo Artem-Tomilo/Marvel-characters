@@ -38,6 +38,7 @@ class CharacterListViewController: UIViewController {
         navBar?.barTintColor = .red
         
         let leftTitle = UILabel()
+        leftTitle.font = UIFont(name: "BadaBoomBB", size: 25)
         leftTitle.text = "Comic Characters"
         leftTitle.textColor = .white
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: leftTitle)

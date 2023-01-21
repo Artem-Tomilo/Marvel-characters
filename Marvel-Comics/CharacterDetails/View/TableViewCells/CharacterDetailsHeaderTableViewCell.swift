@@ -42,7 +42,7 @@ class CharacterDetailsHeaderTableViewCell: UITableViewCell {
         
         image.clipsToBounds = true
         image.layer.cornerRadius = 60
-        nameLabel.font = UIFont.boldSystemFont(ofSize: 30)
+        nameLabel.font = UIFont(name: "BadaBoomBB", size: 40)
     }
     
     func bind(character: Character) {

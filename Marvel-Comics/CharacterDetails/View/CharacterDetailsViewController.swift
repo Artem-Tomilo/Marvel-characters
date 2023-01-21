@@ -33,7 +33,7 @@ class CharacterDetailsViewController: UIViewController {
         let leftTitle = UILabel()
         leftTitle.text = "Character Details"
         leftTitle.textColor = .white
-        leftTitle.font = UIFont.boldSystemFont(ofSize: 20)
+        leftTitle.font = UIFont(name: "BadaBoomBB", size: 25)
         
         let backButton = UIButton(type: .custom)
         backButton.translatesAutoresizingMaskIntoConstraints = false
