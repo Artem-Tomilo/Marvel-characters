@@ -7,18 +7,9 @@
 
 import Foundation
 
-protocol CharacterListViewProtocol: AnyObject {
-    func success()
-    func failure(error: Error)
-}
-
-protocol CharacterPresenterProtocol: AnyObject {
-    init(view: CharacterListViewProtocol, networkService: NetworkServiceProtocol)
-    func getCharacters()
-    var characters: [Character] { get set }
-}
-
 class CharacterListPresenter: CharacterPresenterProtocol {
+    
+    //MARK: - Properties
     
     var characters: [Character] = []
     private var pageCounter = 0
@@ -26,11 +17,17 @@ class CharacterListPresenter: CharacterPresenterProtocol {
     
     weak var view: CharacterListViewProtocol?
     let networkService: NetworkServiceProtocol
+    let router: RouterProtocol
     
-    required init(view: CharacterListViewProtocol, networkService: NetworkServiceProtocol) {
+    //MARK: - Init
+    
+    required init(view: CharacterListViewProtocol, networkService: NetworkServiceProtocol, router: RouterProtocol) {
         self.view = view
         self.networkService = networkService
+        self.router = router
     }
+    
+    //MARK: - Functions
     
     func getCharacters() {
         isLoading = true
@@ -40,13 +37,17 @@ class CharacterListPresenter: CharacterPresenterProtocol {
                 switch result {
                 case .success(let characters):
                     self.characters.append(contentsOf: characters)
-                    self.view?.success()
+                    self.view?.getCharactersSuccess()
                     self.isLoading = false
                     self.pageCounter += 1
                 case .failure(let error):
-                    self.view?.failure(error: error)
+                    self.view?.getCharactersFailure(error: error)
                 }
             }
         }
+    }
+    
+    func characterTap(character: Character) {
+        router.moveToCharacterDetails(character: character)
     }
 }

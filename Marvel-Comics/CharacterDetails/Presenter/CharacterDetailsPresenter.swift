@@ -7,29 +7,27 @@
 
 import Foundation
 
-protocol CharacterDetailsViewProtocol: AnyObject {
-    func success()
-    func failure(error: Error)
-}
-
-protocol CharacterDetailsPresenterProtocol: AnyObject {
-    init(view: CharacterDetailsViewProtocol, networkService: NetworkServiceProtocol, character: Character?)
-    func getComics()
-    var comics: [Comic]? { get set }
-}
-
 class CharacterDetailsPresenter: CharacterDetailsPresenterProtocol {
     
-    var comics: [Comic]?
-    var character: Character?
+    //MARK: - Properties
+    
     weak var view: CharacterDetailsViewProtocol?
     let networkService: NetworkServiceProtocol
+    let router: RouterProtocol
+    var character: Character?
+    var comics: [Comic]?
     
-    required init(view: CharacterDetailsViewProtocol, networkService: NetworkServiceProtocol, character: Character?) {
+    //MARK: - Init
+    
+    required init(view: CharacterDetailsViewProtocol, networkService: NetworkServiceProtocol,
+                  router: RouterProtocol, character: Character?) {
         self.view = view
-        self.character = character
         self.networkService = networkService
+        self.router = router
+        self.character = character
     }
+    
+    //MARK: - Functions
     
     func getComics() {
         guard let character else { return }
@@ -39,11 +37,15 @@ class CharacterDetailsPresenter: CharacterDetailsPresenterProtocol {
                 switch result {
                 case .success(let comics):
                     self.comics = comics
-                    self.view?.success()
+                    self.view?.getComicsSuccess()
                 case .failure(let error):
-                    self.view?.failure(error: error)
+                    self.view?.getComicsFailure(error: error)
                 }
             }
         }
+    }
+    
+    func backButtonTap() {
+        router.popViewController()
     }
 }

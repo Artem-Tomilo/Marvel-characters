@@ -61,6 +61,10 @@ extension CharacterComicsTableViewCell: UICollectionViewDelegate, UICollectionVi
         return 1
     }
     
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return comics.count
+    }
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(
             withReuseIdentifier: CharacterDetailsViewController.comicCellIdentifier,
@@ -68,9 +72,5 @@ extension CharacterComicsTableViewCell: UICollectionViewDelegate, UICollectionVi
         let comic = comics[indexPath.item]
         cell.setData(comic: comic)
         return cell
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return comics.count
     }
 }

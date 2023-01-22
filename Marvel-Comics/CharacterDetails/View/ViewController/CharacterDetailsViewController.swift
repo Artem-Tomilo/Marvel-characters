@@ -81,19 +81,19 @@ class CharacterDetailsViewController: UIViewController {
     //MARK: - Targets
     
     @objc func backButtonTapped(_ sender: UIButton) {
-        navigationController?.popViewController(animated: true)
+        presenter?.backButtonTap()
     }
 }
 
 //MARK: - extension CharacterDetailsViewProtocol
 
 extension CharacterDetailsViewController: CharacterDetailsViewProtocol {
-    func success() {
+    func getComicsSuccess() {
         self.activityIndicator.stopAnimating()
         tableView.reloadData()
     }
     
-    func failure(error: Error) {
+    func getComicsFailure(error: Error) {
         handleError(error: error)
         activityIndicator.stopAnimating()
     }

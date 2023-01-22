@@ -96,12 +96,12 @@ class CharacterListViewController: UIViewController {
 //MARK: - extension CharacterViewProtocol
 
 extension CharacterListViewController: CharacterListViewProtocol {
-    func success() {
+    func getCharactersSuccess() {
         activityIndicator.stopAnimating()
         collectionView?.reloadData()
     }
     
-    func failure(error: Error) {
+    func getCharactersFailure(error: Error) {
         handleError(error: error)
         activityIndicator.stopAnimating()
     }

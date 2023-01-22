@@ -7,7 +7,7 @@
 
 import UIKit
 
-//MARK: - extension UITableView
+//MARK: - extension UITableViewDelegate
 
 extension CharacterDetailsViewController: UITableViewDelegate {
     
@@ -40,6 +40,8 @@ extension CharacterDetailsViewController: UITableViewDelegate {
         return nil
     }
 }
+
+//MARK: - extension UITableViewDataSource
 
 extension CharacterDetailsViewController: UITableViewDataSource {
     

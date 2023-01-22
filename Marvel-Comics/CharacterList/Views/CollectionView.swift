@@ -7,15 +7,14 @@
 
 import UIKit
 
-//MARK: - extension UICollectionView
+//MARK: - extension UICollectionViewDelegate
 
 extension CharacterListViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let character = presenter?.characters[indexPath.row]
         guard let character else { return }
-        let vc = ModuleBuilder.createCharacterDetailsViewController(character: character)
-        navigationController?.pushViewController(vc, animated: true)
+        presenter?.characterTap(character: character)
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplaySupplementaryView view: UICollectionReusableView,
@@ -25,13 +24,16 @@ extension CharacterListViewController: UICollectionViewDelegate {
         }
     }
     
-    func collectionView(_ collectionView: UICollectionView, didEndDisplayingSupplementaryView view: UICollectionReusableView,
+    func collectionView(_ collectionView: UICollectionView,
+                        didEndDisplayingSupplementaryView view: UICollectionReusableView,
                         forElementOfKind elementKind: String, at indexPath: IndexPath) {
         if elementKind == UICollectionView.elementKindSectionFooter {
             self.loadingView.activityIndicator.stopAnimating()
         }
     }
 }
+
+//MARK: - extension UICollectionViewDataSource
 
 extension CharacterListViewController: UICollectionViewDataSource {
     
@@ -66,6 +68,8 @@ extension CharacterListViewController: UICollectionViewDataSource {
         return UICollectionReusableView()
     }
 }
+
+//MARK: - extension UICollectionViewDelegateFlowLayout
 
 extension CharacterListViewController: UICollectionViewDelegateFlowLayout {
     

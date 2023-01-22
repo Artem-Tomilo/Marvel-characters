@@ -81,7 +81,9 @@ class CharacterCell: UICollectionViewCell {
         let ext = character.image.fileExtension
         let stringUrl = path + "." + ext
         
-        characterImage.sd_setImage(with: URL(string: stringUrl), placeholderImage: nil, options: .continueInBackground) { (image, error, cache, url) in
+        characterImage.sd_setImage(with: URL(string: stringUrl),
+                                   placeholderImage: nil,
+                                   options: .continueInBackground) { (image, error, cache, url) in
             self.activityIndicator.stopAnimating()
         }
     }

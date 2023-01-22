@@ -22,6 +22,11 @@ class CharacterDetailsHeaderTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+        background.backgroundColor = .white
+    }
+    
     private func setup() {
         contentView.addSubview(background)
         background.addSubview(image)
@@ -43,6 +48,7 @@ class CharacterDetailsHeaderTableViewCell: UITableViewCell {
         image.clipsToBounds = true
         image.layer.cornerRadius = 60
         nameLabel.font = UIFont(name: "BadaBoomBB", size: 40)
+        nameLabel.numberOfLines = 0
     }
     
     func bind(character: Character) {

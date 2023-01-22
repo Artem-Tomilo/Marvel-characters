@@ -12,9 +12,6 @@ struct Character: Codable {
     let name : String
     let description : String
     let image : Image
-//    let modified : String
-//    let resourceURI : String
-//    let comics : CharacterComics?
     
     enum CodingKeys: String, CodingKey {
         case id
