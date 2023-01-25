@@ -12,4 +12,5 @@ protocol CharacterPresenterProtocol: AnyObject {
     func loadCharacters()
     func characterTap(character: Character)
     var characters: [Character] { get set }
+    var isLoading: Bool { get set }
 }

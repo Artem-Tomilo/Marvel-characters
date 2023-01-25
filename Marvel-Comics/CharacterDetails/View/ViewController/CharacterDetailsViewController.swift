@@ -11,7 +11,7 @@ class CharacterDetailsViewController: UIViewController {
     
     //MARK: - Properties
     
-    var presenter: CharacterDetailsPresenter?
+    var presenter: CharacterDetailsPresenterProtocol?
     private let tableView = UITableView()
     private let activityIndicator = ActivityIndicator()
     static let headerCellIdentifier = "headerCell"

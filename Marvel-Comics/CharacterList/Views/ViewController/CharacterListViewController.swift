@@ -13,7 +13,7 @@ class CharacterListViewController: UIViewController {
     
     //MARK: - Properties
     
-    var presenter: CharacterListPresenter?
+    var presenter: CharacterPresenterProtocol?
     private var collectionView: UICollectionView?
     lazy var loadingView = LoadingReusableView()
     private let activityIndicator = ActivityIndicator()

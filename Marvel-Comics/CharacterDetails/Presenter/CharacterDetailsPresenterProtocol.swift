@@ -13,4 +13,5 @@ protocol CharacterDetailsPresenterProtocol: AnyObject {
     func loadComics()
     func backButtonTap()
     var comics: [Comic]? { get set }
+    var character: Character? { get set }
 }
