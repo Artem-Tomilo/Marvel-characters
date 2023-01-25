@@ -14,7 +14,6 @@ class CharacterCell: UICollectionViewCell {
     private let characterImage = UIImageView()
     private let nameView = UIView()
     private let nameLabel = UILabel()
-    private var blurEffectView = UIVisualEffectView()
     private let activityIndicator = ActivityIndicator()
     
     override init(frame: CGRect) {
@@ -59,17 +58,6 @@ class CharacterCell: UICollectionViewCell {
         
         activityIndicator.displayIndicator(view: contentView)
         activityIndicator.startAnimating()
-    }
-    
-    func addBlurEffect() {
-        let blurEffect = UIBlurEffect(style: .regular)
-        blurEffectView = UIVisualEffectView(effect: blurEffect)
-        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        characterImage.addSubview(blurEffectView)
-    }
-    
-    func showImage() {
-        blurEffectView.effect = .none
     }
     
     func setData(character: Character) {

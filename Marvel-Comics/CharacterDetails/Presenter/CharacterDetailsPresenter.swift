@@ -29,17 +29,17 @@ class CharacterDetailsPresenter: CharacterDetailsPresenterProtocol {
     
     //MARK: - Functions
     
-    func getComics() {
+    func loadComics() {
         guard let character else { return }
-        networkService.getComics(id: character.id) { [weak self] result in
+        networkService.loadComics(id: character.id) { [weak self] result in
             guard let self else { return }
             DispatchQueue.main.async {
                 switch result {
                 case .success(let comics):
                     self.comics = comics
-                    self.view?.getComicsSuccess()
+                    self.view?.loadComicsSuccess()
                 case .failure(let error):
-                    self.view?.getComicsFailure(error: error)
+                    self.view?.loadComicsFailure(error: error)
                 }
             }
         }

@@ -9,7 +9,7 @@ import Foundation
 
 protocol CharacterPresenterProtocol: AnyObject {
     init(view: CharacterListViewProtocol, networkService: NetworkServiceProtocol, router: RouterProtocol)
-    func getCharacters()
+    func loadCharacters()
     func characterTap(character: Character)
     var characters: [Character] { get set }
 }

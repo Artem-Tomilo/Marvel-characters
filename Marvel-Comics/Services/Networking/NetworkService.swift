@@ -15,7 +15,7 @@ class NetworkService: NetworkServiceProtocol {
     private let publicKey = "8bd050fc93e12270fe8f7e86de47238a"
     private let privateKey = ""
     
-    func getCharacters(pageNumber: Int, completion: @escaping (Result<[Character], BaseError>) -> Void) {
+    func loadCharacters(pageNumber: Int, completion: @escaping (Result<[Character], BaseError>) -> Void) {
         let endpoint = "/v1/public/characters"
         let stringUrl = baseURL + endpoint + buildQueryString(pageNumber: pageNumber, isCharacterList: true)
         
@@ -31,7 +31,7 @@ class NetworkService: NetworkServiceProtocol {
         }
     }
     
-    func getComics(id: Int, completion: @escaping (Result<[Comic], BaseError>) -> Void) {
+    func loadComics(id: Int, completion: @escaping (Result<[Comic], BaseError>) -> Void) {
         let endpoint = "/v1/public/characters/\(id)/comics"
         let stringUrl  = baseURL + endpoint + buildQueryString()
         

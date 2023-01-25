@@ -29,19 +29,19 @@ class CharacterListPresenter: CharacterPresenterProtocol {
     
     //MARK: - Functions
     
-    func getCharacters() {
+    func loadCharacters() {
         isLoading = true
-        networkService.getCharacters(pageNumber: pageCounter) { [weak self] result in
+        networkService.loadCharacters(pageNumber: pageCounter) { [weak self] result in
             guard let self else { return }
             DispatchQueue.main.async {
                 switch result {
                 case .success(let characters):
                     self.characters.append(contentsOf: characters)
-                    self.view?.getCharactersSuccess()
+                    self.view?.loadCharactersSuccess()
                     self.isLoading = false
                     self.pageCounter += 1
                 case .failure(let error):
-                    self.view?.getCharactersFailure(error: error)
+                    self.view?.loadCharactersFailure(error: error)
                 }
             }
         }

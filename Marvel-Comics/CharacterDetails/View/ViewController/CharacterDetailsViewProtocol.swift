@@ -8,6 +8,6 @@
 import Foundation
 
 protocol CharacterDetailsViewProtocol: AnyObject {
-    func getComicsSuccess()
-    func getComicsFailure(error: Error)
+    func loadComicsSuccess()
+    func loadComicsFailure(error: Error)
 }

@@ -8,6 +8,6 @@
 import Foundation
 
 protocol CharacterListViewProtocol: AnyObject {
-    func getCharactersSuccess()
-    func getCharactersFailure(error: Error)
+    func loadCharactersSuccess()
+    func loadCharactersFailure(error: Error)
 }

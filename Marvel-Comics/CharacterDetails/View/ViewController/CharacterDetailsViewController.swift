@@ -70,7 +70,7 @@ class CharacterDetailsViewController: UIViewController {
         
         activityIndicator.displayIndicator(view: tableView)
         activityIndicator.startAnimating()
-        presenter?.getComics()
+        presenter?.loadComics()
     }
     
     private func handleError(error: Error) {
@@ -88,12 +88,12 @@ class CharacterDetailsViewController: UIViewController {
 //MARK: - extension CharacterDetailsViewProtocol
 
 extension CharacterDetailsViewController: CharacterDetailsViewProtocol {
-    func getComicsSuccess() {
+    func loadComicsSuccess() {
         self.activityIndicator.stopAnimating()
         tableView.reloadData()
     }
     
-    func getComicsFailure(error: Error) {
+    func loadComicsFailure(error: Error) {
         handleError(error: error)
         activityIndicator.stopAnimating()
     }

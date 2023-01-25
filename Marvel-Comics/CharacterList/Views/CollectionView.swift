@@ -79,7 +79,7 @@ extension CharacterListViewController: UICollectionViewDelegateFlowLayout {
         
         if offsetY > contentHeight - scrollView.frame.size.height - 160 {
             if !presenter!.isLoading {
-                presenter?.getCharacters()
+                presenter?.loadCharacters()
             }
         }
     }

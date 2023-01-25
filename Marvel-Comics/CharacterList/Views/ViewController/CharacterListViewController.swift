@@ -77,7 +77,7 @@ class CharacterListViewController: UIViewController {
         
         activityIndicator.displayIndicator(view: collectionView)
         activityIndicator.startAnimating()
-        presenter?.getCharacters()
+        presenter?.loadCharacters()
     }
     
     private func handleError(error: Error) {
@@ -88,7 +88,7 @@ class CharacterListViewController: UIViewController {
     //MARK: - Targets
     
     @objc func refresh(_ sender: UIRefreshControl) {
-        presenter?.getCharacters()
+        presenter?.loadCharacters()
         sender.endRefreshing()
     }
 }
@@ -96,12 +96,12 @@ class CharacterListViewController: UIViewController {
 //MARK: - extension CharacterViewProtocol
 
 extension CharacterListViewController: CharacterListViewProtocol {
-    func getCharactersSuccess() {
+    func loadCharactersSuccess() {
         activityIndicator.stopAnimating()
         collectionView?.reloadData()
     }
     
-    func getCharactersFailure(error: Error) {
+    func loadCharactersFailure(error: Error) {
         handleError(error: error)
         activityIndicator.stopAnimating()
     }
