@@ -75,7 +75,7 @@ class CharacterDetailsViewController: UIViewController {
     
     private func handleError(error: Error) {
         let baseError = error as! BaseError
-        ErrorAlert.showAlertController(message: baseError.message, viewController: self)
+        showAlertController(message: baseError.message, viewController: self)
     }
     
     //MARK: - Targets

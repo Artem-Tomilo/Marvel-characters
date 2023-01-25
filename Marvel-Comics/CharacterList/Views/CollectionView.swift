@@ -77,7 +77,7 @@ extension CharacterListViewController: UICollectionViewDelegateFlowLayout {
         let offsetY = scrollView.contentOffset.y
         let contentHeight = scrollView.contentSize.height
         
-        if offsetY > contentHeight - scrollView.frame.size.height - 160 {
+        if offsetY > contentHeight - scrollView.frame.size.height {
             if !presenter!.isLoading {
                 presenter?.loadCharacters()
             }

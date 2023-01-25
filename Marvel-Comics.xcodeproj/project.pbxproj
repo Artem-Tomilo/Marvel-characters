@@ -12,7 +12,7 @@
 		38BB8F9D297AA4E20073D1B1 /* NetworkServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38BB8F9C297AA4E20073D1B1 /* NetworkServiceProtocol.swift */; };
 		38BB8F9F297AA53C0073D1B1 /* AssemblyBuilderProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38BB8F9E297AA53C0073D1B1 /* AssemblyBuilderProtocol.swift */; };
 		38BB8FA4297AB3D40073D1B1 /* BaseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38BB8FA3297AB3D40073D1B1 /* BaseError.swift */; };
-		38BB8FA6297AB42E0073D1B1 /* ErrorAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38BB8FA5297AB42E0073D1B1 /* ErrorAlert.swift */; };
+		38BB8FA6297AB42E0073D1B1 /* extensionVC+showAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38BB8FA5297AB42E0073D1B1 /* extensionVC+showAlertController.swift */; };
 		38BB8FAC297ADDC70073D1B1 /* ComicDataBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38BB8FAB297ADDC70073D1B1 /* ComicDataBase.swift */; };
 		38BB8FAE297ADE060073D1B1 /* Comics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38BB8FAD297ADE060073D1B1 /* Comics.swift */; };
 		38BB8FB0297ADE390073D1B1 /* Comic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38BB8FAF297ADE390073D1B1 /* Comic.swift */; };
@@ -57,7 +57,7 @@
 		38BB8F9C297AA4E20073D1B1 /* NetworkServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceProtocol.swift; sourceTree = "<group>"; };
 		38BB8F9E297AA53C0073D1B1 /* AssemblyBuilderProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssemblyBuilderProtocol.swift; sourceTree = "<group>"; };
 		38BB8FA3297AB3D40073D1B1 /* BaseError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseError.swift; sourceTree = "<group>"; };
-		38BB8FA5297AB42E0073D1B1 /* ErrorAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorAlert.swift; sourceTree = "<group>"; };
+		38BB8FA5297AB42E0073D1B1 /* extensionVC+showAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "extensionVC+showAlertController.swift"; sourceTree = "<group>"; };
 		38BB8FAB297ADDC70073D1B1 /* ComicDataBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicDataBase.swift; sourceTree = "<group>"; };
 		38BB8FAD297ADE060073D1B1 /* Comics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comics.swift; sourceTree = "<group>"; };
 		38BB8FAF297ADE390073D1B1 /* Comic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comic.swift; sourceTree = "<group>"; };
@@ -126,7 +126,7 @@
 			children = (
 				38EF1CFB2979511000EB5F8E /* ActivityIndicator.swift */,
 				38BB8F99297A9B2E0073D1B1 /* LoadingReusableView.swift */,
-				38BB8FA5297AB42E0073D1B1 /* ErrorAlert.swift */,
+				38BB8FA5297AB42E0073D1B1 /* extensionVC+showAlertController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -506,7 +506,7 @@
 				38EF1CE42977FB1500EB5F8E /* CharacterListPresenter.swift in Sources */,
 				38BB8F9A297A9B2E0073D1B1 /* LoadingReusableView.swift in Sources */,
 				38BB8FB2297ADF630073D1B1 /* CharacterDetailsPresenter.swift in Sources */,
-				38BB8FA6297AB42E0073D1B1 /* ErrorAlert.swift in Sources */,
+				38BB8FA6297AB42E0073D1B1 /* extensionVC+showAlertController.swift in Sources */,
 				38BB8FB6297C11320073D1B1 /* TableView.swift in Sources */,
 				38EF1CD12977F82500EB5F8E /* CharacterListViewController.swift in Sources */,
 				38BB8FCC297D61140073D1B1 /* CharacterDetailsViewProtocol.swift in Sources */,
