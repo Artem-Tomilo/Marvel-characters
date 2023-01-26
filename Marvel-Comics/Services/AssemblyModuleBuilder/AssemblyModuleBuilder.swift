@@ -24,4 +24,11 @@ class AssemblyModuleBuilder: AssemblyBuilderProtocol {
         view.presenter = presenter
         return view
     }
+    
+    func createSignInViewController(router: RouterProtocol) -> UIViewController {
+        let view = SignInViewController()
+        let presenter = SignInPresenter(view: view, router: router)
+        view.presenter = presenter
+        return view
+    }
 }

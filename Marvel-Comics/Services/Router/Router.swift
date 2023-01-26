@@ -18,8 +18,13 @@ class Router: RouterProtocol {
     }
     
     func initialViewController() {
-        guard let viewController = assemblyBuilder?.createCharacterViewController(router: self) else { return }
+        guard let viewController = assemblyBuilder?.createSignInViewController(router: self) else { return }
         navigationController.viewControllers = [viewController]
+    }
+    
+    func moveToCharacterList() {
+        guard let characterListViewController = assemblyBuilder?.createCharacterViewController(router: self) else { return }
+        navigationController.pushViewController(characterListViewController, animated: true)
     }
     
     func moveToCharacterDetails(character: Character) {

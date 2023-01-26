@@ -11,6 +11,7 @@ protocol RouterProtocol {
     var navigationController: UINavigationController { get set }
     var assemblyBuilder: AssemblyBuilderProtocol? { get set }
     func initialViewController()
+    func moveToCharacterList()
     func moveToCharacterDetails(character: Character)
     func popViewController()
 }
