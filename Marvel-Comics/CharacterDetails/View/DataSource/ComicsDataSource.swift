@@ -30,9 +30,8 @@ class ComicsDataSource: NSObject {
                            forCellReuseIdentifier: CharacterComicsTableViewCell.characterComicsCellIdentifier)
     }
     
-    func updateData(with comics: [Comic]) {
-        self.data = comics
-        self.tableView.reloadData()
+    func bindData(_ data: [Any]) {
+        self.data = data
     }
     
     func updateCharacter(_ character: Character) {

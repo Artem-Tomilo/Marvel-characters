@@ -15,6 +15,7 @@ class CharacterListViewController: UIViewController {
     
     var presenter: CharacterPresenterProtocol?
     private var collectionView: UICollectionView?
+    private var dataSource: CollectionViewDataSource?
     lazy var loadingView = LoadingReusableView()
     private let activityIndicator = ActivityIndicator()
     private let refreshControl = UIRefreshControl()
@@ -57,7 +58,8 @@ class CharacterListViewController: UIViewController {
         
         guard let collectionView else { return }
         view.addSubview(collectionView)
-        collectionView.dataSource = self
+        dataSource = CollectionViewDataSource(collectionView: collectionView)
+        dataSource?.bindLoadingView(loadingView)
         collectionView.delegate = self
         collectionView.backgroundColor = .clear
         
@@ -65,11 +67,7 @@ class CharacterListViewController: UIViewController {
             make.top.equalTo(view.safeAreaLayoutGuide)
             make.leading.trailing.bottom.equalToSuperview()
         }
-        collectionView.register(CharacterCell.self,
-                                forCellWithReuseIdentifier: CharacterCell.cellIdentifier)
-        collectionView.register(LoadingReusableView.self,
-                                forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter,
-                                withReuseIdentifier: LoadingReusableView.cellLoadingId)
+        
         collectionView.refreshControl = refreshControl
         refreshControl.addTarget(self, action: #selector(refresh(_:)), for: .primaryActionTriggered)
         
@@ -95,8 +93,9 @@ class CharacterListViewController: UIViewController {
 
 extension CharacterListViewController: CharacterListViewProtocol {
     func loadCharactersSuccess() {
+        guard let presenter else { return }
         activityIndicator.stopAnimating()
-        collectionView?.reloadData()
+        dataSource?.bindData(presenter.characters)
     }
     
     func loadCharactersFailure(error: Error) {

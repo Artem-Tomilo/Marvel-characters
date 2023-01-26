@@ -82,7 +82,7 @@ extension CharacterDetailsViewController: CharacterDetailsViewProtocol {
         guard let presenter,
               let comics = presenter.comics,
               let character = presenter.character else { return }
-        dataSource?.updateData(with: comics)
+        dataSource?.bindData(comics)
         dataSource?.updateCharacter(character)
     }
     

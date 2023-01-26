@@ -7,11 +7,11 @@
 
 import UIKit
 
-class CharacterComicsTableViewCell: UITableViewCell {
+class CharacterComicsTableViewCell: UITableViewCell, UICollectionViewDelegate {
     
     private var collectionView: UICollectionView?
+    private var dataSource: CollectionViewDataSource?
     private let activityIndicator = ActivityIndicator()
-    private var comics = [Comic]()
     static let characterComicsCellIdentifier = "chatacterComicsCell"
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -37,41 +37,17 @@ class CharacterComicsTableViewCell: UITableViewCell {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         
         contentView.addSubview(collectionView)
-        
+        dataSource = CollectionViewDataSource(collectionView: collectionView)
+        collectionView.delegate = self
         collectionView.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(5)
             make.top.bottom.equalToSuperview()
             make.height.greaterThanOrEqualTo(310)
         }
-        
-        collectionView.register(ComicCollectionViewCell.self,
-                                forCellWithReuseIdentifier: ComicCollectionViewCell.comicCellIdentifier)
-        collectionView.delegate = self
-        collectionView.dataSource = self
     }
     
     func bind(comics: [Comic]) {
-        self.comics = comics
+        self.dataSource?.bindData(comics)
         self.collectionView?.reloadData()
-    }
-}
-
-extension CharacterComicsTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource {
-    
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return comics.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(
-            withReuseIdentifier: ComicCollectionViewCell.comicCellIdentifier,
-            for: indexPath) as? ComicCollectionViewCell else { return UICollectionViewCell() }
-        let comic = comics[indexPath.item]
-        cell.setData(comic: comic)
-        return cell
     }
 }

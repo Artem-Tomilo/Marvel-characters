@@ -1,5 +1,5 @@
 //
-//  CollectionView.swift
+//  UICollectionViewDelegate+FlowLayout.swift
 //  Marvel-Comics
 //
 //  Created by Артем Томило on 21.01.23.
@@ -30,42 +30,6 @@ extension CharacterListViewController: UICollectionViewDelegate {
         if elementKind == UICollectionView.elementKindSectionFooter {
             self.loadingView.activityIndicator.stopAnimating()
         }
-    }
-}
-
-//MARK: - extension UICollectionViewDataSource
-
-extension CharacterListViewController: UICollectionViewDataSource {
-    
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return presenter?.characters.count ?? 0
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CharacterCell.cellIdentifier,
-                                                            for: indexPath) as? CharacterCell else { return UICollectionViewCell() }
-        
-        let character = presenter?.characters[indexPath.row]
-        guard let character else { return cell }
-        cell.setData(character: character)
-        return cell
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String,
-                        at indexPath: IndexPath) -> UICollectionReusableView {
-        if kind == UICollectionView.elementKindSectionFooter {
-            let footerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
-                                                                             withReuseIdentifier: LoadingReusableView.cellLoadingId,
-                                                                             for: indexPath) as! LoadingReusableView
-            loadingView = footerView
-            loadingView.backgroundColor = UIColor.clear
-            return footerView
-        }
-        return UICollectionReusableView()
     }
 }
 
