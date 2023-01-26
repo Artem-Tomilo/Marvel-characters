@@ -13,6 +13,7 @@ class ComicCollectionViewCell: UICollectionViewCell {
     private let image = UIImageView()
     private let name = UILabel()
     private let activityIndicator = ActivityIndicator()
+    static let comicCellIdentifier = "comicCell"
     
     override init(frame: CGRect) {
         super.init(frame: frame)

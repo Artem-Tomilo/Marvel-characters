@@ -10,6 +10,7 @@ import UIKit
 class LoadingReusableView: UICollectionReusableView {
     
     let activityIndicator = UIActivityIndicatorView()
+    static let cellLoadingId = "cellLoadingId"
     
     override init(frame: CGRect) {
         super.init(frame: frame)

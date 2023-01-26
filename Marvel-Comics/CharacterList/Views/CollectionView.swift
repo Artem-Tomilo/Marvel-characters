@@ -46,7 +46,7 @@ extension CharacterListViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CharacterListViewController.cellIdentifier,
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CharacterCell.cellIdentifier,
                                                             for: indexPath) as? CharacterCell else { return UICollectionViewCell() }
         
         let character = presenter?.characters[indexPath.row]
@@ -59,7 +59,7 @@ extension CharacterListViewController: UICollectionViewDataSource {
                         at indexPath: IndexPath) -> UICollectionReusableView {
         if kind == UICollectionView.elementKindSectionFooter {
             let footerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
-                                                                             withReuseIdentifier: CharacterListViewController.cellLoadingId,
+                                                                             withReuseIdentifier: LoadingReusableView.cellLoadingId,
                                                                              for: indexPath) as! LoadingReusableView
             loadingView = footerView
             loadingView.backgroundColor = UIColor.clear

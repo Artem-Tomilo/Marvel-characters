@@ -12,6 +12,7 @@ class CharacterComicsTableViewCell: UITableViewCell {
     private var collectionView: UICollectionView?
     private let activityIndicator = ActivityIndicator()
     private var comics = [Comic]()
+    static let characterComicsCellIdentifier = "chatacterComicsCell"
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -44,7 +45,7 @@ class CharacterComicsTableViewCell: UITableViewCell {
         }
         
         collectionView.register(ComicCollectionViewCell.self,
-                                forCellWithReuseIdentifier: CharacterDetailsViewController.comicCellIdentifier)
+                                forCellWithReuseIdentifier: ComicCollectionViewCell.comicCellIdentifier)
         collectionView.delegate = self
         collectionView.dataSource = self
     }
@@ -67,7 +68,7 @@ extension CharacterComicsTableViewCell: UICollectionViewDelegate, UICollectionVi
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(
-            withReuseIdentifier: CharacterDetailsViewController.comicCellIdentifier,
+            withReuseIdentifier: ComicCollectionViewCell.comicCellIdentifier,
             for: indexPath) as? ComicCollectionViewCell else { return UICollectionViewCell() }
         let comic = comics[indexPath.item]
         cell.setData(comic: comic)

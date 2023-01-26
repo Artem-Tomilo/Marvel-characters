@@ -18,8 +18,6 @@ class CharacterListViewController: UIViewController {
     lazy var loadingView = LoadingReusableView()
     private let activityIndicator = ActivityIndicator()
     private let refreshControl = UIRefreshControl()
-    static let cellIdentifier = "character"
-    static let cellLoadingId = "cellLoadingId"
     
     //MARK: - VC Lifecycle
     
@@ -68,10 +66,10 @@ class CharacterListViewController: UIViewController {
             make.leading.trailing.bottom.equalToSuperview()
         }
         collectionView.register(CharacterCell.self,
-                                forCellWithReuseIdentifier: CharacterListViewController.cellIdentifier)
+                                forCellWithReuseIdentifier: CharacterCell.cellIdentifier)
         collectionView.register(LoadingReusableView.self,
                                 forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter,
-                                withReuseIdentifier: CharacterListViewController.cellLoadingId)
+                                withReuseIdentifier: LoadingReusableView.cellLoadingId)
         collectionView.refreshControl = refreshControl
         refreshControl.addTarget(self, action: #selector(refresh(_:)), for: .primaryActionTriggered)
         

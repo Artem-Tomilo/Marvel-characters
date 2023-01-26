@@ -15,6 +15,7 @@ class CharacterCell: UICollectionViewCell {
     private let nameView = UIView()
     private let nameLabel = UILabel()
     private let activityIndicator = ActivityIndicator()
+    static let cellIdentifier = "character"
     
     override init(frame: CGRect) {
         super.init(frame: frame)

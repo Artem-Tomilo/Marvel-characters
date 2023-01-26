@@ -12,6 +12,7 @@ class CharacterDetailsHeaderTableViewCell: UITableViewCell {
     private let background = UIView()
     private let image = UIImageView()
     private let nameLabel = UILabel()
+    static let headerCellIdentifier = "headerCell"
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)

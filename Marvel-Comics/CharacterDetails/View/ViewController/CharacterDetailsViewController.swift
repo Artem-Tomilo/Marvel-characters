@@ -14,10 +14,7 @@ class CharacterDetailsViewController: UIViewController {
     var presenter: CharacterDetailsPresenterProtocol?
     private let tableView = UITableView()
     private let activityIndicator = ActivityIndicator()
-    static let headerCellIdentifier = "headerCell"
-    static let descriptionCellIdentifier = "descriptionCell"
-    static let characterComicsCellIdentifier = "chatacterComicsCell"
-    static let comicCellIdentifier = "comicCell"
+    private var dataSource: ComicsDataSource?
     
     //MARK: - VC Lifecycle
     
@@ -58,15 +55,7 @@ class CharacterDetailsViewController: UIViewController {
         tableView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
-        
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.register(CharacterDetailsHeaderTableViewCell.self,
-                           forCellReuseIdentifier: CharacterDetailsViewController.headerCellIdentifier)
-        tableView.register(CharacterDescriptionTableViewCell.self,
-                           forCellReuseIdentifier: CharacterDetailsViewController.descriptionCellIdentifier)
-        tableView.register(CharacterComicsTableViewCell.self,
-                           forCellReuseIdentifier: CharacterDetailsViewController.characterComicsCellIdentifier)
+        dataSource = ComicsDataSource(tableView: tableView)
         
         activityIndicator.displayIndicator(view: tableView)
         activityIndicator.startAnimating()
@@ -90,7 +79,11 @@ class CharacterDetailsViewController: UIViewController {
 extension CharacterDetailsViewController: CharacterDetailsViewProtocol {
     func loadComicsSuccess() {
         self.activityIndicator.stopAnimating()
-        tableView.reloadData()
+        guard let presenter,
+              let comics = presenter.comics,
+              let character = presenter.character else { return }
+        dataSource?.updateData(with: comics)
+        dataSource?.updateCharacter(character)
     }
     
     func loadComicsFailure(error: Error) {

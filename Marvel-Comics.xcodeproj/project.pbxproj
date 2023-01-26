@@ -18,7 +18,6 @@
 		38BB8FB0297ADE390073D1B1 /* Comic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38BB8FAF297ADE390073D1B1 /* Comic.swift */; };
 		38BB8FB2297ADF630073D1B1 /* CharacterDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38BB8FB1297ADF630073D1B1 /* CharacterDetailsPresenter.swift */; };
 		38BB8FB4297AE3560073D1B1 /* CharacterDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38BB8FB3297AE3560073D1B1 /* CharacterDetailsViewController.swift */; };
-		38BB8FB6297C11320073D1B1 /* TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38BB8FB5297C11320073D1B1 /* TableView.swift */; };
 		38BB8FB8297C11CD0073D1B1 /* CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38BB8FB7297C11CD0073D1B1 /* CollectionView.swift */; };
 		38BB8FBA297C15580073D1B1 /* CharacterDetailsHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38BB8FB9297C15580073D1B1 /* CharacterDetailsHeaderTableViewCell.swift */; };
 		38BB8FBC297C2F2D0073D1B1 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38BB8FBB297C2F2D0073D1B1 /* HeaderView.swift */; };
@@ -34,6 +33,7 @@
 		38BB8FD8297D64220073D1B1 /* RouterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38BB8FD7297D64220073D1B1 /* RouterProtocol.swift */; };
 		38BB8FDB297D7DC40073D1B1 /* Records.gif in Resources */ = {isa = PBXBuildFile; fileRef = 38BB8FDA297D7DC40073D1B1 /* Records.gif */; };
 		38BB8FDD297D7E350073D1B1 /* Alert.gif in Resources */ = {isa = PBXBuildFile; fileRef = 38BB8FDC297D7E350073D1B1 /* Alert.gif */; };
+		38BB8FE329829A060073D1B1 /* ComicsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38BB8FE229829A060073D1B1 /* ComicsDataSource.swift */; };
 		38EF1CCD2977F82500EB5F8E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EF1CCC2977F82500EB5F8E /* AppDelegate.swift */; };
 		38EF1CCF2977F82500EB5F8E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EF1CCE2977F82500EB5F8E /* SceneDelegate.swift */; };
 		38EF1CD12977F82500EB5F8E /* CharacterListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EF1CD02977F82500EB5F8E /* CharacterListViewController.swift */; };
@@ -63,7 +63,6 @@
 		38BB8FAF297ADE390073D1B1 /* Comic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comic.swift; sourceTree = "<group>"; };
 		38BB8FB1297ADF630073D1B1 /* CharacterDetailsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailsPresenter.swift; sourceTree = "<group>"; };
 		38BB8FB3297AE3560073D1B1 /* CharacterDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailsViewController.swift; sourceTree = "<group>"; };
-		38BB8FB5297C11320073D1B1 /* TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableView.swift; sourceTree = "<group>"; };
 		38BB8FB7297C11CD0073D1B1 /* CollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionView.swift; sourceTree = "<group>"; };
 		38BB8FB9297C15580073D1B1 /* CharacterDetailsHeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailsHeaderTableViewCell.swift; sourceTree = "<group>"; };
 		38BB8FBB297C2F2D0073D1B1 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
@@ -79,6 +78,7 @@
 		38BB8FD7297D64220073D1B1 /* RouterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterProtocol.swift; sourceTree = "<group>"; };
 		38BB8FDA297D7DC40073D1B1 /* Records.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Records.gif; sourceTree = "<group>"; };
 		38BB8FDC297D7E350073D1B1 /* Alert.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Alert.gif; sourceTree = "<group>"; };
+		38BB8FE229829A060073D1B1 /* ComicsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicsDataSource.swift; sourceTree = "<group>"; };
 		38EF1CC92977F82500EB5F8E /* Marvel-Comics.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Marvel-Comics.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		38EF1CCC2977F82500EB5F8E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		38EF1CCE2977F82500EB5F8E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -175,7 +175,7 @@
 			isa = PBXGroup;
 			children = (
 				38BB8FCD297D61290073D1B1 /* ViewController */,
-				38BB8FB5297C11320073D1B1 /* TableView.swift */,
+				38BB8FE42982B9030073D1B1 /* DataSource */,
 				38BB8FBB297C2F2D0073D1B1 /* HeaderView.swift */,
 				38BB8FC3297C84FB0073D1B1 /* TableViewCells */,
 				38BB8FC4297C850C0073D1B1 /* ComicCollectionViewCell */,
@@ -252,6 +252,14 @@
 				38BB8FDC297D7E350073D1B1 /* Alert.gif */,
 			);
 			path = Gif;
+			sourceTree = "<group>";
+		};
+		38BB8FE42982B9030073D1B1 /* DataSource */ = {
+			isa = PBXGroup;
+			children = (
+				38BB8FE229829A060073D1B1 /* ComicsDataSource.swift */,
+			);
+			path = DataSource;
 			sourceTree = "<group>";
 		};
 		38EF1CC02977F82500EB5F8E = {
@@ -507,11 +515,11 @@
 				38BB8F9A297A9B2E0073D1B1 /* LoadingReusableView.swift in Sources */,
 				38BB8FB2297ADF630073D1B1 /* CharacterDetailsPresenter.swift in Sources */,
 				38BB8FA6297AB42E0073D1B1 /* extensionVC+showAlertController.swift in Sources */,
-				38BB8FB6297C11320073D1B1 /* TableView.swift in Sources */,
 				38EF1CD12977F82500EB5F8E /* CharacterListViewController.swift in Sources */,
 				38BB8FCC297D61140073D1B1 /* CharacterDetailsViewProtocol.swift in Sources */,
 				38BB8FCF297D61770073D1B1 /* CharacterDetailsPresenterProtocol.swift in Sources */,
 				38EF1D022979527700EB5F8E /* Hash.swift in Sources */,
+				38BB8FE329829A060073D1B1 /* ComicsDataSource.swift in Sources */,
 				38BB8FB8297C11CD0073D1B1 /* CollectionView.swift in Sources */,
 				38EF1CCD2977F82500EB5F8E /* AppDelegate.swift in Sources */,
 				38BB8FAC297ADDC70073D1B1 /* ComicDataBase.swift in Sources */,

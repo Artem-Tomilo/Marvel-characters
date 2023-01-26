@@ -1,15 +1,47 @@
 //
-//  TableView.swift
+//  ComicsDataSource.swift
 //  Marvel-Comics
 //
-//  Created by Артем Томило on 21.01.23.
+//  Created by Артем Томило on 26.01.23.
 //
 
 import UIKit
 
-//MARK: - extension UITableViewDelegate
+class ComicsDataSource: NSObject {
+    
+    private let tableView: UITableView
+    private var character: Character?
+    private var data = [Any]()
+    
+    init(tableView: UITableView) {
+        self.tableView = tableView
+        super.init()
+        self.tableView.dataSource = self
+        self.tableView.delegate = self
+        registerCells()
+    }
+    
+    private func registerCells() {
+        tableView.register(CharacterDetailsHeaderTableViewCell.self,
+                           forCellReuseIdentifier: CharacterDetailsHeaderTableViewCell.headerCellIdentifier)
+        tableView.register(CharacterDescriptionTableViewCell.self,
+                           forCellReuseIdentifier: CharacterDescriptionTableViewCell.descriptionCellIdentifier)
+        tableView.register(CharacterComicsTableViewCell.self,
+                           forCellReuseIdentifier: CharacterComicsTableViewCell.characterComicsCellIdentifier)
+    }
+    
+    func updateData(with comics: [Comic]) {
+        self.data = comics
+        self.tableView.reloadData()
+    }
+    
+    func updateCharacter(_ character: Character) {
+        self.character = character
+        self.tableView.reloadData()
+    }
+}
 
-extension CharacterDetailsViewController: UITableViewDelegate {
+extension ComicsDataSource: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch indexPath.section {
@@ -41,9 +73,7 @@ extension CharacterDetailsViewController: UITableViewDelegate {
     }
 }
 
-//MARK: - extension UITableViewDataSource
-
-extension CharacterDetailsViewController: UITableViewDataSource {
+extension ComicsDataSource: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 3
@@ -54,25 +84,24 @@ extension CharacterDetailsViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let character else { return UITableViewCell() }
         
         switch indexPath.section {
         case 0:
             guard let cell = tableView.dequeueReusableCell(
-                withIdentifier: CharacterDetailsViewController.headerCellIdentifier,
+                withIdentifier: CharacterDetailsHeaderTableViewCell.headerCellIdentifier,
                 for: indexPath) as? CharacterDetailsHeaderTableViewCell else {
                 return UITableViewCell()
             }
-            guard let character = presenter?.character else { return cell }
             cell.bind(character: character)
             return cell
             
         case 1:
             guard let cell = tableView.dequeueReusableCell(
-                withIdentifier: CharacterDetailsViewController.descriptionCellIdentifier,
+                withIdentifier: CharacterDescriptionTableViewCell.descriptionCellIdentifier,
                 for: indexPath) as? CharacterDescriptionTableViewCell else {
                 return UITableViewCell()
             }
-            guard let character = presenter?.character else { return cell }
             if character.description == "" {
                 cell.bind("No description")
             } else {
@@ -82,14 +111,11 @@ extension CharacterDetailsViewController: UITableViewDataSource {
             
         case 2:
             guard let cell = tableView.dequeueReusableCell(
-                withIdentifier: CharacterDetailsViewController.characterComicsCellIdentifier,
+                withIdentifier: CharacterComicsTableViewCell.characterComicsCellIdentifier,
                 for: indexPath) as? CharacterComicsTableViewCell else {
                 return UITableViewCell()
             }
-            guard let comics = presenter?.comics else { return cell }
-            DispatchQueue.main.async {
-                cell.bind(comics: comics)
-            }
+            cell.bind(comics: self.data as! [Comic])
             return cell
             
         default:
