@@ -40,6 +40,7 @@
 		38BB8FF3298315ED0073D1B1 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38BB8FF2298315ED0073D1B1 /* CustomTextField.swift */; };
 		38BB8FF5298327170073D1B1 /* SignInPresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38BB8FF4298327170073D1B1 /* SignInPresenterProtocol.swift */; };
 		38BB8FF7298327290073D1B1 /* SignInViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38BB8FF6298327290073D1B1 /* SignInViewProtocol.swift */; };
+		38BB8FFA2984221E0073D1B1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 38BB8FF92984221E0073D1B1 /* GoogleService-Info.plist */; };
 		38EF1CCD2977F82500EB5F8E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EF1CCC2977F82500EB5F8E /* AppDelegate.swift */; };
 		38EF1CCF2977F82500EB5F8E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EF1CCE2977F82500EB5F8E /* SceneDelegate.swift */; };
 		38EF1CD12977F82500EB5F8E /* CharacterListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EF1CD02977F82500EB5F8E /* CharacterListViewController.swift */; };
@@ -91,6 +92,7 @@
 		38BB8FF2298315ED0073D1B1 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		38BB8FF4298327170073D1B1 /* SignInPresenterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInPresenterProtocol.swift; sourceTree = "<group>"; };
 		38BB8FF6298327290073D1B1 /* SignInViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewProtocol.swift; sourceTree = "<group>"; };
+		38BB8FF92984221E0073D1B1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		38EF1CC92977F82500EB5F8E /* Marvel-Comics.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Marvel-Comics.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		38EF1CCC2977F82500EB5F8E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		38EF1CCE2977F82500EB5F8E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -396,6 +398,7 @@
 				38EF1CCE2977F82500EB5F8E /* SceneDelegate.swift */,
 				38EF1CD72977F82800EB5F8E /* LaunchScreen.storyboard */,
 				38EF1CD52977F82800EB5F8E /* Assets.xcassets */,
+				38BB8FF92984221E0073D1B1 /* GoogleService-Info.plist */,
 				38EF1CDA2977F82800EB5F8E /* Info.plist */,
 			);
 			path = res;
@@ -511,6 +514,7 @@
 				38BB8FDB297D7DC40073D1B1 /* Records.gif in Resources */,
 				38EF1CD62977F82800EB5F8E /* Assets.xcassets in Resources */,
 				38BB8FC7297C863D0073D1B1 /* BADABB__.TTF in Resources */,
+				38BB8FFA2984221E0073D1B1 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class SignInViewController: UIViewController, SignInViewProtocol {
     
@@ -79,6 +80,13 @@ class SignInViewController: UIViewController, SignInViewProtocol {
     }
     
     @objc func signInButtonTapped(_ sender: UIButton) {
-        presenter?.signInTap()
+        Auth.auth().signIn(withEmail: loginTextField.unbind(), password: passwordTextField.unbind()) { [weak self] authResult, error in
+            guard let self else { return }
+            guard error == nil else {
+                print(error?.localizedDescription as Any)
+                return
+            }
+            self.presenter?.signInTap()
+        }
     }
 }

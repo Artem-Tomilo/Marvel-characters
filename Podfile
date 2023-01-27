@@ -9,4 +9,5 @@ target 'Marvel-Comics' do
 pod "SnapKit"
 pod 'Alamofire'
 pod 'SDWebImage', '~> 5.0'
+pod 'FirebaseAuth'
 end
