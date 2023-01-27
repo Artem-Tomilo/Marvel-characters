@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 import FirebaseAuth
 import GoogleSignIn
 
@@ -15,12 +16,14 @@ class SignInViewController: UIViewController, SignInViewProtocol {
     private let loginTextField = CustomTextField(placeholder: "Login")
     private let passwordTextField = CustomTextField(placeholder: "Password")
     private let signInButton = UIButton()
+    private let signUpButton = UIButton()
+    private let googleButton = GIDSignInButton()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureNavigationBar()
         configureSignInView()
-        configureGoogleButton()
+        configureGestureRecognizer()
     }
     
     private func configureNavigationBar(){
@@ -41,6 +44,8 @@ class SignInViewController: UIViewController, SignInViewProtocol {
         view.addSubview(loginTextField)
         view.addSubview(passwordTextField)
         view.addSubview(signInButton)
+        view.addSubview(googleButton)
+        view.addSubview(signUpButton)
         
         loginTextField.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(15)
@@ -52,30 +57,57 @@ class SignInViewController: UIViewController, SignInViewProtocol {
             make.leading.trailing.equalToSuperview().inset(15)
         }
         
+        signUpButton.snp.makeConstraints { make in
+            make.trailing.equalToSuperview().inset(20)
+            make.width.equalTo(100)
+            make.height.equalTo(loginTextField.snp.height)
+            make.top.equalTo(passwordTextField.snp.bottom).offset(30)
+        }
+        
+        googleButton.snp.makeConstraints { make in
+            make.bottom.equalTo(signInButton.snp.top).offset(-15)
+            make.centerX.equalTo(view.snp.centerX)
+        }
+        
         signInButton.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(50)
             make.bottom.equalToSuperview().inset(50)
         }
+        
+        loginTextField.keyboardType = .emailAddress
+        loginTextField.returnKeyType = .done
+        loginTextField.addTarget(self, action: #selector(doneTapped(_:)),
+                                 for: .editingDidEndOnExit)
+        passwordTextField.returnKeyType = .done
+        passwordTextField.addTarget(self, action: #selector(doneTapped(_:)),
+                                 for: .editingDidEndOnExit)
+        passwordTextField.isSecureTextEntry = true
+        
         signInButton.layer.cornerRadius = 5
         signInButton.backgroundColor = .black
-        
         let signInString = NSMutableAttributedString(string: "Sign In", attributes: [
             .font: UIFont(name: "BadaBoomBB", size: 30) as Any
         ])
         signInButton.setAttributedTitle(signInString, for: .normal)
         signInButton.setTitleColor(.white, for: .normal)
         signInButton.addTarget(self, action: #selector(signInButtonTapped(_:)), for: .primaryActionTriggered)
-    }
-    
-    private func configureGoogleButton() {
-        let googleButton = GIDSignInButton()
-        view.addSubview(googleButton)
-        googleButton.snp.makeConstraints { make in
-            make.bottom.equalTo(signInButton.snp.top).offset(-15)
-            make.centerX.equalTo(view.snp.centerX)
-        }
+        
         googleButton.style = .wide
         googleButton.colorScheme = .light
+        
+        signUpButton.backgroundColor = .clear
+        let signUpString = NSMutableAttributedString(string: "Sign Up", attributes: [
+            .font: UIFont(name: "BadaBoomBB", size: 25) as Any
+        ])
+        signUpButton.setAttributedTitle(signUpString, for: .normal)
+        signUpButton.setTitleColor(.black, for: .normal)
+        signUpButton.contentHorizontalAlignment = .right
+        signUpButton.addTarget(self, action: #selector(signUpButtonTapper(_:)), for: .primaryActionTriggered)
+    }
+    
+    private func configureGestureRecognizer() {
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(tapGesture(_:)))
+        view.addGestureRecognizer(gesture)
     }
     
     func unbindLogin() -> String {
@@ -101,5 +133,17 @@ class SignInViewController: UIViewController, SignInViewProtocol {
             }
             self.presenter?.signInTap()
         }
+    }
+    
+    @objc func signUpButtonTapper(_ sender: UIButton) {
+        
+    }
+    
+    @objc func doneTapped(_ sender: UIControl) {
+        sender.resignFirstResponder()
+    }
+    
+    @objc func tapGesture(_ sender: UITapGestureRecognizer) {
+        view.endEditing(true)
     }
 }
