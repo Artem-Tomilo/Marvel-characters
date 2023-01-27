@@ -7,6 +7,7 @@
 
 import UIKit
 import FirebaseAuth
+import GoogleSignIn
 
 class SignInViewController: UIViewController, SignInViewProtocol {
     
@@ -19,6 +20,7 @@ class SignInViewController: UIViewController, SignInViewProtocol {
         super.viewDidLoad()
         configureNavigationBar()
         configureSignInView()
+        configureGoogleButton()
     }
     
     private func configureNavigationBar(){
@@ -63,6 +65,17 @@ class SignInViewController: UIViewController, SignInViewProtocol {
         signInButton.setAttributedTitle(signInString, for: .normal)
         signInButton.setTitleColor(.white, for: .normal)
         signInButton.addTarget(self, action: #selector(signInButtonTapped(_:)), for: .primaryActionTriggered)
+    }
+    
+    private func configureGoogleButton() {
+        let googleButton = GIDSignInButton()
+        view.addSubview(googleButton)
+        googleButton.snp.makeConstraints { make in
+            make.bottom.equalTo(signInButton.snp.top).offset(-15)
+            make.centerX.equalTo(view.snp.centerX)
+        }
+        googleButton.style = .wide
+        googleButton.colorScheme = .light
     }
     
     func unbindLogin() -> String {
