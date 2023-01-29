@@ -41,6 +41,7 @@
 		38BB8FF5298327170073D1B1 /* SignInPresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38BB8FF4298327170073D1B1 /* SignInPresenterProtocol.swift */; };
 		38BB8FF7298327290073D1B1 /* SignInViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38BB8FF6298327290073D1B1 /* SignInViewProtocol.swift */; };
 		38BB8FFA2984221E0073D1B1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 38BB8FF92984221E0073D1B1 /* GoogleService-Info.plist */; };
+		38C614572986C4B0004FD7A3 /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C614562986C4B0004FD7A3 /* Validator.swift */; };
 		38EF1CCD2977F82500EB5F8E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EF1CCC2977F82500EB5F8E /* AppDelegate.swift */; };
 		38EF1CCF2977F82500EB5F8E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EF1CCE2977F82500EB5F8E /* SceneDelegate.swift */; };
 		38EF1CD12977F82500EB5F8E /* CharacterListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EF1CD02977F82500EB5F8E /* CharacterListViewController.swift */; };
@@ -93,6 +94,7 @@
 		38BB8FF4298327170073D1B1 /* SignInPresenterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInPresenterProtocol.swift; sourceTree = "<group>"; };
 		38BB8FF6298327290073D1B1 /* SignInViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewProtocol.swift; sourceTree = "<group>"; };
 		38BB8FF92984221E0073D1B1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		38C614562986C4B0004FD7A3 /* Validator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validator.swift; sourceTree = "<group>"; };
 		38EF1CC92977F82500EB5F8E /* Marvel-Comics.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Marvel-Comics.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		38EF1CCC2977F82500EB5F8E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		38EF1CCE2977F82500EB5F8E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -149,6 +151,7 @@
 		38BB8FA1297AB2330073D1B1 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				38C614552986C4A3004FD7A3 /* Validator */,
 				38BB8F9B297AA4BD0073D1B1 /* AssemblyModuleBuilder */,
 				38BB8FC8297D577F0073D1B1 /* Router */,
 				38EF1CFD297951BA00EB5F8E /* Networking */,
@@ -327,6 +330,14 @@
 				38BB8FF6298327290073D1B1 /* SignInViewProtocol.swift */,
 			);
 			path = ViewController;
+			sourceTree = "<group>";
+		};
+		38C614552986C4A3004FD7A3 /* Validator */ = {
+			isa = PBXGroup;
+			children = (
+				38C614562986C4B0004FD7A3 /* Validator.swift */,
+			);
+			path = Validator;
 			sourceTree = "<group>";
 		};
 		38EF1CC02977F82500EB5F8E = {
@@ -598,6 +609,7 @@
 				38EF1CCD2977F82500EB5F8E /* AppDelegate.swift in Sources */,
 				38BB8FAC297ADDC70073D1B1 /* ComicDataBase.swift in Sources */,
 				38BB8FBC297C2F2D0073D1B1 /* HeaderView.swift in Sources */,
+				38C614572986C4B0004FD7A3 /* Validator.swift in Sources */,
 				38BB8FB0297ADE390073D1B1 /* Comic.swift in Sources */,
 				38BB8FEA2983127F0073D1B1 /* SignInViewController.swift in Sources */,
 				38BB8F98297A8E750073D1B1 /* AssemblyModuleBuilder.swift in Sources */,

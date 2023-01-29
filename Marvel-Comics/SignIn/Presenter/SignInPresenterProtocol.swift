@@ -9,5 +9,7 @@ import Foundation
 
 protocol SignInPresenterProtocol: AnyObject {
     init(view: SignInViewProtocol, router: RouterProtocol)
-    func signInTap()
+    func signIn()
+    func signInWithGoogle()
+    func signUp()
 }

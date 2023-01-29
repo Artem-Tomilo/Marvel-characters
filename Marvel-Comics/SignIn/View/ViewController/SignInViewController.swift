@@ -10,7 +10,9 @@ import SnapKit
 import FirebaseAuth
 import GoogleSignIn
 
-class SignInViewController: UIViewController, SignInViewProtocol {
+class SignInViewController: UIViewController {
+    
+    //MARK: - Properties
     
     var presenter: SignInPresenterProtocol?
     private let loginTextField = CustomTextField(placeholder: "Login")
@@ -18,6 +20,9 @@ class SignInViewController: UIViewController, SignInViewProtocol {
     private let signInButton = UIButton()
     private let signUpButton = UIButton()
     private let googleButton = GIDSignInButton()
+    private let activityIndicator = ActivityIndicator()
+    
+    //MARK: - VC Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +30,8 @@ class SignInViewController: UIViewController, SignInViewProtocol {
         configureSignInView()
         configureGestureRecognizer()
     }
+    
+    //MARK: - View settings
     
     private func configureNavigationBar(){
         navigationController?.navigationBar.barStyle = .black
@@ -102,13 +109,43 @@ class SignInViewController: UIViewController, SignInViewProtocol {
         signUpButton.setAttributedTitle(signUpString, for: .normal)
         signUpButton.setTitleColor(.black, for: .normal)
         signUpButton.contentHorizontalAlignment = .right
-        signUpButton.addTarget(self, action: #selector(signUpButtonTapper(_:)), for: .primaryActionTriggered)
+        signUpButton.addTarget(self, action: #selector(signUpButtonTapped(_:)), for: .primaryActionTriggered)
     }
     
     private func configureGestureRecognizer() {
         let gesture = UITapGestureRecognizer(target: self, action: #selector(tapGesture(_:)))
         view.addGestureRecognizer(gesture)
     }
+    
+    private func handleError(error: Error) {
+        let baseError = error as! BaseError
+        showAlertController(message: baseError.message, viewController: self)
+    }
+    
+    //MARK: - Targets
+    
+    @objc func signInButtonTapped(_ sender: UIButton) {
+        activityIndicator.displayIndicator(view: view)
+        activityIndicator.startAnimating()
+        presenter?.signIn()
+    }
+    
+    @objc func signUpButtonTapped(_ sender: UIButton) {
+        
+    }
+    
+    @objc func doneTapped(_ sender: UIControl) {
+        sender.resignFirstResponder()
+    }
+    
+    @objc func tapGesture(_ sender: UITapGestureRecognizer) {
+        view.endEditing(true)
+    }
+}
+
+//MARK: - extension SignInViewProtocol
+
+extension SignInViewController: SignInViewProtocol {
     
     func unbindLogin() -> String {
         if let text = loginTextField.text {
@@ -124,26 +161,8 @@ class SignInViewController: UIViewController, SignInViewProtocol {
         return ""
     }
     
-    @objc func signInButtonTapped(_ sender: UIButton) {
-        Auth.auth().signIn(withEmail: loginTextField.unbind(), password: passwordTextField.unbind()) { [weak self] authResult, error in
-            guard let self else { return }
-            guard error == nil else {
-                print(error?.localizedDescription as Any)
-                return
-            }
-            self.presenter?.signInTap()
-        }
-    }
-    
-    @objc func signUpButtonTapper(_ sender: UIButton) {
-        
-    }
-    
-    @objc func doneTapped(_ sender: UIControl) {
-        sender.resignFirstResponder()
-    }
-    
-    @objc func tapGesture(_ sender: UITapGestureRecognizer) {
-        view.endEditing(true)
+    func signInFailure(error: Error) {
+        handleError(error: error)
+        activityIndicator.stopAnimating()
     }
 }

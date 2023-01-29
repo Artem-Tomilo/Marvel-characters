@@ -8,5 +8,7 @@
 import Foundation
 
 protocol SignInViewProtocol: AnyObject {
-    
+    func unbindLogin() -> String
+    func unbindPassword() -> String
+    func signInFailure(error: Error)
 }
