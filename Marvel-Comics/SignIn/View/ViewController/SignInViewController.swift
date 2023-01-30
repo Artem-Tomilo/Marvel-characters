@@ -87,7 +87,7 @@ class SignInViewController: UIViewController {
                                  for: .editingDidEndOnExit)
         passwordTextField.returnKeyType = .done
         passwordTextField.addTarget(self, action: #selector(doneTapped(_:)),
-                                 for: .editingDidEndOnExit)
+                                    for: .editingDidEndOnExit)
         passwordTextField.isSecureTextEntry = true
         
         signInButton.layer.cornerRadius = 5
@@ -101,6 +101,7 @@ class SignInViewController: UIViewController {
         
         googleButton.style = .wide
         googleButton.colorScheme = .light
+        googleButton.addTarget(self, action: #selector(googleButtonTapped(_:)), for: .touchDown)
         
         signUpButton.backgroundColor = .clear
         let signUpString = NSMutableAttributedString(string: "Sign Up", attributes: [
@@ -110,6 +111,8 @@ class SignInViewController: UIViewController {
         signUpButton.setTitleColor(.black, for: .normal)
         signUpButton.contentHorizontalAlignment = .right
         signUpButton.addTarget(self, action: #selector(signUpButtonTapped(_:)), for: .primaryActionTriggered)
+        
+        activityIndicator.displayIndicator(view: view)
     }
     
     private func configureGestureRecognizer() {
@@ -125,9 +128,13 @@ class SignInViewController: UIViewController {
     //MARK: - Targets
     
     @objc func signInButtonTapped(_ sender: UIButton) {
-        activityIndicator.displayIndicator(view: view)
         activityIndicator.startAnimating()
         presenter?.signIn()
+    }
+    
+    @objc func googleButtonTapped(_ sender: GIDSignInButton) {
+        activityIndicator.startAnimating()
+        presenter?.signInWithGoogle()
     }
     
     @objc func signUpButtonTapped(_ sender: UIButton) {

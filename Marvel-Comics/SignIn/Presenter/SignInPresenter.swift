@@ -7,6 +7,7 @@
 
 import Foundation
 import FirebaseAuth
+import FirebaseCore
 import GoogleSignIn
 
 class SignInPresenter: SignInPresenterProtocol {
@@ -20,26 +21,36 @@ class SignInPresenter: SignInPresenterProtocol {
     }
     
     func signIn() {
+        guard let view else { return }
         do {
-            guard let view else { return }
             let login = try Validator.validateTextForMissingValue(text: view.unbindLogin(), message: "Enter your email")
             let password = try Validator.validateTextForMissingValue(text: view.unbindPassword(), message: "Enter your password")
             
             Auth.auth().signIn(withEmail: login, password: password) { [weak self] authResult, error in
                 guard let self else { return }
                 if let error {
-                    self.view?.signInFailure(error: BaseError(message: error.localizedDescription))
+                    view.signInFailure(error: BaseError(message: error.localizedDescription))
                     return
                 }
                 self.router.moveToCharacterList()
             }
         } catch {
-            view?.signInFailure(error: error)
+            view.signInFailure(error: error)
         }
     }
     
     func signInWithGoogle() {
+        guard let clientID = FirebaseApp.app()?.options.clientID else { return }
         
+        let config = GIDConfiguration(clientID: clientID)
+        GIDSignIn.sharedInstance.configuration = config
+        GIDSignIn.sharedInstance.signIn(withPresenting: view as! UIViewController) { signInResult, error in
+            if let error {
+                let baseError = BaseError(message: error.localizedDescription)
+                self.view?.signInFailure(error: baseError)
+            }
+            self.router.moveToCharacterList()
+        }
     }
     
     func signUp() {
