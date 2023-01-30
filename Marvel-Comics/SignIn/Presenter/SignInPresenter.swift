@@ -12,8 +12,8 @@ import GoogleSignIn
 
 class SignInPresenter: SignInPresenterProtocol {
     
-    weak var view: SignInViewProtocol?
-    let router: RouterProtocol
+    private weak var view: SignInViewProtocol?
+    private let router: RouterProtocol
     
     required init(view: SignInViewProtocol, router: RouterProtocol) {
         self.view = view
@@ -54,6 +54,6 @@ class SignInPresenter: SignInPresenterProtocol {
     }
     
     func signUp() {
-        
+        router.moveToSignUp()
     }
 }

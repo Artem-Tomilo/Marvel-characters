@@ -42,6 +42,10 @@
 		38BB8FF7298327290073D1B1 /* SignInViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38BB8FF6298327290073D1B1 /* SignInViewProtocol.swift */; };
 		38BB8FFA2984221E0073D1B1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 38BB8FF92984221E0073D1B1 /* GoogleService-Info.plist */; };
 		38C614572986C4B0004FD7A3 /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C614562986C4B0004FD7A3 /* Validator.swift */; };
+		38C6145E29880B8C004FD7A3 /* SignUpPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C6145D29880B8C004FD7A3 /* SignUpPresenter.swift */; };
+		38C6146029880C94004FD7A3 /* SignUpPresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C6145F29880C94004FD7A3 /* SignUpPresenterProtocol.swift */; };
+		38C6146229880CB5004FD7A3 /* SignUpViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C6146129880CB5004FD7A3 /* SignUpViewProtocol.swift */; };
+		38C6146429880CCB004FD7A3 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C6146329880CCB004FD7A3 /* SignUpViewController.swift */; };
 		38EF1CCD2977F82500EB5F8E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EF1CCC2977F82500EB5F8E /* AppDelegate.swift */; };
 		38EF1CCF2977F82500EB5F8E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EF1CCE2977F82500EB5F8E /* SceneDelegate.swift */; };
 		38EF1CD12977F82500EB5F8E /* CharacterListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EF1CD02977F82500EB5F8E /* CharacterListViewController.swift */; };
@@ -95,6 +99,10 @@
 		38BB8FF6298327290073D1B1 /* SignInViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewProtocol.swift; sourceTree = "<group>"; };
 		38BB8FF92984221E0073D1B1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		38C614562986C4B0004FD7A3 /* Validator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validator.swift; sourceTree = "<group>"; };
+		38C6145D29880B8C004FD7A3 /* SignUpPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpPresenter.swift; sourceTree = "<group>"; };
+		38C6145F29880C94004FD7A3 /* SignUpPresenterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpPresenterProtocol.swift; sourceTree = "<group>"; };
+		38C6146129880CB5004FD7A3 /* SignUpViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewProtocol.swift; sourceTree = "<group>"; };
+		38C6146329880CCB004FD7A3 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		38EF1CC92977F82500EB5F8E /* Marvel-Comics.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Marvel-Comics.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		38EF1CCC2977F82500EB5F8E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		38EF1CCE2977F82500EB5F8E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -340,6 +348,33 @@
 			path = Validator;
 			sourceTree = "<group>";
 		};
+		38C6145A29880B41004FD7A3 /* SignUp */ = {
+			isa = PBXGroup;
+			children = (
+				38C6145B29880B51004FD7A3 /* View */,
+				38C6145C29880B6B004FD7A3 /* Presenter */,
+			);
+			path = SignUp;
+			sourceTree = "<group>";
+		};
+		38C6145B29880B51004FD7A3 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				38C6146329880CCB004FD7A3 /* SignUpViewController.swift */,
+				38C6146129880CB5004FD7A3 /* SignUpViewProtocol.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		38C6145C29880B6B004FD7A3 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				38C6145D29880B8C004FD7A3 /* SignUpPresenter.swift */,
+				38C6145F29880C94004FD7A3 /* SignUpPresenterProtocol.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
 		38EF1CC02977F82500EB5F8E = {
 			isa = PBXGroup;
 			children = (
@@ -365,6 +400,7 @@
 				38EF1CE02977FADE00EB5F8E /* CharacterList */,
 				38BB8FA7297ADBAB0073D1B1 /* CharacterDetails */,
 				38BB8FE8298312660073D1B1 /* SignIn */,
+				38C6145A29880B41004FD7A3 /* SignUp */,
 				38BB8FA0297AB1DE0073D1B1 /* Views */,
 				38EF1CEA2978270300EB5F8E /* res */,
 			);
@@ -600,6 +636,7 @@
 				38BB8FB2297ADF630073D1B1 /* CharacterDetailsPresenter.swift in Sources */,
 				38BB8FA6297AB42E0073D1B1 /* extensionVC+showAlertController.swift in Sources */,
 				38BB8FEF2983135E0073D1B1 /* SignInPresenter.swift in Sources */,
+				38C6146429880CCB004FD7A3 /* SignUpViewController.swift in Sources */,
 				38EF1CD12977F82500EB5F8E /* CharacterListViewController.swift in Sources */,
 				38BB8FCC297D61140073D1B1 /* CharacterDetailsViewProtocol.swift in Sources */,
 				38BB8FCF297D61770073D1B1 /* CharacterDetailsPresenterProtocol.swift in Sources */,
@@ -615,11 +652,14 @@
 				38BB8F98297A8E750073D1B1 /* AssemblyModuleBuilder.swift in Sources */,
 				38BB8FBA297C15580073D1B1 /* CharacterDetailsHeaderTableViewCell.swift in Sources */,
 				38EF1CCF2977F82500EB5F8E /* SceneDelegate.swift in Sources */,
+				38C6146029880C94004FD7A3 /* SignUpPresenterProtocol.swift in Sources */,
 				38BB8FB4297AE3560073D1B1 /* CharacterDetailsViewController.swift in Sources */,
 				38BB8FC2297C47A10073D1B1 /* ComicCollectionViewCell.swift in Sources */,
+				38C6146229880CB5004FD7A3 /* SignUpViewProtocol.swift in Sources */,
 				38EF1CF429794F9800EB5F8E /* Characters.swift in Sources */,
 				38BB8FE62982BEC60073D1B1 /* CollectionViewDataSource.swift in Sources */,
 				38BB8FBE297C398E0073D1B1 /* CharacterDescriptionTableViewCell.swift in Sources */,
+				38C6145E29880B8C004FD7A3 /* SignUpPresenter.swift in Sources */,
 				38BB8F9D297AA4E20073D1B1 /* NetworkServiceProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

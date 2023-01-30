@@ -11,9 +11,9 @@ class CharacterDetailsPresenter: CharacterDetailsPresenterProtocol {
     
     //MARK: - Properties
     
-    weak var view: CharacterDetailsViewProtocol?
-    let networkService: NetworkServiceProtocol
-    let router: RouterProtocol
+    private weak var view: CharacterDetailsViewProtocol?
+    private let networkService: NetworkServiceProtocol
+    private let router: RouterProtocol
     var character: Character?
     var comics: [Comic]?
     

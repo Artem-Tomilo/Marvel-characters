@@ -15,9 +15,9 @@ class CharacterListPresenter: CharacterPresenterProtocol {
     private var pageCounter = 0
     var isLoading = false
     
-    weak var view: CharacterListViewProtocol?
-    let networkService: NetworkServiceProtocol
-    let router: RouterProtocol
+    private weak var view: CharacterListViewProtocol?
+    private let networkService: NetworkServiceProtocol
+    private let router: RouterProtocol
     
     //MARK: - Init
     

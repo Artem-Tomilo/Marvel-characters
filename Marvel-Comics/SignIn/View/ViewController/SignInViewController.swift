@@ -138,7 +138,7 @@ class SignInViewController: UIViewController {
     }
     
     @objc func signUpButtonTapped(_ sender: UIButton) {
-        
+        presenter?.signUp()
     }
     
     @objc func doneTapped(_ sender: UIControl) {

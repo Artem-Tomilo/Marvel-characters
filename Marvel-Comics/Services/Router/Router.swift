@@ -33,6 +33,11 @@ class Router: RouterProtocol {
         navigationController.pushViewController(characterDetailsViewController, animated: true)
     }
     
+    func moveToSignUp() {
+        guard let signUpViewController = assemblyBuilder?.createSignUpViewController(router: self) else { return }
+        navigationController.pushViewController(signUpViewController, animated: true)
+    }
+    
     func popViewController() {
         navigationController.popViewController(animated: true)
     }
