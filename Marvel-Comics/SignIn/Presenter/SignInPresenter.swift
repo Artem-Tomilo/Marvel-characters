@@ -23,7 +23,8 @@ class SignInPresenter: SignInPresenterProtocol {
     func signIn() {
         guard let view else { return }
         do {
-            let login = try Validator.validateTextForMissingValue(text: view.unbindLogin(), message: "Enter your email")
+            view.startIndicator()
+            let login = try Validator.validateTextForMissingValue(text: view.unbindEmail(), message: "Enter your email")
             let password = try Validator.validateTextForMissingValue(text: view.unbindPassword(), message: "Enter your password")
             
             Auth.auth().signIn(withEmail: login, password: password) { [weak self] authResult, error in
@@ -41,7 +42,7 @@ class SignInPresenter: SignInPresenterProtocol {
     
     func signInWithGoogle() {
         guard let clientID = FirebaseApp.app()?.options.clientID else { return }
-        
+        view?.startIndicator()
         let config = GIDConfiguration(clientID: clientID)
         GIDSignIn.sharedInstance.configuration = config
         GIDSignIn.sharedInstance.signIn(withPresenting: view as! UIViewController) { signInResult, error in

@@ -15,7 +15,7 @@ class SignInViewController: UIViewController {
     //MARK: - Properties
     
     var presenter: SignInPresenterProtocol?
-    private let loginTextField = CustomTextField(placeholder: "Login")
+    private let emailTextField = CustomTextField(placeholder: "Email")
     private let passwordTextField = CustomTextField(placeholder: "Password")
     private let signInButton = UIButton()
     private let signUpButton = UIButton()
@@ -49,26 +49,26 @@ class SignInViewController: UIViewController {
     
     private func addingSubviewsAndSettingConstraints() {
         view.backgroundColor = .white
-        view.addSubview(loginTextField)
+        view.addSubview(emailTextField)
         view.addSubview(passwordTextField)
         view.addSubview(signInButton)
         view.addSubview(googleButton)
         view.addSubview(signUpButton)
         
-        loginTextField.snp.makeConstraints { make in
+        emailTextField.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(15)
             make.top.equalTo(view.safeAreaLayoutGuide).offset(30)
         }
         
         passwordTextField.snp.makeConstraints { make in
-            make.top.equalTo(loginTextField.snp.bottom).offset(30)
+            make.top.equalTo(emailTextField.snp.bottom).offset(30)
             make.leading.trailing.equalToSuperview().inset(15)
         }
         
         signUpButton.snp.makeConstraints { make in
             make.trailing.equalToSuperview().inset(20)
             make.width.equalTo(100)
-            make.height.equalTo(loginTextField.snp.height)
+            make.height.equalTo(emailTextField.snp.height)
             make.top.equalTo(passwordTextField.snp.bottom).offset(30)
         }
         
@@ -84,9 +84,9 @@ class SignInViewController: UIViewController {
     }
     
     private func configureSubViews() {
-        loginTextField.keyboardType = .emailAddress
-        loginTextField.returnKeyType = .done
-        loginTextField.addTarget(self, action: #selector(doneTapped(_:)),
+        emailTextField.keyboardType = .emailAddress
+        emailTextField.returnKeyType = .done
+        emailTextField.addTarget(self, action: #selector(doneTapped(_:)),
                                  for: .editingDidEndOnExit)
         
         passwordTextField.returnKeyType = .done
@@ -132,12 +132,10 @@ class SignInViewController: UIViewController {
     //MARK: - Targets
     
     @objc func signInButtonTapped(_ sender: UIButton) {
-        activityIndicator.startAnimating()
         presenter?.signIn()
     }
     
     @objc func googleButtonTapped(_ sender: GIDSignInButton) {
-        activityIndicator.startAnimating()
         presenter?.signInWithGoogle()
     }
     
@@ -158,8 +156,8 @@ class SignInViewController: UIViewController {
 
 extension SignInViewController: SignInViewProtocol {
     
-    func unbindLogin() -> String {
-        if let text = loginTextField.text {
+    func unbindEmail() -> String {
+        if let text = emailTextField.text {
             return text
         }
         return ""
@@ -170,6 +168,10 @@ extension SignInViewController: SignInViewProtocol {
             return text
         }
         return ""
+    }
+    
+    func startIndicator() {
+        activityIndicator.startAnimating()
     }
     
     func signInFailure(error: Error) {

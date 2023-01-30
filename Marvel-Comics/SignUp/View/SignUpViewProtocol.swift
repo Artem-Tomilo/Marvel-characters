@@ -8,5 +8,9 @@
 import Foundation
 
 protocol SignUpViewProtocol: AnyObject {
-    
+    func unbindEmail() -> String
+    func unbindPassword() -> String
+    func unbindRepeatPassword() -> String
+    func startIndicator()
+    func signUpFailure(error: Error)
 }

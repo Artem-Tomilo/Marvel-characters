@@ -12,9 +12,9 @@ class SignUpViewController: UIViewController {
     //MARK: - Properties
     
     var presenter: SignUpPresenterProtocol?
-    private let loginTextField = CustomTextField(placeholder: "Login")
+    private let emailTextField = CustomTextField(placeholder: "Email")
     private let passwordTextField = CustomTextField(placeholder: "Password")
-    private let repeatPasswordTextField = CustomTextField(placeholder: "Repeat your password")
+    private let repeatPasswordTextField = CustomTextField(placeholder: "Repeat password")
     private let signUpButton = UIButton()
     private let activityIndicator = ActivityIndicator()
     
@@ -54,18 +54,18 @@ class SignUpViewController: UIViewController {
     
     private func addingSubviewsAndSettingConstraints() {
         view.backgroundColor = .white
-        view.addSubview(loginTextField)
+        view.addSubview(emailTextField)
         view.addSubview(passwordTextField)
         view.addSubview(repeatPasswordTextField)
         view.addSubview(signUpButton)
         
-        loginTextField.snp.makeConstraints { make in
+        emailTextField.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(15)
             make.top.equalTo(view.safeAreaLayoutGuide).offset(30)
         }
         
         passwordTextField.snp.makeConstraints { make in
-            make.top.equalTo(loginTextField.snp.bottom).offset(30)
+            make.top.equalTo(emailTextField.snp.bottom).offset(30)
             make.leading.trailing.equalToSuperview().inset(15)
         }
         
@@ -90,10 +90,10 @@ class SignUpViewController: UIViewController {
         signUpButton.setTitleColor(.white, for: .normal)
         signUpButton.addTarget(self, action: #selector(signUpButtonTapped(_:)), for: .primaryActionTriggered)
         
-        loginTextField.keyboardType = .emailAddress
-        loginTextField.textContentType = .emailAddress
-        loginTextField.returnKeyType = .done
-        loginTextField.addTarget(self, action: #selector(doneTapped(_:)),
+        emailTextField.keyboardType = .emailAddress
+        emailTextField.textContentType = .emailAddress
+        emailTextField.returnKeyType = .done
+        emailTextField.addTarget(self, action: #selector(doneTapped(_:)),
                                  for: .editingDidEndOnExit)
         passwordTextField.textContentType = .password
         passwordTextField.returnKeyType = .done
@@ -127,7 +127,7 @@ class SignUpViewController: UIViewController {
     }
     
     @objc func signUpButtonTapped(_ sender: UIButton) {
-        
+        presenter?.signUp()
     }
     
     @objc func doneTapped(_ sender: UIControl) {
@@ -143,4 +143,33 @@ class SignUpViewController: UIViewController {
 
 extension SignUpViewController: SignUpViewProtocol {
     
+    func unbindEmail() -> String {
+        if let text = emailTextField.text {
+            return text
+        }
+        return ""
+    }
+    
+    func unbindPassword() -> String {
+        if let text = passwordTextField.text {
+            return text
+        }
+        return ""
+    }
+    
+    func unbindRepeatPassword() -> String {
+        if let text = repeatPasswordTextField.text {
+            return text
+        }
+        return ""
+    }
+    
+    func startIndicator() {
+        activityIndicator.startAnimating()
+    }
+    
+    func signUpFailure(error: Error) {
+        handleError(error: error)
+        activityIndicator.stopAnimating()
+    }
 }
