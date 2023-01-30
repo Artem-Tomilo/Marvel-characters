@@ -33,9 +33,10 @@ class SignUpPresenter: SignUpPresenterProtocol {
         guard let view else { return }
         do {
             view.startIndicator()
-            let email = try Validator.validateTextForMissingValue(text: view.unbindEmail(), message: "Enter email")
-            let password = try Validator.validateTextForMissingValue(text: view.unbindPassword(), message: "Enter password")
-            let repeatPassword = try Validator.validateTextForMissingValue(text: view.unbindRepeatPassword(), message: "Repeat password")
+            let email = try Validator.validateTextForMissingValue(text: view.unbindEmail(), message: "Enter your email")
+            let password = try Validator.validateTextForMissingValue(text: view.unbindPassword(), message: "Enter your password")
+            let repeatPassword = try Validator.validateTextForMissingValue(text: view.unbindRepeatPassword(),
+                                                                           message: "Repeat your password")
             
             guard checkPasswords(password: password, repeatPassword: repeatPassword) else {
                 let error = BaseError(message: "Passwords do not match")
