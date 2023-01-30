@@ -16,4 +16,8 @@ class SignUpPresenter: SignUpPresenterProtocol {
         self.view = view
         self.router = router
     }
+    
+    func backButtonTap() {
+        router.popViewController()
+    }
 }

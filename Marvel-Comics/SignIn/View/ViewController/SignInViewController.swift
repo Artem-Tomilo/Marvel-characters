@@ -27,7 +27,8 @@ class SignInViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureNavigationBar()
-        configureSignInView()
+        addingSubviewsAndSettingConstraints()
+        configureSubViews()
         configureGestureRecognizer()
     }
     
@@ -46,7 +47,7 @@ class SignInViewController: UIViewController {
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: leftTitle)
     }
     
-    private func configureSignInView() {
+    private func addingSubviewsAndSettingConstraints() {
         view.backgroundColor = .white
         view.addSubview(loginTextField)
         view.addSubview(passwordTextField)
@@ -80,11 +81,14 @@ class SignInViewController: UIViewController {
             make.leading.trailing.equalToSuperview().inset(50)
             make.bottom.equalToSuperview().inset(50)
         }
-        
+    }
+    
+    private func configureSubViews() {
         loginTextField.keyboardType = .emailAddress
         loginTextField.returnKeyType = .done
         loginTextField.addTarget(self, action: #selector(doneTapped(_:)),
                                  for: .editingDidEndOnExit)
+        
         passwordTextField.returnKeyType = .done
         passwordTextField.addTarget(self, action: #selector(doneTapped(_:)),
                                     for: .editingDidEndOnExit)

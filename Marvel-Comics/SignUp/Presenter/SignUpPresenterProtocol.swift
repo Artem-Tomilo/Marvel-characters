@@ -9,4 +9,5 @@ import Foundation
 
 protocol SignUpPresenterProtocol: AnyObject {
     init(view: SignUpViewProtocol, router: RouterProtocol)
+    func backButtonTap()
 }
