@@ -6,12 +6,12 @@
 //
 
 import Foundation
-import FirebaseAuth
 
 class SignUpPresenter: SignUpPresenterProtocol {
     
     private weak var view: SignUpViewProtocol?
     private let router: RouterProtocol
+    private let authManager = FirebaseAuthManager()
     
     required init(view: SignUpViewProtocol, router: RouterProtocol) {
         self.view = view
@@ -43,13 +43,14 @@ class SignUpPresenter: SignUpPresenterProtocol {
                 view.signUpFailure(error: error)
                 return
             }
-            Auth.auth().createUser(withEmail: email, password: password) { [weak self] authResult, error in
+            authManager.createUser(email: email, password: password) { [weak self] result in
                 guard let self else { return }
-                if let error {
-                    view.signUpFailure(error: BaseError(message: error.localizedDescription))
-                    return
+                switch result {
+                case .success():
+                    self.router.moveToCharacterList()
+                case .failure(let error):
+                    view.signUpFailure(error: error)
                 }
-                self.router.moveToCharacterList()
             }
         } catch {
             view.signUpFailure(error: error)
