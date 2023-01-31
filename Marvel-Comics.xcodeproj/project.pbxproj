@@ -47,6 +47,7 @@
 		38C6146229880CB5004FD7A3 /* SignUpViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C6146129880CB5004FD7A3 /* SignUpViewProtocol.swift */; };
 		38C6146429880CCB004FD7A3 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C6146329880CCB004FD7A3 /* SignUpViewController.swift */; };
 		38C61468298911C7004FD7A3 /* FirebaseAuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C61467298911C7004FD7A3 /* FirebaseAuthManager.swift */; };
+		38C6146D29894F56004FD7A3 /* FirestoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C6146C29894F56004FD7A3 /* FirestoreManager.swift */; };
 		38EF1CCD2977F82500EB5F8E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EF1CCC2977F82500EB5F8E /* AppDelegate.swift */; };
 		38EF1CCF2977F82500EB5F8E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EF1CCE2977F82500EB5F8E /* SceneDelegate.swift */; };
 		38EF1CD12977F82500EB5F8E /* CharacterListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EF1CD02977F82500EB5F8E /* CharacterListViewController.swift */; };
@@ -105,6 +106,7 @@
 		38C6146129880CB5004FD7A3 /* SignUpViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewProtocol.swift; sourceTree = "<group>"; };
 		38C6146329880CCB004FD7A3 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		38C61467298911C7004FD7A3 /* FirebaseAuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthManager.swift; sourceTree = "<group>"; };
+		38C6146C29894F56004FD7A3 /* FirestoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreManager.swift; sourceTree = "<group>"; };
 		38EF1CC92977F82500EB5F8E /* Marvel-Comics.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Marvel-Comics.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		38EF1CCC2977F82500EB5F8E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		38EF1CCE2977F82500EB5F8E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -161,6 +163,7 @@
 		38BB8FA1297AB2330073D1B1 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				38C6146B29894F3B004FD7A3 /* FirestoreManager */,
 				38C61466298911B2004FD7A3 /* FirebaseAuthManager */,
 				38C614552986C4A3004FD7A3 /* Validator */,
 				38BB8F9B297AA4BD0073D1B1 /* AssemblyModuleBuilder */,
@@ -303,7 +306,6 @@
 		38BB8FE8298312660073D1B1 /* SignIn */ = {
 			isa = PBXGroup;
 			children = (
-				38BB8FEC298313040073D1B1 /* Model */,
 				38BB8FEB298312A50073D1B1 /* View */,
 				38BB8FED2983130B0073D1B1 /* Presenter */,
 			);
@@ -354,6 +356,7 @@
 		38C6145A29880B41004FD7A3 /* SignUp */ = {
 			isa = PBXGroup;
 			children = (
+				38BB8FEC298313040073D1B1 /* Model */,
 				38C6145B29880B51004FD7A3 /* View */,
 				38C6145C29880B6B004FD7A3 /* Presenter */,
 			);
@@ -395,6 +398,14 @@
 				38C61467298911C7004FD7A3 /* FirebaseAuthManager.swift */,
 			);
 			path = FirebaseAuthManager;
+			sourceTree = "<group>";
+		};
+		38C6146B29894F3B004FD7A3 /* FirestoreManager */ = {
+			isa = PBXGroup;
+			children = (
+				38C6146C29894F56004FD7A3 /* FirestoreManager.swift */,
+			);
+			path = FirestoreManager;
 			sourceTree = "<group>";
 		};
 		38EF1CC02977F82500EB5F8E = {
@@ -674,6 +685,7 @@
 				38EF1CCF2977F82500EB5F8E /* SceneDelegate.swift in Sources */,
 				38C6146029880C94004FD7A3 /* SignUpPresenterProtocol.swift in Sources */,
 				38BB8FB4297AE3560073D1B1 /* CharacterDetailsViewController.swift in Sources */,
+				38C6146D29894F56004FD7A3 /* FirestoreManager.swift in Sources */,
 				38BB8FC2297C47A10073D1B1 /* ComicCollectionViewCell.swift in Sources */,
 				38C6146229880CB5004FD7A3 /* SignUpViewProtocol.swift in Sources */,
 				38EF1CF429794F9800EB5F8E /* Characters.swift in Sources */,

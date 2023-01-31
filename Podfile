@@ -10,6 +10,7 @@ pod "SnapKit"
 pod 'Alamofire'
 pod 'SDWebImage', '~> 5.0'
 pod 'FirebaseAuth'
+pod 'FirebaseFirestore'
 pod 'GoogleSignIn'
 
 end
