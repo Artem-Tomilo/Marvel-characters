@@ -7,35 +7,37 @@
 
 import Foundation
 import FirebaseFirestore
+import FirebaseFirestoreSwift
 
-//class FirestoreManager {
-//    
-//    private let db = Firestore.firestore()
-//    private var ref: DocumentReference?
-//    
-//    func getUsers() {
-//        db.collection("users").getDocuments() { (querySnapshot, err) in
-//            if let err = err {
-//                print("Error getting documents: \(err)")
-//            } else {
-//                for document in querySnapshot!.documents {
-//                    print("\(document.documentID) => \(document.data())")
-//                }
-//            }
-//        }
-//    }
-//    
-//    func saveUser(_ user: User) {
-//        ref = db.collection("users").addDocument(data: [
-//            "email": user.email,
-//            "id": user.id
-//        ]) { error in
-//            if let error {
-//                print("Error adding document: \(error)")
-//            } else {
-//                print("Document added with ID: \(self.ref!.documentID)")
-//            }
-//        }
-//
-//    }
-//}
+final class FirestoreManager {
+    
+    static let shared = FirestoreManager()
+    private let db = Firestore.firestore()
+    private init() {}
+    
+    func getUser(by id: String, completion: @escaping(Person) -> ()) {
+        let docRef = db.collection("users").document(id)
+        
+        docRef.getDocument(as: Person.self) { result in
+            switch result {
+            case .success(let person):
+                completion(person)
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    func saveUser(_ user: Person) {
+        db.collection("users").document(user.id).setData([
+            "email": user.email,
+            "id": user.id
+        ]) { error in
+            if let error {
+                print("Error adding document: \(error)")
+            } else {
+                print("Document added with ID: \(user.id)")
+            }
+        }
+    }
+}

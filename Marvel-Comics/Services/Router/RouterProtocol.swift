@@ -12,7 +12,7 @@ protocol RouterProtocol {
     var assemblyBuilder: AssemblyBuilderProtocol? { get set }
     func initialViewController()
     func moveToSignUp()
-    func moveToCharacterList()
+    func moveToCharacterList(person: Person)
     func moveToCharacterDetails(character: Character)
     func popViewController()
 }

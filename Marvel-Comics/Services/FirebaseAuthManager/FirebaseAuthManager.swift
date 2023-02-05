@@ -10,25 +10,28 @@ import FirebaseAuth
 import FirebaseCore
 import GoogleSignIn
 
-class FirebaseAuthManager {
+final class FirebaseAuthManager {
+    
+    static let shared = FirebaseAuthManager()
+    private init() {}
 
-    func createUser(email: String, password: String, completion: @escaping (Result<Void, BaseError>) -> Void) {
+    func createUser(email: String, password: String, completion: @escaping (Result<User, BaseError>) -> Void) {
         Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
             if let error {
                 completion(.failure(BaseError(message: error.localizedDescription)))
             }
-            guard authResult != nil else { return }
-            completion(.success(()))
+            guard let authResult else { return }
+            completion(.success((authResult.user)))
         }
     }
 
-    func signIn(email: String, password: String, completion: @escaping (Result<Void, BaseError>) -> Void) {
+    func signIn(email: String, password: String, completion: @escaping (Result<User, BaseError>) -> Void) {
         Auth.auth().signIn(withEmail: email, password: password) { authResult, error in
             if let error {
                 completion(.failure(BaseError(message: error.localizedDescription)))
             }
-            guard authResult != nil else { return }
-            completion(.success(()))
+            guard let authResult else { return }
+            completion(.success((authResult.user)))
         }
     }
     

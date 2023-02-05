@@ -11,7 +11,8 @@ class SignUpPresenter: SignUpPresenterProtocol {
     
     private weak var view: SignUpViewProtocol?
     private let router: RouterProtocol
-    private let authManager = FirebaseAuthManager()
+    private let authManager = FirebaseAuthManager.shared
+    private let firestoreManager = FirestoreManager.shared
     
     required init(view: SignUpViewProtocol, router: RouterProtocol) {
         self.view = view
@@ -22,38 +23,41 @@ class SignUpPresenter: SignUpPresenterProtocol {
         router.popViewController()
     }
     
-    private func checkPasswords(password: String, repeatPassword: String) -> Bool {
-        if password == repeatPassword {
-            return true
-        }
-        return false
-    }
-    
-    func signUp() {
-        guard let view else { return }
+    private func validateEnateredValues() -> AuthModel? {
+        guard let view else { return nil }
         do {
-            view.startIndicator()
             let email = try Validator.validateTextForMissingValue(text: view.unbindEmail(), message: "Enter your email")
             let password = try Validator.validateTextForMissingValue(text: view.unbindPassword(), message: "Enter your password")
             let repeatPassword = try Validator.validateTextForMissingValue(text: view.unbindRepeatPassword(),
                                                                            message: "Repeat your password")
             
-            guard checkPasswords(password: password, repeatPassword: repeatPassword) else {
-                let error = BaseError(message: "Passwords do not match")
+            guard password == repeatPassword else {
+                let error = BaseError(message: "Passwords don't match")
                 view.signUpFailure(error: error)
-                return
+                return nil
             }
-            authManager.createUser(email: email, password: password) { [weak self] result in
-                guard let self else { return }
-                switch result {
-                case .success():
-                    self.router.moveToCharacterList()
-                case .failure(let error):
-                    view.signUpFailure(error: error)
-                }
-            }
+            let model = AuthModel(email: email, password: password)
+            return model
         } catch {
             view.signUpFailure(error: error)
+        }
+        return nil
+    }
+    
+    func signUp() {
+        guard let view else { return }
+        view.startIndicator()
+        guard let model = validateEnateredValues() else { return }
+        authManager.createUser(email: model.email, password: model.password) { [weak self] result in
+            guard let self else { return }
+            switch result {
+            case .success(let user):
+                let person = Person(email: user.email ?? "", id: user.uid)
+                self.firestoreManager.saveUser(person)
+                self.router.moveToCharacterList(person: person)
+            case .failure(let error):
+                view.signUpFailure(error: error)
+            }
         }
     }
 }
