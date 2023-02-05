@@ -14,5 +14,6 @@ protocol RouterProtocol {
     func moveToSignUp()
     func moveToCharacterList(client: Client)
     func moveToCharacterDetails(character: Character)
+    func moveToAccount(client: Client)
     func popViewController()
 }

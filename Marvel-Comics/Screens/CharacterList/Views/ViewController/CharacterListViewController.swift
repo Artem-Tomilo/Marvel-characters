@@ -41,6 +41,15 @@ class CharacterListViewController: UIViewController {
         leftTitle.text = "Comic Characters"
         leftTitle.textColor = .white
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: leftTitle)
+        
+        let userButton = UIButton(type: .custom)
+        userButton.translatesAutoresizingMaskIntoConstraints = false
+        userButton.tintColor = .white
+        let image = UIImageView(image: UIImage(named: "user")?.withRenderingMode(.alwaysTemplate))
+        image.tintColor = .white
+        userButton.setImage(image.image, for: .normal)
+        userButton.addTarget(self, action: #selector(userButtonTapped(_:)), for: .primaryActionTriggered)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: userButton)
     }
     
     private func configureCollectionView() {
@@ -86,6 +95,11 @@ class CharacterListViewController: UIViewController {
     @objc func refresh(_ sender: UIRefreshControl) {
         presenter?.loadCharacters()
         sender.endRefreshing()
+    }
+    
+    @objc func userButtonTapped(_ sender: UIButton) {
+        guard let presenter else { return }
+        presenter.accountTap(client: presenter.client)
     }
 }
 

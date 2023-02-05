@@ -38,4 +38,12 @@ class AssemblyModuleBuilder: AssemblyBuilderProtocol {
         view.presenter = presenter
         return view
     }
+    
+    func createAccountViewController(router: RouterProtocol, client: Client) -> UIViewController {
+        let view = AccountViewController()
+        let network = NetworkService()
+        let presenter = AccountPresenter(view: view, router: router, network: network, client: client)
+        view.presenter = presenter
+        return view
+    }
 }

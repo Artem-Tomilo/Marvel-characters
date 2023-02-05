@@ -38,6 +38,11 @@ class Router: RouterProtocol {
         navigationController.pushViewController(signUpViewController, animated: true)
     }
     
+    func moveToAccount(client: Client) {
+        guard let accountViewController = assemblyBuilder?.createAccountViewController(router: self, client: client) else { return }
+        navigationController.pushViewController(accountViewController, animated: true)
+    }
+    
     func popViewController() {
         navigationController.popViewController(animated: true)
     }

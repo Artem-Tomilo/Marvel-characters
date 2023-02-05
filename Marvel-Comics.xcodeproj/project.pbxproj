@@ -50,6 +50,10 @@
 		38C6146D29894F56004FD7A3 /* FirestoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C6146C29894F56004FD7A3 /* FirestoreManager.swift */; };
 		38C61513298FD654004FD7A3 /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C61512298FD654004FD7A3 /* Client.swift */; };
 		38C61516298FD869004FD7A3 /* AuthModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C61515298FD869004FD7A3 /* AuthModel.swift */; };
+		38C61525299039D5004FD7A3 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C61524299039D5004FD7A3 /* AccountViewController.swift */; };
+		38C6152729903A1F004FD7A3 /* AccountViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C6152629903A1F004FD7A3 /* AccountViewProtocol.swift */; };
+		38C6152929903A3D004FD7A3 /* AccountPresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C6152829903A3D004FD7A3 /* AccountPresenterProtocol.swift */; };
+		38C6152B29903A55004FD7A3 /* AccountPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C6152A29903A55004FD7A3 /* AccountPresenter.swift */; };
 		38EF1CCD2977F82500EB5F8E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EF1CCC2977F82500EB5F8E /* AppDelegate.swift */; };
 		38EF1CCF2977F82500EB5F8E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EF1CCE2977F82500EB5F8E /* SceneDelegate.swift */; };
 		38EF1CD12977F82500EB5F8E /* CharacterListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EF1CD02977F82500EB5F8E /* CharacterListViewController.swift */; };
@@ -111,6 +115,10 @@
 		38C6146C29894F56004FD7A3 /* FirestoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreManager.swift; sourceTree = "<group>"; };
 		38C61512298FD654004FD7A3 /* Client.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
 		38C61515298FD869004FD7A3 /* AuthModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthModel.swift; sourceTree = "<group>"; };
+		38C61524299039D5004FD7A3 /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
+		38C6152629903A1F004FD7A3 /* AccountViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewProtocol.swift; sourceTree = "<group>"; };
+		38C6152829903A3D004FD7A3 /* AccountPresenterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountPresenterProtocol.swift; sourceTree = "<group>"; };
+		38C6152A29903A55004FD7A3 /* AccountPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountPresenter.swift; sourceTree = "<group>"; };
 		38EF1CC92977F82500EB5F8E /* Marvel-Comics.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Marvel-Comics.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		38EF1CCC2977F82500EB5F8E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		38EF1CCE2977F82500EB5F8E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -384,6 +392,7 @@
 				38BB8FA7297ADBAB0073D1B1 /* CharacterDetails */,
 				38BB8FE8298312660073D1B1 /* SignIn */,
 				38C6145A29880B41004FD7A3 /* SignUp */,
+				38C61521299039AA004FD7A3 /* Account */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -411,6 +420,33 @@
 				38C61515298FD869004FD7A3 /* AuthModel.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		38C61521299039AA004FD7A3 /* Account */ = {
+			isa = PBXGroup;
+			children = (
+				38C61522299039B5004FD7A3 /* Views */,
+				38C61523299039BC004FD7A3 /* Presenter */,
+			);
+			path = Account;
+			sourceTree = "<group>";
+		};
+		38C61522299039B5004FD7A3 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				38C61524299039D5004FD7A3 /* AccountViewController.swift */,
+				38C6152629903A1F004FD7A3 /* AccountViewProtocol.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		38C61523299039BC004FD7A3 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				38C6152A29903A55004FD7A3 /* AccountPresenter.swift */,
+				38C6152829903A3D004FD7A3 /* AccountPresenterProtocol.swift */,
+			);
+			path = Presenter;
 			sourceTree = "<group>";
 		};
 		38EF1CC02977F82500EB5F8E = {
@@ -652,6 +688,7 @@
 			files = (
 				38C61513298FD654004FD7A3 /* Client.swift in Sources */,
 				38BB8FF5298327170073D1B1 /* SignInPresenterProtocol.swift in Sources */,
+				38C61525299039D5004FD7A3 /* AccountViewController.swift in Sources */,
 				38BB8FA4297AB3D40073D1B1 /* BaseError.swift in Sources */,
 				38EF1CF22979261B00EB5F8E /* CharacterDataBase.swift in Sources */,
 				38EF1CE72977FCEA00EB5F8E /* CharacterCell.swift in Sources */,
@@ -665,6 +702,7 @@
 				38BB8FD1297D62C70073D1B1 /* CharacterPresenterProtocol.swift in Sources */,
 				38EF1CF829794FC200EB5F8E /* Image.swift in Sources */,
 				38BB8FAE297ADE060073D1B1 /* Comics.swift in Sources */,
+				38C6152929903A3D004FD7A3 /* AccountPresenterProtocol.swift in Sources */,
 				38EF1CF629794FAC00EB5F8E /* Character.swift in Sources */,
 				38BB8F9F297AA53C0073D1B1 /* AssemblyBuilderProtocol.swift in Sources */,
 				38EF1CFC2979511000EB5F8E /* ActivityIndicator.swift in Sources */,
@@ -674,6 +712,7 @@
 				38BB8FB2297ADF630073D1B1 /* CharacterDetailsPresenter.swift in Sources */,
 				38BB8FA6297AB42E0073D1B1 /* extensionVC+showAlertController.swift in Sources */,
 				38BB8FEF2983135E0073D1B1 /* SignInPresenter.swift in Sources */,
+				38C6152729903A1F004FD7A3 /* AccountViewProtocol.swift in Sources */,
 				38C6146429880CCB004FD7A3 /* SignUpViewController.swift in Sources */,
 				38EF1CD12977F82500EB5F8E /* CharacterListViewController.swift in Sources */,
 				38BB8FCC297D61140073D1B1 /* CharacterDetailsViewProtocol.swift in Sources */,
@@ -683,6 +722,7 @@
 				38BB8FB8297C11CD0073D1B1 /* UICollectionViewDelegate+FlowLayout.swift in Sources */,
 				38EF1CCD2977F82500EB5F8E /* AppDelegate.swift in Sources */,
 				38BB8FAC297ADDC70073D1B1 /* ComicDataBase.swift in Sources */,
+				38C6152B29903A55004FD7A3 /* AccountPresenter.swift in Sources */,
 				38BB8FBC297C2F2D0073D1B1 /* HeaderView.swift in Sources */,
 				38C614572986C4B0004FD7A3 /* Validator.swift in Sources */,
 				38BB8FB0297ADE390073D1B1 /* Comic.swift in Sources */,

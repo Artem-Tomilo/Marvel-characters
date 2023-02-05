@@ -52,4 +52,8 @@ class CharacterListPresenter: CharacterPresenterProtocol {
     func characterTap(character: Character) {
         router.moveToCharacterDetails(character: character)
     }
+    
+    func accountTap(client: Client) {
+        router.moveToAccount(client: client)
+    }
 }
