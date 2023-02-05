@@ -52,9 +52,9 @@ class SignUpPresenter: SignUpPresenterProtocol {
             guard let self else { return }
             switch result {
             case .success(let user):
-                let person = Person(email: user.email ?? "", id: user.uid)
-                self.firestoreManager.saveUser(person)
-                self.router.moveToCharacterList(person: person)
+                let client = Client(email: user.email ?? "", id: user.uid)
+                self.firestoreManager.saveUser(client)
+                self.router.moveToCharacterList(client: client)
             case .failure(let error):
                 view.signUpFailure(error: error)
             }

@@ -48,7 +48,7 @@
 		38C6146429880CCB004FD7A3 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C6146329880CCB004FD7A3 /* SignUpViewController.swift */; };
 		38C61468298911C7004FD7A3 /* FirebaseAuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C61467298911C7004FD7A3 /* FirebaseAuthManager.swift */; };
 		38C6146D29894F56004FD7A3 /* FirestoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C6146C29894F56004FD7A3 /* FirestoreManager.swift */; };
-		38C61513298FD654004FD7A3 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C61512298FD654004FD7A3 /* Person.swift */; };
+		38C61513298FD654004FD7A3 /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C61512298FD654004FD7A3 /* Client.swift */; };
 		38C61516298FD869004FD7A3 /* AuthModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C61515298FD869004FD7A3 /* AuthModel.swift */; };
 		38EF1CCD2977F82500EB5F8E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EF1CCC2977F82500EB5F8E /* AppDelegate.swift */; };
 		38EF1CCF2977F82500EB5F8E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EF1CCE2977F82500EB5F8E /* SceneDelegate.swift */; };
@@ -109,7 +109,7 @@
 		38C6146329880CCB004FD7A3 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		38C61467298911C7004FD7A3 /* FirebaseAuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthManager.swift; sourceTree = "<group>"; };
 		38C6146C29894F56004FD7A3 /* FirestoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreManager.swift; sourceTree = "<group>"; };
-		38C61512298FD654004FD7A3 /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
+		38C61512298FD654004FD7A3 /* Client.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
 		38C61515298FD869004FD7A3 /* AuthModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthModel.swift; sourceTree = "<group>"; };
 		38EF1CC92977F82500EB5F8E /* Marvel-Comics.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Marvel-Comics.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		38EF1CCC2977F82500EB5F8E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -407,7 +407,7 @@
 		38C61511298FD648004FD7A3 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				38C61512298FD654004FD7A3 /* Person.swift */,
+				38C61512298FD654004FD7A3 /* Client.swift */,
 				38C61515298FD869004FD7A3 /* AuthModel.swift */,
 			);
 			path = Model;
@@ -650,7 +650,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				38C61513298FD654004FD7A3 /* Person.swift in Sources */,
+				38C61513298FD654004FD7A3 /* Client.swift in Sources */,
 				38BB8FF5298327170073D1B1 /* SignInPresenterProtocol.swift in Sources */,
 				38BB8FA4297AB3D40073D1B1 /* BaseError.swift in Sources */,
 				38EF1CF22979261B00EB5F8E /* CharacterDataBase.swift in Sources */,

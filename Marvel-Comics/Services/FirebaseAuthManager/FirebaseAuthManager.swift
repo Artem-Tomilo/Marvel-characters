@@ -35,7 +35,7 @@ final class FirebaseAuthManager {
         }
     }
     
-    func signInWithGoogle(view: UIViewController, completion: @escaping (Result<Void, BaseError>) -> Void) {
+    func signInWithGoogle(view: UIViewController, completion: @escaping (Result<GIDGoogleUser, BaseError>) -> Void) {
         guard let clientID = FirebaseApp.app()?.options.clientID else { return }
         let config = GIDConfiguration(clientID: clientID)
         GIDSignIn.sharedInstance.configuration = config
@@ -43,8 +43,8 @@ final class FirebaseAuthManager {
             if let error {
                 completion(.failure(BaseError(message: error.localizedDescription)))
             }
-            guard signInResult != nil else { return }
-            completion(.success(()))
+            guard let signInResult else { return }
+            completion(.success((signInResult.user)))
         }
     }
 }

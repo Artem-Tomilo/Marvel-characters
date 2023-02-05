@@ -22,8 +22,8 @@ class Router: RouterProtocol {
         navigationController.viewControllers = [viewController]
     }
     
-    func moveToCharacterList(person: Person) {
-        guard let characterListViewController = assemblyBuilder?.createCharacterViewController(person: person, router: self) else { return }
+    func moveToCharacterList(client: Client) {
+        guard let characterListViewController = assemblyBuilder?.createCharacterViewController(client: client, router: self) else { return }
         navigationController.pushViewController(characterListViewController, animated: true)
     }
     

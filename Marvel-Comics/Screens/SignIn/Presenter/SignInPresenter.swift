@@ -41,8 +41,8 @@ class SignInPresenter: SignInPresenterProtocol {
             guard let self else { return }
             switch result {
             case .success(let user):
-                self.firestoreManager.getUser(by: user.uid) { person in
-                    self.router.moveToCharacterList(person: person)
+                self.firestoreManager.getUser(by: user.uid) { client in
+                    self.router.moveToCharacterList(client: client)
                 }
             case .failure(let error):
                 view.signInFailure(error: error)
@@ -55,9 +55,10 @@ class SignInPresenter: SignInPresenterProtocol {
         authManager.signInWithGoogle(view: view as! UIViewController) { [weak self] result in
             guard let self else { return }
             switch result {
-            case .success():
-                print(123)
-                //                self.router.moveToCharacterList()
+            case .success(let user):
+                let client = Client(email: user.profile?.email ?? "", id: user.userID ?? "")
+                self.firestoreManager.saveUser(client)
+                self.router.moveToCharacterList(client: client)
             case .failure(let error):
                 self.view?.signInFailure(error: error)
             }

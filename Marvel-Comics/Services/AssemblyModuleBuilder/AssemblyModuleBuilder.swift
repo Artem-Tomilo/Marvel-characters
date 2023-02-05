@@ -9,10 +9,10 @@ import UIKit
 
 class AssemblyModuleBuilder: AssemblyBuilderProtocol {
     
-    func createCharacterViewController(person: Person, router: RouterProtocol) -> UIViewController {
+    func createCharacterViewController(client: Client, router: RouterProtocol) -> UIViewController {
         let view = CharacterListViewController()
         let networkService = NetworkService()
-        let presenter = CharacterListPresenter(view: view, networkService: networkService, router: router, person: person)
+        let presenter = CharacterListPresenter(view: view, networkService: networkService, router: router, client: client)
         view.presenter = presenter
         return view
     }

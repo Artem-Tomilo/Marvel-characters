@@ -15,10 +15,10 @@ final class FirestoreManager {
     private let db = Firestore.firestore()
     private init() {}
     
-    func getUser(by id: String, completion: @escaping(Person) -> ()) {
+    func getUser(by id: String, completion: @escaping(Client) -> ()) {
         let docRef = db.collection("users").document(id)
         
-        docRef.getDocument(as: Person.self) { result in
+        docRef.getDocument(as: Client.self) { result in
             switch result {
             case .success(let person):
                 completion(person)
@@ -28,7 +28,7 @@ final class FirestoreManager {
         }
     }
     
-    func saveUser(_ user: Person) {
+    func saveUser(_ user: Client) {
         db.collection("users").document(user.id).setData([
             "email": user.email,
             "id": user.id

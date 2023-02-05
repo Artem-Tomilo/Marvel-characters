@@ -14,7 +14,7 @@ class CharacterListPresenter: CharacterPresenterProtocol {
     var characters: [Character] = []
     private var pageCounter = 0
     var isLoading = false
-    var person: Person
+    var client: Client
     
     private weak var view: CharacterListViewProtocol?
     private let networkService: NetworkServiceProtocol
@@ -22,11 +22,11 @@ class CharacterListPresenter: CharacterPresenterProtocol {
     
     //MARK: - Init
     
-    required init(view: CharacterListViewProtocol, networkService: NetworkServiceProtocol, router: RouterProtocol, person: Person) {
+    required init(view: CharacterListViewProtocol, networkService: NetworkServiceProtocol, router: RouterProtocol, client: Client) {
         self.view = view
         self.networkService = networkService
         self.router = router
-        self.person = person
+        self.client = client
     }
     
     //MARK: - Functions

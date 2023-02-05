@@ -7,7 +7,8 @@
 
 import Foundation
 
-struct Person: Codable {
+struct Client: Codable {
     var email: String
     var id: String
+    var favoriteCharactersID: [String]?
 }
