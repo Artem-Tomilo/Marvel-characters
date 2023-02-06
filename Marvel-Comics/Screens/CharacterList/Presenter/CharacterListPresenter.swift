@@ -19,6 +19,7 @@ class CharacterListPresenter: CharacterPresenterProtocol {
     private weak var view: CharacterListViewProtocol?
     private let networkService: NetworkServiceProtocol
     private let router: RouterProtocol
+    private let manager = FirestoreManager.shared
     
     //MARK: - Init
     
@@ -55,5 +56,10 @@ class CharacterListPresenter: CharacterPresenterProtocol {
     
     func accountTap(client: Client) {
         router.moveToAccount(client: client)
+    }
+    
+    func addToFavorites(_ character: Character) {
+        client.favoriteCharactersID.append(character.id)
+        manager.saveCharacter(client: client)
     }
 }

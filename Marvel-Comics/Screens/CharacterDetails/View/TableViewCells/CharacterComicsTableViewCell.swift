@@ -37,7 +37,7 @@ class CharacterComicsTableViewCell: UITableViewCell, UICollectionViewDelegate {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         
         contentView.addSubview(collectionView)
-        dataSource = CollectionViewDataSource(collectionView: collectionView)
+        dataSource = CollectionViewDataSource(collectionView: collectionView, delegate: nil)
         collectionView.delegate = self
         collectionView.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(5)

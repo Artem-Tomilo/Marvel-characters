@@ -10,5 +10,5 @@ import Foundation
 struct Client: Codable {
     var email: String
     var id: String
-    var favoriteCharactersID: [String]?
+    var favoriteCharactersID = [Int]()
 }

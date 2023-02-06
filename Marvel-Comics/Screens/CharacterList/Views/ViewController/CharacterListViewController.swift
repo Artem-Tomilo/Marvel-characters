@@ -67,7 +67,7 @@ class CharacterListViewController: UIViewController {
         
         guard let collectionView else { return }
         view.addSubview(collectionView)
-        dataSource = CollectionViewDataSource(collectionView: collectionView)
+        dataSource = CollectionViewDataSource(collectionView: collectionView, delegate: self)
         dataSource?.bindLoadingView(loadingView)
         collectionView.delegate = self
         collectionView.backgroundColor = .clear
@@ -110,5 +110,13 @@ extension CharacterListViewController: CharacterListViewProtocol {
     func loadCharactersFailure(error: Error) {
         showErrorAlertController(viewController: self, error: error)
         activityIndicator.stopAnimating()
+    }
+}
+
+//MARK: - extension CharacterCellDelegate
+
+extension CharacterListViewController: CharacterCellDelegate {
+    func saveCharacter(_ character: Character) {
+        presenter?.addToFavorites(character)
     }
 }

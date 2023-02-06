@@ -12,9 +12,11 @@ class CollectionViewDataSource: NSObject {
     private let collectionView: UICollectionView
     private var loadingView: LoadingReusableView?
     private var data = [Any]()
+    private weak var delegate: CharacterCellDelegate?
     
-    init(collectionView: UICollectionView) {
+    init(collectionView: UICollectionView, delegate: CharacterCellDelegate?) {
         self.collectionView = collectionView
+        self.delegate = delegate
         super.init()
         collectionView.dataSource = self
         registerCells()
@@ -55,6 +57,7 @@ extension CollectionViewDataSource: UICollectionViewDataSource {
                                                                 for: indexPath) as? CharacterCell else { return UICollectionViewCell() }
             
             let character = data[indexPath.row] as! Character
+            cell.delegate = delegate
             cell.setData(character: character)
             return cell
         } else if data is [Comic] {

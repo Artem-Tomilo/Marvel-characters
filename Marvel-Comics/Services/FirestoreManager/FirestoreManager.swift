@@ -40,4 +40,11 @@ final class FirestoreManager {
             }
         }
     }
+    
+    func saveCharacter(client: Client) {
+        db.collection("users").document(client.id).setData([
+            "characterID" : client.favoriteCharactersID
+        ], merge: true)
+        
+    }
 }

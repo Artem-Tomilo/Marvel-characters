@@ -17,6 +17,10 @@ class CharacterCell: UICollectionViewCell {
     private let likeButton = UIButton()
     private let activityIndicator = ActivityIndicator()
     static let cellIdentifier = "character"
+    private var character: Character?
+    private var isLiked = false
+    
+    weak var delegate: CharacterCellDelegate?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -80,6 +84,7 @@ class CharacterCell: UICollectionViewCell {
     }
     
     func setData(character: Character) {
+        self.character = character
         activityIndicator.displayIndicator(view: contentView)
         activityIndicator.startAnimating()
         nameLabel.text = character.name
@@ -96,6 +101,16 @@ class CharacterCell: UICollectionViewCell {
     }
     
     @objc func likeTapped(_ sender: UIButton) {
-        sender.setImage(UIImage(named: "like"), for: .normal)
+        switch isLiked {
+        case true:
+            sender.setImage(UIImage(named: "heart"), for: .normal)
+            isLiked.toggle()
+        case false:
+            sender.setImage(UIImage(named: "like"), for: .normal)
+            guard let character else { return }
+            delegate?.saveCharacter(character)
+            isLiked.toggle()
+        }
+        
     }
 }
