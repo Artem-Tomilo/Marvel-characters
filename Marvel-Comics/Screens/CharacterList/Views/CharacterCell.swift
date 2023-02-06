@@ -14,6 +14,7 @@ class CharacterCell: UICollectionViewCell {
     private let characterImage = UIImageView()
     private let nameView = UIView()
     private let nameLabel = UILabel()
+    private let likeButton = UIButton()
     private let activityIndicator = ActivityIndicator()
     static let cellIdentifier = "character"
     
@@ -26,11 +27,19 @@ class CharacterCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+        if self.likeButton.point(inside: convert(point, to: likeButton), with: event) {
+            return self.likeButton
+        }
+        return super.hitTest(point, with: event)
+    }
+    
     private func setup() {
         contentView.addSubview(background)
         background.addSubview(characterImage)
         characterImage.addSubview(nameView)
         nameView.addSubview(nameLabel)
+        nameView.addSubview(likeButton)
         
         background.snp.makeConstraints { make in
             make.height.width.equalToSuperview()
@@ -43,8 +52,14 @@ class CharacterCell: UICollectionViewCell {
             make.height.equalTo(50)
         }
         nameLabel.snp.makeConstraints { make in
-            make.leading.trailing.equalToSuperview().inset(20)
+            make.leading.equalToSuperview().inset(5)
+            make.trailing.equalTo(likeButton.snp.leading).offset(-5)
             make.centerY.equalToSuperview()
+        }
+        likeButton.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.top.trailing.bottom.equalToSuperview().inset(5)
+            make.width.equalTo(likeButton.snp.height)
         }
         
         characterImage.backgroundColor = .systemGray5
@@ -56,6 +71,9 @@ class CharacterCell: UICollectionViewCell {
         nameLabel.textColor = .white
         nameLabel.textAlignment = .left
         nameLabel.font = UIFont(name: "BadaBoomBB", size: 25)
+        
+        likeButton.setImage(UIImage(named: "heart"), for: .normal)
+        likeButton.addTarget(self, action: #selector(likeTapped(_:)), for: .primaryActionTriggered)
         
         activityIndicator.displayIndicator(view: contentView)
         activityIndicator.startAnimating()
@@ -75,5 +93,9 @@ class CharacterCell: UICollectionViewCell {
                                    options: .continueInBackground) { (image, error, cache, url) in
             self.activityIndicator.stopAnimating()
         }
+    }
+    
+    @objc func likeTapped(_ sender: UIButton) {
+        sender.setImage(UIImage(named: "like"), for: .normal)
     }
 }
