@@ -30,7 +30,7 @@ class CharacterListViewController: UIViewController {
     
     //MARK: - View settings
     
-    private func configureNavigationBar(){
+    private func configureNavigationBar() {
         navigationController?.navigationBar.barStyle = .black
         let navBar = navigationController?.navigationBar
         navBar?.isTranslucent = false
@@ -85,11 +85,6 @@ class CharacterListViewController: UIViewController {
         presenter?.loadCharacters()
     }
     
-    private func handleError(error: Error) {
-        let baseError = error as! BaseError
-        showAlertController(message: baseError.message, viewController: self)
-    }
-    
     //MARK: - Targets
     
     @objc func refresh(_ sender: UIRefreshControl) {
@@ -113,7 +108,7 @@ extension CharacterListViewController: CharacterListViewProtocol {
     }
     
     func loadCharactersFailure(error: Error) {
-        handleError(error: error)
+        showErrorAlertController(viewController: self, error: error)
         activityIndicator.stopAnimating()
     }
 }

@@ -62,11 +62,6 @@ class CharacterDetailsViewController: UIViewController {
         presenter?.loadComics()
     }
     
-    private func handleError(error: Error) {
-        let baseError = error as! BaseError
-        showAlertController(message: baseError.message, viewController: self)
-    }
-    
     //MARK: - Targets
     
     @objc func backButtonTapped(_ sender: UIButton) {
@@ -87,7 +82,7 @@ extension CharacterDetailsViewController: CharacterDetailsViewProtocol {
     }
     
     func loadComicsFailure(error: Error) {
-        handleError(error: error)
+        showErrorAlertController(viewController: self, error: error)
         activityIndicator.stopAnimating()
     }
 }

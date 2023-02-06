@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import FirebaseAuth
 
 class AccountPresenter: AccountPresenterProtocol {
     
@@ -21,4 +22,21 @@ class AccountPresenter: AccountPresenterProtocol {
         self.client = client
     }
     
+    func backButtonTap() {
+        router.popViewController()
+    }
+    
+    func signOut() {
+        do {
+            try Auth.auth().signOut()
+            if Auth.auth().currentUser == nil {
+                view?.startIndicator()
+                DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(700)) {
+                    self.router.initialViewController()
+                }
+            }
+        } catch {
+            view?.signOutFailure(error: BaseError(message: "Failed to log out. Try again"))
+        }
+    }
 }

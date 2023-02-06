@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
@@ -18,8 +19,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let navigation = UINavigationController()
         let assemblyBuilder = AssemblyModuleBuilder()
         let router = Router(navigationController: navigation, assemblyBuilder: assemblyBuilder)
-        router.initialViewController()
         window?.rootViewController = navigation
+        
+        if let user = Auth.auth().currentUser {
+            let client = Client(email: user.email ?? "", id: user.uid)
+            router.moveToCharacterList(client: client)
+        } else {
+            router.initialViewController()
+        }
+        
         window?.makeKeyAndVisible()
     }
     

@@ -124,11 +124,6 @@ class SignInViewController: UIViewController {
         view.addGestureRecognizer(gesture)
     }
     
-    private func handleError(error: Error) {
-        let baseError = error as! BaseError
-        showAlertController(message: baseError.message, viewController: self)
-    }
-    
     //MARK: - Targets
     
     @objc func signInButtonTapped(_ sender: UIButton) {
@@ -175,7 +170,7 @@ extension SignInViewController: SignInViewProtocol {
     }
     
     func signInFailure(error: Error) {
-        handleError(error: error)
+        showErrorAlertController(viewController: self, error: error)
         activityIndicator.stopAnimating()
     }
 }

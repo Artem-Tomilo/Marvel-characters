@@ -8,5 +8,6 @@
 import Foundation
 
 protocol AccountViewProtocol: AnyObject {
-    
+    func startIndicator()
+    func signOutFailure(error: BaseError)
 }
