@@ -67,7 +67,7 @@ class CharacterListViewController: UIViewController {
         
         guard let collectionView else { return }
         view.addSubview(collectionView)
-        dataSource = CollectionViewDataSource(collectionView: collectionView, delegate: self)
+        dataSource = CollectionViewDataSource(collectionView: collectionView, delegate: self, client: presenter?.client)
         dataSource?.bindLoadingView(loadingView)
         collectionView.delegate = self
         collectionView.backgroundColor = .clear

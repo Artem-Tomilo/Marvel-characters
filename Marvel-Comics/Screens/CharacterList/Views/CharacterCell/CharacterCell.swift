@@ -16,9 +16,9 @@ class CharacterCell: UICollectionViewCell {
     private let nameLabel = UILabel()
     private let likeButton = UIButton()
     private let activityIndicator = ActivityIndicator()
-    static let cellIdentifier = "character"
     private var character: Character?
-    private var isLiked = false
+    private var client: Client?
+    static let cellIdentifier = "character"
     
     weak var delegate: CharacterCellDelegate?
     
@@ -76,17 +76,26 @@ class CharacterCell: UICollectionViewCell {
         nameLabel.textAlignment = .left
         nameLabel.font = UIFont(name: "BadaBoomBB", size: 25)
         
-        likeButton.setImage(UIImage(named: "heart"), for: .normal)
         likeButton.addTarget(self, action: #selector(likeTapped(_:)), for: .primaryActionTriggered)
         
         activityIndicator.displayIndicator(view: contentView)
         activityIndicator.startAnimating()
     }
     
-    func setData(character: Character) {
-        self.character = character
+    func setData(character: Character, client: Client) {
         activityIndicator.displayIndicator(view: contentView)
         activityIndicator.startAnimating()
+        
+        self.character = character
+        self.client = client
+        
+        if client.favoriteCharactersID.contains(character.id) {
+            self.likeButton.setImage(UIImage(named: "like"), for: .normal)
+            self.character?.isSelected = true
+        } else {
+            self.likeButton.setImage(UIImage(named: "heart"), for: .normal)
+        }
+        
         nameLabel.text = character.name
         
         let path = character.image.path
@@ -101,16 +110,21 @@ class CharacterCell: UICollectionViewCell {
     }
     
     @objc func likeTapped(_ sender: UIButton) {
-        switch isLiked {
+        guard var character,
+              let client else { return }
+        switch character.isSelected {
         case true:
-            sender.setImage(UIImage(named: "heart"), for: .normal)
-            isLiked.toggle()
+            if !client.favoriteCharactersID.contains(character.id) {
+                sender.setImage(UIImage(named: "like"), for: .normal)
+                character.isSelected.toggle()
+            } else {
+                sender.setImage(UIImage(named: "heart"), for: .normal)
+                character.isSelected.toggle()
+            }
         case false:
             sender.setImage(UIImage(named: "like"), for: .normal)
-            guard let character else { return }
             delegate?.saveCharacter(character)
-            isLiked.toggle()
+            character.isSelected.toggle()
         }
-        
     }
 }

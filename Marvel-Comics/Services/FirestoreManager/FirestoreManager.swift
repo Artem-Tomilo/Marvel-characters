@@ -31,7 +31,8 @@ final class FirestoreManager {
     func saveUser(_ user: Client) {
         db.collection("users").document(user.id).setData([
             "email": user.email,
-            "id": user.id
+            "id": user.id,
+            "favoriteCharactersID": user.favoriteCharactersID
         ]) { error in
             if let error {
                 print("Error adding document: \(error)")
@@ -41,10 +42,15 @@ final class FirestoreManager {
         }
     }
     
-    func saveCharacter(client: Client) {
+    func saveCharacter(_ client: Client) {
         db.collection("users").document(client.id).setData([
-            "characterID" : client.favoriteCharactersID
-        ], merge: true)
-        
+            "favoriteCharactersID" : client.favoriteCharactersID
+        ], merge: true) { error in
+            if let error {
+                print("Error adding document: \(error)")
+            } else {
+                print("Document added with ID: \(client.id)")
+            }
+        }
     }
 }

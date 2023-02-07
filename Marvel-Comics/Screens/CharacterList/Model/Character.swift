@@ -12,6 +12,7 @@ struct Character: Codable {
     let name : String
     let description : String
     let image : Image
+    var isSelected: Bool = false
     
     enum CodingKeys: String, CodingKey {
         case id

@@ -19,14 +19,18 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let navigation = UINavigationController()
         let assemblyBuilder = AssemblyModuleBuilder()
         let router = Router(navigationController: navigation, assemblyBuilder: assemblyBuilder)
-        window?.rootViewController = navigation
+        let firestoreManager = FirestoreManager.shared
         
         if let user = Auth.auth().currentUser {
-            let client = Client(email: user.email ?? "", id: user.uid)
-            router.moveToCharacterList(client: client)
+            //            let client = Client(email: user.email ?? "", id: user.uid)
+            firestoreManager.getUser(by: user.uid) { client in
+                router.moveToCharacterList(client: client)
+            }
         } else {
             router.initialViewController()
         }
+        
+        window?.rootViewController = navigation
         
         window?.makeKeyAndVisible()
     }

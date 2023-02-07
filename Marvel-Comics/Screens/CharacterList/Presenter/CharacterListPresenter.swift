@@ -11,10 +11,10 @@ class CharacterListPresenter: CharacterPresenterProtocol {
     
     //MARK: - Properties
     
-    var characters: [Character] = []
-    private var pageCounter = 0
-    var isLoading = false
     var client: Client
+    var characters: [Character] = []
+    var isLoading = false
+    private var pageCounter = 0
     
     private weak var view: CharacterListViewProtocol?
     private let networkService: NetworkServiceProtocol
@@ -28,6 +28,7 @@ class CharacterListPresenter: CharacterPresenterProtocol {
         self.networkService = networkService
         self.router = router
         self.client = client
+        print(client.favoriteCharactersID)
     }
     
     //MARK: - Functions
@@ -60,6 +61,6 @@ class CharacterListPresenter: CharacterPresenterProtocol {
     
     func addToFavorites(_ character: Character) {
         client.favoriteCharactersID.append(character.id)
-        manager.saveCharacter(client: client)
+        manager.saveCharacter(client)
     }
 }

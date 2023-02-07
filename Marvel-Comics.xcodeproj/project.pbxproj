@@ -288,6 +288,7 @@
 			children = (
 				38EF1CD02977F82500EB5F8E /* CharacterListViewController.swift */,
 				38BB8FD2297D62DD0073D1B1 /* CharacterListViewProtocol.swift */,
+				38BB8FB7297C11CD0073D1B1 /* UICollectionViewDelegate+FlowLayout.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -513,7 +514,6 @@
 			isa = PBXGroup;
 			children = (
 				38BB8FD4297D62F50073D1B1 /* ViewController */,
-				38BB8FB7297C11CD0073D1B1 /* UICollectionViewDelegate+FlowLayout.swift */,
 				38C6152F29913C64004FD7A3 /* CharacterCell */,
 			);
 			path = Views;
