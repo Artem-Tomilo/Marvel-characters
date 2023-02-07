@@ -29,8 +29,8 @@ class AccountPresenter: AccountPresenterProtocol {
             return
         }
         
-        client.favoriteCharactersID.forEach { char in
-            networkService.loadCharacter(with: char) { [weak self] result in
+        client.favoriteCharactersID.forEach { id in
+            networkService.loadCharacter(with: id) { [weak self] result in
                 guard let self else { return }
                 switch result {
                 case .success(let character):
@@ -45,6 +45,10 @@ class AccountPresenter: AccountPresenterProtocol {
                 }
             }
         }
+    }
+    
+    func characterDidTap(_ character: Character) {
+        router.moveToCharacterDetails(character: character)
     }
     
     func backButtonTap() {

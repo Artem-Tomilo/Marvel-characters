@@ -93,7 +93,7 @@ class AccountViewController: UIViewController {
         
         emailLabel.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(10)
-            make.top.equalTo(emailHeaderView.snp.bottom).offset(10)
+            make.top.equalTo(emailHeaderView.snp.bottom).offset(0)
             make.height.equalTo(emailHeaderView.snp.height)
         }
         
@@ -176,5 +176,8 @@ extension AccountViewController: AccountViewProtocol {
 }
 
 extension AccountViewController: UICollectionViewDelegate {
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let character = presenter?.characters[indexPath.item] else { return }
+        presenter?.characterDidTap(character)
+    }
 }

@@ -108,6 +108,8 @@ class CharacterCell: UICollectionViewCell {
         if client.favoriteCharactersID.contains(character.id) {
             self.likeButton.setImage(UIImage(named: "like"), for: .normal)
             self.character?.isSelected = true
+        } else {
+            self.likeButton.setImage(UIImage(named: "heart"), for: .normal)
         }
     }
     

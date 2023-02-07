@@ -12,6 +12,7 @@ protocol AccountPresenterProtocol: AnyObject {
     func backButtonTap()
     func signOut()
     func loadFavoritesCharacters()
+    func characterDidTap(_ character: Character)
     var client: Client { get set }
     var characters: [Character] { get set }
 }
