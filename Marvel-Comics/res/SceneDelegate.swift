@@ -22,7 +22,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let firestoreManager = FirestoreManager.shared
         
         if let user = Auth.auth().currentUser {
-            //            let client = Client(email: user.email ?? "", id: user.uid)
             firestoreManager.getUser(by: user.uid) { client in
                 router.moveToCharacterList(client: client)
             }

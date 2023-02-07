@@ -13,6 +13,7 @@ protocol CharacterPresenterProtocol: AnyObject {
     func characterTap(character: Character)
     func accountTap(client: Client)
     func addToFavorites(_ character: Character)
+    func deleteFromFavorites(_ character: Character)
     var characters: [Character] { get set }
     var isLoading: Bool { get set }
     var client: Client { get set }

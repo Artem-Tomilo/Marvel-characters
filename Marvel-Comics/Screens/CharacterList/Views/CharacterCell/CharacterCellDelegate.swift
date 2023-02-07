@@ -8,5 +8,6 @@
 import Foundation
 
 protocol CharacterCellDelegate: AnyObject {
-    func saveCharacter(_ character: Character)
+    func likeButtonTappedToSave(_ character: Character)
+    func likeButtonTappedToDelete(_ character: Character)
 }

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Character: Codable {
+class Character: Codable {
     let id : Int
     let name : String
     let description : String

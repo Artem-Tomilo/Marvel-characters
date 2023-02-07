@@ -24,7 +24,8 @@ class CharacterCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setup()
+        addingSubviewsAndSettingConstraints()
+        configureSubViews()
     }
     
     required init?(coder: NSCoder) {
@@ -38,7 +39,7 @@ class CharacterCell: UICollectionViewCell {
         return super.hitTest(point, with: event)
     }
     
-    private func setup() {
+    private func addingSubviewsAndSettingConstraints() {
         contentView.addSubview(background)
         background.addSubview(characterImage)
         characterImage.addSubview(nameView)
@@ -65,7 +66,9 @@ class CharacterCell: UICollectionViewCell {
             make.top.trailing.bottom.equalToSuperview().inset(5)
             make.width.equalTo(likeButton.snp.height)
         }
-        
+    }
+    
+    private func configureSubViews() {
         characterImage.backgroundColor = .systemGray5
         background.backgroundColor = .clear
         characterImage.clipsToBounds = true
@@ -77,6 +80,7 @@ class CharacterCell: UICollectionViewCell {
         nameLabel.font = UIFont(name: "BadaBoomBB", size: 25)
         
         likeButton.addTarget(self, action: #selector(likeTapped(_:)), for: .primaryActionTriggered)
+        likeButton.setImage(UIImage(named: "heart"), for: .normal)
         
         activityIndicator.displayIndicator(view: contentView)
         activityIndicator.startAnimating()
@@ -89,13 +93,6 @@ class CharacterCell: UICollectionViewCell {
         self.character = character
         self.client = client
         
-        if client.favoriteCharactersID.contains(character.id) {
-            self.likeButton.setImage(UIImage(named: "like"), for: .normal)
-            self.character?.isSelected = true
-        } else {
-            self.likeButton.setImage(UIImage(named: "heart"), for: .normal)
-        }
-        
         nameLabel.text = character.name
         
         let path = character.image.path
@@ -107,23 +104,23 @@ class CharacterCell: UICollectionViewCell {
                                    options: .continueInBackground) { (image, error, cache, url) in
             self.activityIndicator.stopAnimating()
         }
+        
+        if client.favoriteCharactersID.contains(character.id) {
+            self.likeButton.setImage(UIImage(named: "like"), for: .normal)
+            self.character?.isSelected = true
+        }
     }
     
     @objc func likeTapped(_ sender: UIButton) {
-        guard var character,
-              let client else { return }
+        guard let character else { return }
         switch character.isSelected {
         case true:
-            if !client.favoriteCharactersID.contains(character.id) {
-                sender.setImage(UIImage(named: "like"), for: .normal)
-                character.isSelected.toggle()
-            } else {
-                sender.setImage(UIImage(named: "heart"), for: .normal)
-                character.isSelected.toggle()
-            }
+            delegate?.likeButtonTappedToDelete(character)
+            sender.setImage(UIImage(named: "heart"), for: .normal)
+            character.isSelected.toggle()
         case false:
             sender.setImage(UIImage(named: "like"), for: .normal)
-            delegate?.saveCharacter(character)
+            delegate?.likeButtonTappedToSave(character)
             character.isSelected.toggle()
         }
     }

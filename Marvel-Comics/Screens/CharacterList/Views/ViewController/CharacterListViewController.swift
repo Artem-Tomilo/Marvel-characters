@@ -116,7 +116,12 @@ extension CharacterListViewController: CharacterListViewProtocol {
 //MARK: - extension CharacterCellDelegate
 
 extension CharacterListViewController: CharacterCellDelegate {
-    func saveCharacter(_ character: Character) {
+    
+    func likeButtonTappedToSave(_ character: Character) {
         presenter?.addToFavorites(character)
+    }
+    
+    func likeButtonTappedToDelete(_ character: Character) {
+        presenter?.deleteFromFavorites(character)
     }
 }

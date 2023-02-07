@@ -61,6 +61,11 @@ class CharacterListPresenter: CharacterPresenterProtocol {
     
     func addToFavorites(_ character: Character) {
         client.favoriteCharactersID.append(character.id)
-        manager.saveCharacter(client)
+        manager.saveCharacterToFavorites(with: character.id, to: client)
+    }
+    
+    func deleteFromFavorites(_ character: Character) {
+        client.favoriteCharactersID.removeAll(where: { $0 == character.id })
+        manager.deleteCharacterFromFavorites(with: character.id, from: client)
     }
 }

@@ -42,15 +42,15 @@ final class FirestoreManager {
         }
     }
     
-    func saveCharacter(_ client: Client) {
-        db.collection("users").document(client.id).setData([
-            "favoriteCharactersID" : client.favoriteCharactersID
-        ], merge: true) { error in
-            if let error {
-                print("Error adding document: \(error)")
-            } else {
-                print("Document added with ID: \(client.id)")
-            }
-        }
+    func saveCharacterToFavorites(with id: Int, to client: Client) {
+        db.collection("users").document(client.id).updateData([
+            "favoriteCharactersID": FieldValue.arrayUnion([id])
+        ])
+    }
+    
+    func deleteCharacterFromFavorites(with id: Int, from client: Client) {
+        db.collection("users").document(client.id).updateData([
+            "favoriteCharactersID": FieldValue.arrayRemove([id])
+        ])
     }
 }
