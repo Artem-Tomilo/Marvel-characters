@@ -11,6 +11,7 @@ protocol AccountPresenterProtocol: AnyObject {
     init(view: AccountViewProtocol, router: RouterProtocol, network: NetworkServiceProtocol, client: Client)
     func backButtonTap()
     func signOut()
+    func loadFavoritesCharacters()
     var client: Client { get set }
     var characters: [Character] { get set }
 }

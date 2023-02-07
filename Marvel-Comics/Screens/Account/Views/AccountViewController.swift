@@ -16,14 +16,15 @@ class AccountViewController: UIViewController {
     private var dataSource: CollectionViewDataSource?
     private let signOutButton = UIButton()
     private let activityIndicator = ActivityIndicator()
+    private let collectionHeaderView = HeaderView()
+    private let emailHeaderView = HeaderView()
+    private let emailLabel = UILabel()
     
     //MARK: - VC Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureNavigationBar()
-        configureCollectionView()
-        addingSubviewsAndSettingConstraints()
+        setupSettings()
     }
     
     //MARK: - View settings
@@ -51,9 +52,8 @@ class AccountViewController: UIViewController {
     }
     
     private func configureCollectionView() {
-        view.backgroundColor = .white
         let flowLayout = UICollectionViewFlowLayout()
-        flowLayout.itemSize = CGSize(width: 130, height: 290)
+        flowLayout.itemSize = CGSize(width: 130, height: 230)
         flowLayout.scrollDirection = .horizontal
         flowLayout.minimumInteritemSpacing = 10.0
         
@@ -61,27 +61,54 @@ class AccountViewController: UIViewController {
         guard let collectionView else { return }
         collectionView.backgroundColor = .clear
         
-        view.addSubview(collectionView)
-        dataSource = CollectionViewDataSource(collectionView: collectionView, delegate: nil, client: presenter!.client)
+        guard let presenter else { return }
+        dataSource = CollectionViewDataSource(collectionView: collectionView, delegate: nil, client: presenter.client)
         collectionView.delegate = self
+    }
+    
+    private func addingViewsAndSettingConstraints() {
+        guard let collectionView else { return }
+        view.backgroundColor = .white
+        view.addSubview(collectionView)
+        view.addSubview(collectionHeaderView)
+        view.addSubview(signOutButton)
+        view.addSubview(emailHeaderView)
+        view.addSubview(emailLabel)
+        
+        collectionHeaderView.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview()
+            make.top.equalToSuperview().offset(10)
+        }
         
         collectionView.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(5)
-            make.top.equalToSuperview()
-            make.height.equalTo(310)
+            make.top.equalTo(collectionHeaderView.snp.bottom)
+            make.height.greaterThanOrEqualTo(250)
         }
         
-        activityIndicator.displayIndicator(view: collectionView)
-        activityIndicator.startAnimating()
-    }
-    
-    private func addingSubviewsAndSettingConstraints() {
-        view.addSubview(signOutButton)
+        emailHeaderView.snp.makeConstraints { make in
+            make.top.equalTo(collectionView.snp.bottom)
+            make.leading.trailing.equalToSuperview()
+        }
+        
+        emailLabel.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview().inset(10)
+            make.top.equalTo(emailHeaderView.snp.bottom).offset(10)
+            make.height.equalTo(emailHeaderView.snp.height)
+        }
         
         signOutButton.snp.makeConstraints { make in
             make.leading.trailing.bottom.equalToSuperview().inset(50)
             make.height.equalTo(40)
         }
+    }
+    
+    private func configureSubViews() {
+        emailLabel.text = presenter?.client.email
+        emailLabel.font = UIFont(name: "BadaBoomBB", size: 30)
+        
+        collectionHeaderView.bind("Favorites characters")
+        emailHeaderView.bind("User email")
         
         signOutButton.layer.cornerRadius = 5
         signOutButton.backgroundColor = .black
@@ -92,8 +119,16 @@ class AccountViewController: UIViewController {
         signOutButton.setTitleColor(.white, for: .normal)
         signOutButton.addTarget(self, action: #selector(signOutButtonTapped(_:)), for: .primaryActionTriggered)
         
-        activityIndicator.displayIndicator(view: view)
+        activityIndicator.displayIndicator(view: collectionView!)
         activityIndicator.startAnimating()
+        presenter?.loadFavoritesCharacters()
+    }
+    
+    private func setupSettings() {
+        configureNavigationBar()
+        configureCollectionView()
+        addingViewsAndSettingConstraints()
+        configureSubViews()
     }
     
     //MARK: - Targets

@@ -21,10 +21,14 @@ class AccountPresenter: AccountPresenterProtocol {
         self.router = router
         self.networkService = network
         self.client = client
-        loadCharacters()
     }
     
-    func loadCharacters() {
+    func loadFavoritesCharacters() {
+        guard client.favoriteCharactersID.count > 0 else {
+            view?.loadCharactersFailure(error: BaseError(message: "You didn't add favorites characters"))
+            return
+        }
+        
         client.favoriteCharactersID.forEach { char in
             networkService.loadCharacter(with: char) { [weak self] result in
                 guard let self else { return }

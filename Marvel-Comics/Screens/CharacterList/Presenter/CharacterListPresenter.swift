@@ -28,7 +28,6 @@ class CharacterListPresenter: CharacterPresenterProtocol {
         self.networkService = networkService
         self.router = router
         self.client = client
-        print(client.favoriteCharactersID)
     }
     
     //MARK: - Functions
