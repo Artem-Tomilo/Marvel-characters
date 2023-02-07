@@ -111,6 +111,20 @@ class CharacterCell: UICollectionViewCell {
         }
     }
     
+    func configureForAccountVC() {
+        nameLabel.snp.removeConstraints()
+        nameLabel.snp.makeConstraints { make in
+            make.trailing.equalToSuperview().offset(-5)
+            make.leading.equalToSuperview().inset(5)
+            make.centerY.equalToSuperview()
+        }
+        
+        likeButton.isHidden = true
+        nameLabel.font = UIFont(name: "BadaBoomBB", size: 20)
+        nameLabel.numberOfLines = 0
+        nameLabel.textAlignment = .center
+    }
+    
     @objc func likeTapped(_ sender: UIButton) {
         guard let character else { return }
         switch character.isSelected {

@@ -13,7 +13,7 @@ class NetworkService: NetworkServiceProtocol {
     private let limit = 10
     private let baseURL = "https://gateway.marvel.com"
     private let publicKey = "8bd050fc93e12270fe8f7e86de47238a"
-    private let privateKey = "87ac8756494f4167c6a4a623bf7de9c70f50bcc2"
+    private let privateKey = ""
     
     func loadCharacters(pageNumber: Int, completion: @escaping (Result<[Character], BaseError>) -> Void) {
         let endpoint = "/v1/public/characters"
@@ -42,6 +42,22 @@ class NetworkService: NetworkServiceProtocol {
                 let comics = dataBase.comicsData.comics
                 guard let comics else { return }
                 completion(.success(comics))
+            } catch {
+                completion(.failure(BaseError(message: "An unexpected error occurred. Try again")))
+            }
+        }
+    }
+    
+    func loadCharacter(with id: Int, _ completion: @escaping (Result<Character, BaseError>) -> Void) {
+        let endpoint = "/v1/public/characters/\(id)"
+        let stringUrl = baseURL + endpoint + buildQueryString()
+        
+        AF.request(stringUrl).responseDecodable(of: CharacterDataBase.self) { response in
+            do {
+                let dataBase = try response.result.get()
+                print(dataBase.responseCode)
+                guard let character = dataBase.charactersData.characters.first(where: {$0.id == id}) else { return }
+                completion(.success(character))
             } catch {
                 completion(.failure(BaseError(message: "An unexpected error occurred. Try again")))
             }

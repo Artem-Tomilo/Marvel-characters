@@ -10,4 +10,5 @@ import Foundation
 protocol NetworkServiceProtocol: AnyObject {
     func loadCharacters(pageNumber: Int, completion: @escaping (Result<[Character], BaseError>) -> Void)
     func loadComics(id: Int, completion: @escaping (Result<[Comic], BaseError>) -> Void)
+    func loadCharacter(with id: Int, _ completion: @escaping (Result<Character, BaseError>) -> Void)
 }

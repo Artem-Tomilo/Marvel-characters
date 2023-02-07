@@ -12,6 +12,8 @@ class AccountViewController: UIViewController {
     //MARK: - Properties
     
     var presenter: AccountPresenterProtocol?
+    private var collectionView: UICollectionView?
+    private var dataSource: CollectionViewDataSource?
     private let signOutButton = UIButton()
     private let activityIndicator = ActivityIndicator()
     
@@ -19,8 +21,8 @@ class AccountViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
         configureNavigationBar()
+        configureCollectionView()
         addingSubviewsAndSettingConstraints()
     }
     
@@ -48,6 +50,31 @@ class AccountViewController: UIViewController {
         navigationItem.leftBarButtonItems = [firstItem, fixedSpace, secondItem]
     }
     
+    private func configureCollectionView() {
+        view.backgroundColor = .white
+        let flowLayout = UICollectionViewFlowLayout()
+        flowLayout.itemSize = CGSize(width: 130, height: 290)
+        flowLayout.scrollDirection = .horizontal
+        flowLayout.minimumInteritemSpacing = 10.0
+        
+        collectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
+        guard let collectionView else { return }
+        collectionView.backgroundColor = .clear
+        
+        view.addSubview(collectionView)
+        dataSource = CollectionViewDataSource(collectionView: collectionView, delegate: nil, client: presenter!.client)
+        collectionView.delegate = self
+        
+        collectionView.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview().inset(5)
+            make.top.equalToSuperview()
+            make.height.equalTo(310)
+        }
+        
+        activityIndicator.displayIndicator(view: collectionView)
+        activityIndicator.startAnimating()
+    }
+    
     private func addingSubviewsAndSettingConstraints() {
         view.addSubview(signOutButton)
         
@@ -66,6 +93,7 @@ class AccountViewController: UIViewController {
         signOutButton.addTarget(self, action: #selector(signOutButtonTapped(_:)), for: .primaryActionTriggered)
         
         activityIndicator.displayIndicator(view: view)
+        activityIndicator.startAnimating()
     }
     
     //MARK: - Targets
@@ -99,4 +127,19 @@ extension AccountViewController: AccountViewProtocol {
         activityIndicator.stopAnimating()
         showErrorAlertController(viewController: self, error: error)
     }
+    
+    func loadCharactersSuccess() {
+        guard let presenter else { return }
+        activityIndicator.stopAnimating()
+        dataSource?.bindData(presenter.characters)
+    }
+    
+    func loadCharactersFailure(error: Error) {
+        activityIndicator.stopAnimating()
+        showErrorAlertController(viewController: self, error: error)
+    }
+}
+
+extension AccountViewController: UICollectionViewDelegate {
+    
 }

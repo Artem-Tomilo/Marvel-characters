@@ -13,13 +13,34 @@ class AccountPresenter: AccountPresenterProtocol {
     weak var view: AccountViewProtocol?
     private let router: RouterProtocol
     private let networkService: NetworkServiceProtocol
-    private let client: Client
+    var client: Client
+    var characters = [Character]()
     
     required init(view: AccountViewProtocol, router: RouterProtocol, network: NetworkServiceProtocol, client: Client) {
         self.view = view
         self.router = router
         self.networkService = network
         self.client = client
+        loadCharacters()
+    }
+    
+    func loadCharacters() {
+        client.favoriteCharactersID.forEach { char in
+            networkService.loadCharacter(with: char) { [weak self] result in
+                guard let self else { return }
+                switch result {
+                case .success(let character):
+                    self.characters.append(character)
+                    if self.characters.count == self.client.favoriteCharactersID.count {
+                        DispatchQueue.main.async() {
+                            self.view?.loadCharactersSuccess()
+                        }
+                    }
+                case .failure(let error):
+                    self.view?.loadCharactersFailure(error: error)
+                }
+            }
+        }
     }
     
     func backButtonTap() {

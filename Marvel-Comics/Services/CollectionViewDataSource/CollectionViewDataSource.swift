@@ -62,6 +62,10 @@ extension CollectionViewDataSource: UICollectionViewDataSource {
             guard let client else { return cell }
             cell.setData(character: character, client: client)
             cell.delegate = delegate
+            
+            if delegate == nil {
+                cell.configureForAccountVC()
+            }
             return cell
         } else if data is [Comic] {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ComicCollectionViewCell.comicCellIdentifier,
