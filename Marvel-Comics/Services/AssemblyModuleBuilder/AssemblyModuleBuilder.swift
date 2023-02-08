@@ -9,6 +9,13 @@ import UIKit
 
 class AssemblyModuleBuilder: AssemblyBuilderProtocol {
     
+    func createSplashViewController(router: RouterProtocol) -> UIViewController {
+        let view = SplashViewController()
+        let presenter = SplashPresenter(view: view, router: router)
+        view.presenter = presenter
+        return view
+    }
+    
     func createCharacterViewController(client: Client, router: RouterProtocol) -> UIViewController {
         let view = CharacterListViewController()
         let networkService = NetworkService()

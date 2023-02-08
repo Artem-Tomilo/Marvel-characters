@@ -18,8 +18,18 @@ class Router: RouterProtocol {
     }
     
     func initialViewController() {
-        guard let viewController = assemblyBuilder?.createSignInViewController(router: self) else { return }
+        guard let viewController = assemblyBuilder?.createSplashViewController(router: self) else { return }
         navigationController.viewControllers = [viewController]
+    }
+    
+    func moveToSignIn() {
+        guard let viewController = assemblyBuilder?.createSignInViewController(router: self) else { return }
+        navigationController.pushViewController(viewController, animated: true)
+    }
+    
+    func moveToSignUp() {
+        guard let signUpViewController = assemblyBuilder?.createSignUpViewController(router: self) else { return }
+        navigationController.pushViewController(signUpViewController, animated: true)
     }
     
     func moveToCharacterList(client: Client) {
@@ -31,11 +41,6 @@ class Router: RouterProtocol {
         guard let characterDetailsViewController = assemblyBuilder?.createCharacterDetailsViewController(character: character,
                                                                                                          router: self) else { return }
         navigationController.pushViewController(characterDetailsViewController, animated: true)
-    }
-    
-    func moveToSignUp() {
-        guard let signUpViewController = assemblyBuilder?.createSignUpViewController(router: self) else { return }
-        navigationController.pushViewController(signUpViewController, animated: true)
     }
     
     func moveToAccount(client: Client) {

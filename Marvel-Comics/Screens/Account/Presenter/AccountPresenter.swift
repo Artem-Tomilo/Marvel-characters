@@ -61,7 +61,7 @@ class AccountPresenter: AccountPresenterProtocol {
             if Auth.auth().currentUser == nil {
                 view?.startIndicator()
                 DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(700)) {
-                    self.router.initialViewController()
+                    self.router.moveToSignIn()
                 }
             }
         } catch {
