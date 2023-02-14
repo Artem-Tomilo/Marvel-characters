@@ -10,15 +10,21 @@ import GoogleSignIn
 
 class SignInPresenter: SignInPresenterProtocol {
     
+    //MARK: - Properties
+    
     private weak var view: SignInViewProtocol?
     private let router: RouterProtocol
     private let authManager = FirebaseAuthManager.shared
     private let firestoreManager = FirestoreManager.shared
     
+    //MARK: - Init
+    
     required init(view: SignInViewProtocol, router: RouterProtocol) {
         self.view = view
         self.router = router
     }
+    
+    //MARK: - Functions
     
     private func validateEnateredValues() -> AuthModel? {
         guard let view else { return nil }

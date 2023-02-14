@@ -147,7 +147,6 @@ class AccountViewController: UIViewController {
         alert.addAction(cancelAction)
         present(alert, animated: true)
     }
-    
 }
 
 //MARK: - extension AccountViewProtocol
@@ -174,6 +173,8 @@ extension AccountViewController: AccountViewProtocol {
         showErrorAlertController(viewController: self, error: error)
     }
 }
+
+//MARK: - extension UICollectionViewDelegate
 
 extension AccountViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

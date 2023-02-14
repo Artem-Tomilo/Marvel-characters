@@ -9,11 +9,15 @@ import UIKit
 
 class ComicCollectionViewCell: UICollectionViewCell {
     
+    //MARK: - Properties
+    
     private let background = UIView()
     private let image = UIImageView()
     private let name = UILabel()
     private let activityIndicator = ActivityIndicator()
     static let comicCellIdentifier = "comicCell"
+    
+    //MARK: - Init
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -23,6 +27,8 @@ class ComicCollectionViewCell: UICollectionViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    //MARK: - Functions
     
     private func setup() {
         contentView.addSubview(background)

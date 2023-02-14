@@ -9,11 +9,15 @@ import UIKit
 
 class CollectionViewDataSource: NSObject {
     
+    //MARK: - Properties
+    
     private let collectionView: UICollectionView
     private var loadingView: LoadingReusableView?
     private var data = [Any]()
     private weak var delegate: CharacterCellDelegate?
     private let client: Client?
+    
+    //MARK: - init
     
     init(collectionView: UICollectionView, delegate: CharacterCellDelegate?, client: Client?) {
         self.collectionView = collectionView
@@ -23,6 +27,8 @@ class CollectionViewDataSource: NSObject {
         collectionView.dataSource = self
         registerCells()
     }
+    
+    //MARK: - Functions
     
     private func registerCells() {
         collectionView.register(CharacterCell.self,
@@ -43,6 +49,8 @@ class CollectionViewDataSource: NSObject {
         self.loadingView = loadingView
     }
 }
+
+//MARK: - extension UICollectionViewDataSource
 
 extension CollectionViewDataSource: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -92,4 +100,3 @@ extension CollectionViewDataSource: UICollectionViewDataSource {
         return UICollectionReusableView()
     }
 }
-

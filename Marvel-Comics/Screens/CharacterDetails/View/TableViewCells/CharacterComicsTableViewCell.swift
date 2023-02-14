@@ -9,10 +9,14 @@ import UIKit
 
 class CharacterComicsTableViewCell: UITableViewCell, UICollectionViewDelegate {
     
+    //MARK: - Properties
+    
     private var collectionView: UICollectionView?
     private var dataSource: CollectionViewDataSource?
     private let activityIndicator = ActivityIndicator()
     static let characterComicsCellIdentifier = "chatacterComicsCell"
+    
+    //MARK: - Init
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -22,6 +26,8 @@ class CharacterComicsTableViewCell: UITableViewCell, UICollectionViewDelegate {
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
+    
+    //MARK: - Functions
     
     private func setup() {
         contentView.backgroundColor = .white

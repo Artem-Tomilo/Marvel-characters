@@ -9,9 +9,13 @@ import UIKit
 
 class ComicsDataSource: NSObject {
     
+    //MARK: - Properties
+    
     private let tableView: UITableView
     private var character: Character?
     private var data = [Any]()
+    
+    //MARK: - Init
     
     init(tableView: UITableView) {
         self.tableView = tableView
@@ -20,6 +24,8 @@ class ComicsDataSource: NSObject {
         self.tableView.delegate = self
         registerCells()
     }
+    
+    //MARK: - Functions
     
     private func registerCells() {
         tableView.register(CharacterDetailsHeaderTableViewCell.self,
@@ -39,6 +45,8 @@ class ComicsDataSource: NSObject {
         self.tableView.reloadData()
     }
 }
+
+//MARK: - extension UITableViewDelegate
 
 extension ComicsDataSource: UITableViewDelegate {
     
@@ -71,6 +79,8 @@ extension ComicsDataSource: UITableViewDelegate {
         return nil
     }
 }
+
+//MARK: - extension UITableViewDataSource
 
 extension ComicsDataSource: UITableViewDataSource {
     

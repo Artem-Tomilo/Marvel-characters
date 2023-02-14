@@ -9,8 +9,12 @@ import UIKit
 
 class CharacterDescriptionTableViewCell: UITableViewCell {
     
+    //MARK: - Properties
+    
     private let descriptionLabel = UILabel()
     static let descriptionCellIdentifier = "descriptionCell"
+    
+    //MARK: - Init
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -20,6 +24,8 @@ class CharacterDescriptionTableViewCell: UITableViewCell {
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
+    
+    //MARK: - Functions
     
     private func setup() {
         contentView.backgroundColor = .white

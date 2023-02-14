@@ -9,8 +9,12 @@ import UIKit
 
 class HeaderView: UIView {
     
+    //MARK: - Properties
+    
     private let background = UIView()
     private let title = UILabel()
+    
+    //MARK: - Init
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -20,6 +24,8 @@ class HeaderView: UIView {
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
+    
+    //MARK: - Functions
     
     private func setup() {
         addSubview(background)

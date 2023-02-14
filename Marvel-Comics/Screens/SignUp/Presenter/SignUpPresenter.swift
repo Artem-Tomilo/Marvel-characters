@@ -9,15 +9,21 @@ import Foundation
 
 class SignUpPresenter: SignUpPresenterProtocol {
     
+    //MARK: - Properties
+    
     private weak var view: SignUpViewProtocol?
     private let router: RouterProtocol
     private let authManager = FirebaseAuthManager.shared
     private let firestoreManager = FirestoreManager.shared
     
+    //MARK: - Init
+    
     required init(view: SignUpViewProtocol, router: RouterProtocol) {
         self.view = view
         self.router = router
     }
+    
+    //MARK: - Functions
     
     func backButtonTap() {
         router.popViewController()

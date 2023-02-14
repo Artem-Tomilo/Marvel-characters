@@ -9,10 +9,14 @@ import UIKit
 
 class CharacterDetailsHeaderTableViewCell: UITableViewCell {
     
+    //MARK: - Properties
+    
     private let background = UIView()
     private let image = UIImageView()
     private let nameLabel = UILabel()
     static let headerCellIdentifier = "headerCell"
+    
+    //MARK: - Init
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -22,6 +26,8 @@ class CharacterDetailsHeaderTableViewCell: UITableViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    //MARK: - Functions
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)

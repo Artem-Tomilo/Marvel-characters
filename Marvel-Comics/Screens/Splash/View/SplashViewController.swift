@@ -9,16 +9,22 @@ import UIKit
 
 class SplashViewController: UIViewController {
     
+    //MARK: - Properties
+    
     var presenter: SplashPresenter?
     private let activityIndicator = ActivityIndicator()
     private let image = UIImageView()
     private let leftTitle = UILabel()
+    
+    //MARK: - VC Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         startingUISettings()
         configureUI()
     }
+    
+    //MARK: - View settings
     
     private func startingUISettings() {
         view.backgroundColor = .white

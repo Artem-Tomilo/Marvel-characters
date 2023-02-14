@@ -10,6 +10,8 @@ import SDWebImage
 
 class CharacterCell: UICollectionViewCell {
     
+    //MARK: - Properties
+    
     private let background = UIView()
     private let characterImage = UIImageView()
     private let nameView = UIView()
@@ -21,6 +23,8 @@ class CharacterCell: UICollectionViewCell {
     static let cellIdentifier = "character"
     
     weak var delegate: CharacterCellDelegate?
+    
+    //MARK: - init
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -38,6 +42,8 @@ class CharacterCell: UICollectionViewCell {
         }
         return super.hitTest(point, with: event)
     }
+    
+    //MARK: - View settings
     
     private func addingSubviewsAndSettingConstraints() {
         contentView.addSubview(background)
@@ -86,6 +92,8 @@ class CharacterCell: UICollectionViewCell {
         activityIndicator.startAnimating()
     }
     
+    //MARK: - Functions
+    
     func setData(character: Character, client: Client) {
         activityIndicator.displayIndicator(view: contentView)
         activityIndicator.startAnimating()
@@ -126,6 +134,8 @@ class CharacterCell: UICollectionViewCell {
         nameLabel.numberOfLines = 0
         nameLabel.textAlignment = .center
     }
+    
+    //MARK: - Targets
     
     @objc func likeTapped(_ sender: UIButton) {
         guard let character else { return }

@@ -10,11 +10,15 @@ import FirebaseAuth
 
 class AccountPresenter: AccountPresenterProtocol {
     
+    //MARK: - Properties
+    
     weak var view: AccountViewProtocol?
     private let router: RouterProtocol
     private let networkService: NetworkServiceProtocol
     var client: Client
     var characters = [Character]()
+    
+    //MARK: - Init
     
     required init(view: AccountViewProtocol, router: RouterProtocol, network: NetworkServiceProtocol, client: Client) {
         self.view = view
@@ -22,6 +26,8 @@ class AccountPresenter: AccountPresenterProtocol {
         self.networkService = network
         self.client = client
     }
+    
+    //MARK: - Functions
     
     func loadFavoritesCharacters() {
         guard client.favoriteCharactersID.count > 0 else {
